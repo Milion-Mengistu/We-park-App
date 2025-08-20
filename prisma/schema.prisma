@@ -1,0 +1,247 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+
+/**
+ * NextAuth default models (supports Google OAuth and other providers)
+ */
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+
+  accounts      Account[]
+  sessions      Session[]
+
+  // Domain relationships
+  bookings      Booking[]
+  notifications Notification[]
+  payments      Payment[]
+  userRoles     UserRole[]
+  incidents     Incident[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+/**
+ * We Park domain models - Enhanced schema per SRS
+ */
+
+// User role management
+model UserRole {
+  id        String   @id @default(cuid())
+  userId    String
+  role      String   // "USER", "ADMIN", "ATTENDANT", "SUPER_ADMIN"
+  locationId String? // For location-specific roles
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  location  ParkingLocation? @relation(fields: [locationId], references: [id])
+
+  @@unique([userId, role, locationId])
+}
+
+// Parking location management
+model ParkingLocation {
+  id          String   @id @default(cuid())
+  name        String
+  address     String
+  latitude    Float?
+  longitude   Float?
+  description String?
+  features    String?  // JSON: ["Covered", "24/7", "Security", "EV Charging"]
+  operatingHours String? // JSON format for hours
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  slots       ParkingSlot[]
+  userRoles   UserRole[]
+  incidents   Incident[]
+  analytics   ParkingAnalytics[]
+}
+
+// Enhanced parking slot model
+model ParkingSlot {
+  id          String    @id @default(cuid())
+  slotNumber  String
+  locationId  String
+  type        String    @default("STANDARD") // "STANDARD", "PREMIUM", "DISABLED", "EV"
+  basePrice   Float
+  status      String    @default("AVAILABLE") // "AVAILABLE", "OCCUPIED", "MAINTENANCE", "RESERVED"
+  features    String?  // JSON: ["Covered", "Camera", "Sensor"]
+  rules       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  location    ParkingLocation @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  bookings    Booking[]
+
+  @@unique([locationId, slotNumber])
+}
+
+// Enhanced booking model with QR support
+model Booking {
+  id              String      @id @default(cuid())
+  userId          String
+  slotId          String
+  startTime       DateTime
+  endTime         DateTime
+  actualStartTime DateTime?
+  actualEndTime   DateTime?
+  totalAmount     Float
+  status          String      @default("PENDING") // "PENDING", "CONFIRMED", "ACTIVE", "COMPLETED", "CANCELLED", "EXPIRED"
+  qrCode          String?     @unique
+  checkInCode     String?     @unique
+  extendedTimes   Int         @default(0)
+  notes           String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user            User        @relation(fields: [userId], references: [id])
+  slot            ParkingSlot @relation(fields: [slotId], references: [id])
+  payment         Payment?
+  incidents       Incident[]
+}
+
+// Enhanced payment model
+model Payment {
+  id              String   @id @default(cuid())
+  userId          String
+  bookingId       String   @unique
+  amount          Float
+  method          String   // "TELEBIRR", "CBE_BIRR", "CHAPA", "CASH"
+  status          String   @default("PENDING") // "PENDING", "PROCESSING", "COMPLETED", "FAILED", "REFUNDED"
+  transactionId   String?  @unique
+  gatewayResponse String?  // JSON response from payment gateway
+  paidAt          DateTime?
+  refundedAt      DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User     @relation(fields: [userId], references: [id])
+  booking         Booking  @relation(fields: [bookingId], references: [id])
+}
+
+// Enhanced notification model
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String   // "BOOKING", "PAYMENT", "EXPIRY", "INCIDENT", "SYSTEM"
+  priority  String   @default("NORMAL") // "LOW", "NORMAL", "HIGH", "URGENT"
+  isRead    Boolean  @default(false)
+  readAt    DateTime?
+  data      String?  // JSON data for notification context
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+// Incident reporting for attendants
+model Incident {
+  id          String   @id @default(cuid())
+  bookingId   String?
+  locationId  String
+  reporterId  String   // User who reported (attendant/user)
+  type        String   // "DAMAGE", "VIOLATION", "PAYMENT_ISSUE", "SECURITY", "OTHER"
+  severity    String   @default("MEDIUM") // "LOW", "MEDIUM", "HIGH", "CRITICAL"
+  title       String
+  description String
+  status      String   @default("OPEN") // "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED"
+  resolution  String?
+  resolvedBy  String?
+  resolvedAt  DateTime?
+  images      String?  // JSON array of image URLs
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  booking     Booking? @relation(fields: [bookingId], references: [id])
+  location    ParkingLocation @relation(fields: [locationId], references: [id])
+  reporter    User     @relation(fields: [reporterId], references: [id])
+}
+
+// Analytics and reporting
+model ParkingAnalytics {
+  id              String   @id @default(cuid())
+  locationId      String
+  date            DateTime
+  totalSlots      Int
+  occupiedSlots   Int
+  totalBookings   Int
+  totalRevenue    Float
+  averageStayTime Float?   // in minutes
+  peakHours       String?  // JSON format
+  createdAt       DateTime @default(now())
+
+  location        ParkingLocation @relation(fields: [locationId], references: [id])
+
+  @@unique([locationId, date])
+}
+
+// System settings and configuration
+model SystemSettings {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  description String?
+  isActive    Boolean  @default(true)
+  updatedBy   String?
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+}

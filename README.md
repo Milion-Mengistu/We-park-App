@@ -2,7 +2,7 @@
 
 A modern, beautiful web application for finding and booking parking spots with real-time availability and seamless user experience.
 
-![We Park Banner](/we-park-baner.png)
+![We Park Banner](./public/we-park-baner.png)
 
 ## ✨ Features
 

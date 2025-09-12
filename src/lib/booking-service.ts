@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from './prisma';
 import { generateQRCode, generateCheckInCode } from './qr-service';
-
-const prisma = new PrismaClient();
 
 export interface CreateBookingRequest {
   userId: string;

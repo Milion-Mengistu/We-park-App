@@ -1,9 +1,9 @@
 import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/src/lib/prisma";
 import { getUserRoles, UserRole } from "@/src/lib/auth-utils";
-import { demoAuthProvider } from "@/src/lib/demo-auth-provider";
 
 declare module "next-auth" {
   interface Session {
@@ -26,7 +26,24 @@ declare module "next-auth/jwt" {
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    demoAuthProvider,
+    CredentialsProvider({
+      id: "credentials",
+      name: "Email & Password",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null;
+        const email = String(credentials.email).toLowerCase();
+        const user = await prisma.user.findUnique({ where: { email } });
+        if (!user || !user.passwordHash) return null;
+        const { verifyPassword } = await import("@/src/lib/passwords");
+        const valid = verifyPassword(String(credentials.password), user.passwordHash);
+        if (!valid) return null;
+        return { id: user.id, name: user.name ?? null, email: user.email ?? null, image: user.image ?? null };
+      },
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "demo-client-id",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "demo-client-secret",

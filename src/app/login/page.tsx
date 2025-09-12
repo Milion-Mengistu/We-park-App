@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { signIn, getSession, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,51 +20,37 @@ export default function LoginPage() {
     }
   }, [status, router]);
 
-  const handleGoogleSignIn = async () => {
+  const handleCredentialsSignIn = async () => {
     try {
       setLoading(true);
       setError("");
-      await signIn("google", { callbackUrl: "/dashboard" });
-    } catch (error) {
-      setError("Failed to sign in with Google");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDemoSignIn = async () => {
-    try {
-      setLoading(true);
-      setError("");
-      
-      const result = await signIn("demo-credentials", {
+      const res = await signIn("credentials", {
+        redirect: false,
         email,
         password,
-        redirect: false,
       });
-
-      if (result?.error) {
-        setError("Invalid demo credentials");
+      if (res?.error) {
+        setError("Invalid email or password");
       } else {
         router.push("/dashboard");
       }
-    } catch (error) {
+    } catch (e) {
       setError("Failed to sign in");
     } finally {
       setLoading(false);
     }
   };
 
-  const fillDemoCredentials = (role: string) => {
-    const credentials = {
-      admin: { email: "admin@wepark.com", password: "admin123" },
-      attendant: { email: "attendant@wepark.com", password: "attendant123" },
-      user: { email: "user@wepark.com", password: "user123" }
-    };
-    
-    const cred = credentials[role as keyof typeof credentials];
-    setEmail(cred.email);
-    setPassword(cred.password);
+  const handleGoogleSignIn = async () => {
+    try {
+      setLoading(true);
+      setError("");
+      await signIn("google", { callbackUrl: "/dashboard" });
+    } catch (e) {
+      setError("Failed to sign in with Google");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (status === "loading") {
@@ -83,7 +69,6 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center px-6">
       <div className="w-full max-w-md">
-        {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="relative">
@@ -101,7 +86,6 @@ export default function LoginPage() {
           <p className="text-gray-600">Sign in to your account to continue</p>
         </div>
 
-        {/* Login Form */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-xl">
           {error && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
@@ -114,75 +98,46 @@ export default function LoginPage() {
             </div>
           )}
 
-          {/* Demo Credentials */}
-          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-            <h3 className="font-medium text-blue-900 mb-3">Demo Accounts</h3>
-            <div className="grid grid-cols-3 gap-2">
-              <button
-                onClick={() => fillDemoCredentials('admin')}
-                className="px-3 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg text-xs font-medium transition-colors"
-              >
-                Admin
-              </button>
-              <button
-                onClick={() => fillDemoCredentials('attendant')}
-                className="px-3 py-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg text-xs font-medium transition-colors"
-              >
-                Attendant
-              </button>
-              <button
-                onClick={() => fillDemoCredentials('user')}
-                className="px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg text-xs font-medium transition-colors"
-              >
-                User
-              </button>
-            </div>
-          </div>
-
           <div className="space-y-4">
-            {/* Demo Email/Password Login */}
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300"
-                  placeholder="Enter demo email"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300"
-                  placeholder="Enter demo password"
-                />
-              </div>
-              <button
-                onClick={handleDemoSignIn}
-                disabled={loading || !email || !password}
-                className={`w-full py-3 rounded-xl font-medium transition-all duration-300 ${
-                  loading || !email || !password
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl active:scale-[0.98]'
-                }`}
-              >
-                {loading ? (
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Signing in...
-                  </div>
-                ) : (
-                  'Sign In with Demo Account'
-                )}
-              </button>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300"
+                placeholder="you@example.com"
+              />
             </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300"
+                placeholder="••••••••"
+              />
+            </div>
+            <button
+              onClick={handleCredentialsSignIn}
+              disabled={loading || !email || !password}
+              className={`w-full py-3 rounded-xl font-medium transition-all duration-300 ${
+                loading || !email || !password
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl active:scale-[0.98]'
+              }`}
+            >
+              {loading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Signing in...
+                </div>
+              ) : (
+                'Sign In'
+              )}
+            </button>
 
-            {/* Divider */}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200"></div>
@@ -192,7 +147,6 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Google Sign In */}
             <button
               onClick={handleGoogleSignIn}
               disabled={loading}
@@ -212,7 +166,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Footer Links */}
         <div className="text-center mt-6">
           <p className="text-gray-600">
             Don't have an account?{" "}

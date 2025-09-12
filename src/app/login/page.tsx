@@ -41,6 +41,18 @@ export default function LoginPage() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    try {
+      setLoading(true);
+      setError("");
+      await signIn("google", { callbackUrl: "/dashboard" });
+    } catch (e) {
+      setError("Failed to sign in with Google");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (status === "loading") {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -124,6 +136,32 @@ export default function LoginPage() {
               ) : (
                 'Sign In'
               )}
+            </button>
+
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 bg-white text-gray-500 font-medium">or</span>
+              </div>
+            </div>
+
+            <button
+              onClick={handleGoogleSignIn}
+              disabled={loading}
+              className={`w-full flex items-center justify-center gap-3 px-6 py-4 bg-white border-2 border-gray-200 rounded-xl font-medium transition-all duration-300 hover:border-gray-300 hover:shadow-md ${
+                loading ? 'opacity-50 cursor-not-allowed' : 'active:scale-[0.98]'
+              }`}
+            >
+              {loading ? (
+                <div className="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                <Image src="/icons8-google-50.svg" alt="Google" width={20} height={20} />
+              )}
+              <span className="text-gray-700">
+                {loading ? 'Signing in...' : 'Continue with Google'}
+              </span>
             </button>
           </div>
         </div>

@@ -3,7 +3,6 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/src/lib/prisma";
 import { getUserRoles, UserRole } from "@/src/lib/auth-utils";
-import { demoAuthProvider } from "@/src/lib/demo-auth-provider";
 
 declare module "next-auth" {
   interface Session {
@@ -26,7 +25,6 @@ declare module "next-auth/jwt" {
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    demoAuthProvider,
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "demo-client-id",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "demo-client-secret",

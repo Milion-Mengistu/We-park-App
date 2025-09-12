@@ -1,5 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/src/lib/prisma";
 import { getUserRoles, UserRole } from "@/src/lib/auth-utils";
@@ -42,6 +43,10 @@ export const authOptions: NextAuthOptions = {
         if (!valid) return null;
         return { id: user.id, name: user.name ?? null, email: user.email ?? null, image: user.image ?? null };
       },
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "demo-client-id",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "demo-client-secret",
     }),
   ],
 

@@ -11,6 +11,8 @@ export default function LoginPage() {
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -18,13 +20,22 @@ export default function LoginPage() {
     }
   }, [status, router]);
 
-  const handleGoogleSignIn = async () => {
+  const handleCredentialsSignIn = async () => {
     try {
       setLoading(true);
       setError("");
-      await signIn("google", { callbackUrl: "/dashboard" });
-    } catch (error) {
-      setError("Failed to sign in with Google");
+      const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+      if (res?.error) {
+        setError("Invalid email or password");
+      } else {
+        router.push("/dashboard");
+      }
+    } catch (e) {
+      setError("Failed to sign in");
     } finally {
       setLoading(false);
     }
@@ -46,7 +57,6 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center px-6">
       <div className="w-full max-w-md">
-        {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="relative">
@@ -64,7 +74,6 @@ export default function LoginPage() {
           <p className="text-gray-600">Sign in to your account to continue</p>
         </div>
 
-        {/* Login Card */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-xl">
           {error && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
@@ -77,26 +86,48 @@ export default function LoginPage() {
             </div>
           )}
 
-          {/* Google Sign In */}
-          <button
-            onClick={handleGoogleSignIn}
-            disabled={loading}
-            className={`w-full flex items-center justify-center gap-3 px-6 py-4 bg-white border-2 border-gray-200 rounded-xl font-medium transition-all duration-300 hover:border-gray-300 hover:shadow-md ${
-              loading ? 'opacity-50 cursor-not-allowed' : 'active:scale-[0.98]'
-            }`}
-          >
-            {loading ? (
-              <div className="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
-            ) : (
-              <Image src="/icons8-google-50.svg" alt="Google" width={20} height={20} />
-            )}
-            <span className="text-gray-700">
-              {loading ? 'Signing in...' : 'Continue with Google'}
-            </span>
-          </button>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300"
+                placeholder="••••••••"
+              />
+            </div>
+            <button
+              onClick={handleCredentialsSignIn}
+              disabled={loading || !email || !password}
+              className={`w-full py-3 rounded-xl font-medium transition-all duration-300 ${
+                loading || !email || !password
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl active:scale-[0.98]'
+              }`}
+            >
+              {loading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Signing in...
+                </div>
+              ) : (
+                'Sign In'
+              )}
+            </button>
+          </div>
         </div>
 
-        {/* Footer Links */}
         <div className="text-center mt-6">
           <p className="text-gray-600">
             Don't have an account?{" "}

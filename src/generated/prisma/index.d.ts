@@ -35,9 +35,18 @@ export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
  */
 export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTokenPayload>
 /**
+ * Model UserRole
+ * 
+ */
+export type UserRole = $Result.DefaultSelection<Prisma.$UserRolePayload>
+/**
+ * Model ParkingLocation
+ * 
+ */
+export type ParkingLocation = $Result.DefaultSelection<Prisma.$ParkingLocationPayload>
+/**
  * Model ParkingSlot
- * *
- *  * We Park domain models
+ * 
  */
 export type ParkingSlot = $Result.DefaultSelection<Prisma.$ParkingSlotPayload>
 /**
@@ -55,6 +64,21 @@ export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
  * 
  */
 export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model Incident
+ * 
+ */
+export type Incident = $Result.DefaultSelection<Prisma.$IncidentPayload>
+/**
+ * Model ParkingAnalytics
+ * 
+ */
+export type ParkingAnalytics = $Result.DefaultSelection<Prisma.$ParkingAnalyticsPayload>
+/**
+ * Model SystemSettings
+ * 
+ */
+export type SystemSettings = $Result.DefaultSelection<Prisma.$SystemSettingsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -222,6 +246,26 @@ export class PrismaClient<
   get verificationToken(): Prisma.VerificationTokenDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.userRole`: Exposes CRUD operations for the **UserRole** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserRoles
+    * const userRoles = await prisma.userRole.findMany()
+    * ```
+    */
+  get userRole(): Prisma.UserRoleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.parkingLocation`: Exposes CRUD operations for the **ParkingLocation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ParkingLocations
+    * const parkingLocations = await prisma.parkingLocation.findMany()
+    * ```
+    */
+  get parkingLocation(): Prisma.ParkingLocationDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.parkingSlot`: Exposes CRUD operations for the **ParkingSlot** model.
     * Example usage:
     * ```ts
@@ -260,6 +304,36 @@ export class PrismaClient<
     * ```
     */
   get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.incident`: Exposes CRUD operations for the **Incident** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Incidents
+    * const incidents = await prisma.incident.findMany()
+    * ```
+    */
+  get incident(): Prisma.IncidentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.parkingAnalytics`: Exposes CRUD operations for the **ParkingAnalytics** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ParkingAnalytics
+    * const parkingAnalytics = await prisma.parkingAnalytics.findMany()
+    * ```
+    */
+  get parkingAnalytics(): Prisma.ParkingAnalyticsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.systemSettings`: Exposes CRUD operations for the **SystemSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SystemSettings
+    * const systemSettings = await prisma.systemSettings.findMany()
+    * ```
+    */
+  get systemSettings(): Prisma.SystemSettingsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -704,10 +778,15 @@ export namespace Prisma {
     Account: 'Account',
     Session: 'Session',
     VerificationToken: 'VerificationToken',
+    UserRole: 'UserRole',
+    ParkingLocation: 'ParkingLocation',
     ParkingSlot: 'ParkingSlot',
     Booking: 'Booking',
     Payment: 'Payment',
-    Notification: 'Notification'
+    Notification: 'Notification',
+    Incident: 'Incident',
+    ParkingAnalytics: 'ParkingAnalytics',
+    SystemSettings: 'SystemSettings'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -726,7 +805,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "parkingSlot" | "booking" | "payment" | "notification"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "userRole" | "parkingLocation" | "parkingSlot" | "booking" | "payment" | "notification" | "incident" | "parkingAnalytics" | "systemSettings"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1026,6 +1105,154 @@ export namespace Prisma {
           }
         }
       }
+      UserRole: {
+        payload: Prisma.$UserRolePayload<ExtArgs>
+        fields: Prisma.UserRoleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserRoleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserRoleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>
+          }
+          findFirst: {
+            args: Prisma.UserRoleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserRoleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>
+          }
+          findMany: {
+            args: Prisma.UserRoleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>[]
+          }
+          create: {
+            args: Prisma.UserRoleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>
+          }
+          createMany: {
+            args: Prisma.UserRoleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserRoleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>[]
+          }
+          delete: {
+            args: Prisma.UserRoleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>
+          }
+          update: {
+            args: Prisma.UserRoleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>
+          }
+          deleteMany: {
+            args: Prisma.UserRoleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserRoleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserRoleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>[]
+          }
+          upsert: {
+            args: Prisma.UserRoleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRolePayload>
+          }
+          aggregate: {
+            args: Prisma.UserRoleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserRole>
+          }
+          groupBy: {
+            args: Prisma.UserRoleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserRoleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserRoleCountArgs<ExtArgs>
+            result: $Utils.Optional<UserRoleCountAggregateOutputType> | number
+          }
+        }
+      }
+      ParkingLocation: {
+        payload: Prisma.$ParkingLocationPayload<ExtArgs>
+        fields: Prisma.ParkingLocationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ParkingLocationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ParkingLocationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>
+          }
+          findFirst: {
+            args: Prisma.ParkingLocationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ParkingLocationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>
+          }
+          findMany: {
+            args: Prisma.ParkingLocationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>[]
+          }
+          create: {
+            args: Prisma.ParkingLocationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>
+          }
+          createMany: {
+            args: Prisma.ParkingLocationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ParkingLocationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>[]
+          }
+          delete: {
+            args: Prisma.ParkingLocationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>
+          }
+          update: {
+            args: Prisma.ParkingLocationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>
+          }
+          deleteMany: {
+            args: Prisma.ParkingLocationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ParkingLocationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ParkingLocationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>[]
+          }
+          upsert: {
+            args: Prisma.ParkingLocationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLocationPayload>
+          }
+          aggregate: {
+            args: Prisma.ParkingLocationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateParkingLocation>
+          }
+          groupBy: {
+            args: Prisma.ParkingLocationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ParkingLocationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ParkingLocationCountArgs<ExtArgs>
+            result: $Utils.Optional<ParkingLocationCountAggregateOutputType> | number
+          }
+        }
+      }
       ParkingSlot: {
         payload: Prisma.$ParkingSlotPayload<ExtArgs>
         fields: Prisma.ParkingSlotFieldRefs
@@ -1322,6 +1549,228 @@ export namespace Prisma {
           }
         }
       }
+      Incident: {
+        payload: Prisma.$IncidentPayload<ExtArgs>
+        fields: Prisma.IncidentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IncidentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IncidentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>
+          }
+          findFirst: {
+            args: Prisma.IncidentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IncidentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>
+          }
+          findMany: {
+            args: Prisma.IncidentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>[]
+          }
+          create: {
+            args: Prisma.IncidentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>
+          }
+          createMany: {
+            args: Prisma.IncidentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.IncidentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>[]
+          }
+          delete: {
+            args: Prisma.IncidentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>
+          }
+          update: {
+            args: Prisma.IncidentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>
+          }
+          deleteMany: {
+            args: Prisma.IncidentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IncidentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.IncidentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>[]
+          }
+          upsert: {
+            args: Prisma.IncidentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentPayload>
+          }
+          aggregate: {
+            args: Prisma.IncidentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIncident>
+          }
+          groupBy: {
+            args: Prisma.IncidentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IncidentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IncidentCountArgs<ExtArgs>
+            result: $Utils.Optional<IncidentCountAggregateOutputType> | number
+          }
+        }
+      }
+      ParkingAnalytics: {
+        payload: Prisma.$ParkingAnalyticsPayload<ExtArgs>
+        fields: Prisma.ParkingAnalyticsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ParkingAnalyticsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ParkingAnalyticsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>
+          }
+          findFirst: {
+            args: Prisma.ParkingAnalyticsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ParkingAnalyticsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>
+          }
+          findMany: {
+            args: Prisma.ParkingAnalyticsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>[]
+          }
+          create: {
+            args: Prisma.ParkingAnalyticsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>
+          }
+          createMany: {
+            args: Prisma.ParkingAnalyticsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ParkingAnalyticsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>[]
+          }
+          delete: {
+            args: Prisma.ParkingAnalyticsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>
+          }
+          update: {
+            args: Prisma.ParkingAnalyticsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ParkingAnalyticsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ParkingAnalyticsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ParkingAnalyticsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>[]
+          }
+          upsert: {
+            args: Prisma.ParkingAnalyticsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingAnalyticsPayload>
+          }
+          aggregate: {
+            args: Prisma.ParkingAnalyticsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateParkingAnalytics>
+          }
+          groupBy: {
+            args: Prisma.ParkingAnalyticsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ParkingAnalyticsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ParkingAnalyticsCountArgs<ExtArgs>
+            result: $Utils.Optional<ParkingAnalyticsCountAggregateOutputType> | number
+          }
+        }
+      }
+      SystemSettings: {
+        payload: Prisma.$SystemSettingsPayload<ExtArgs>
+        fields: Prisma.SystemSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SystemSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SystemSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.SystemSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SystemSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.SystemSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.SystemSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.SystemSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SystemSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.SystemSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>
+          }
+          update: {
+            args: Prisma.SystemSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.SystemSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SystemSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SystemSettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.SystemSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.SystemSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSystemSettings>
+          }
+          groupBy: {
+            args: Prisma.SystemSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SystemSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SystemSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<SystemSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1418,10 +1867,15 @@ export namespace Prisma {
     account?: AccountOmit
     session?: SessionOmit
     verificationToken?: VerificationTokenOmit
+    userRole?: UserRoleOmit
+    parkingLocation?: ParkingLocationOmit
     parkingSlot?: ParkingSlotOmit
     booking?: BookingOmit
     payment?: PaymentOmit
     notification?: NotificationOmit
+    incident?: IncidentOmit
+    parkingAnalytics?: ParkingAnalyticsOmit
+    systemSettings?: SystemSettingsOmit
   }
 
   /* Types for Logging */
@@ -1526,6 +1980,8 @@ export namespace Prisma {
     bookings: number
     notifications: number
     payments: number
+    userRoles: number
+    incidents: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1534,6 +1990,8 @@ export namespace Prisma {
     bookings?: boolean | UserCountOutputTypeCountBookingsArgs
     notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
     payments?: boolean | UserCountOutputTypeCountPaymentsArgs
+    userRoles?: boolean | UserCountOutputTypeCountUserRolesArgs
+    incidents?: boolean | UserCountOutputTypeCountIncidentsArgs
   }
 
   // Custom InputTypes
@@ -1582,6 +2040,78 @@ export namespace Prisma {
     where?: PaymentWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUserRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserRoleWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountIncidentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IncidentWhereInput
+  }
+
+
+  /**
+   * Count Type ParkingLocationCountOutputType
+   */
+
+  export type ParkingLocationCountOutputType = {
+    slots: number
+    userRoles: number
+    incidents: number
+    analytics: number
+  }
+
+  export type ParkingLocationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    slots?: boolean | ParkingLocationCountOutputTypeCountSlotsArgs
+    userRoles?: boolean | ParkingLocationCountOutputTypeCountUserRolesArgs
+    incidents?: boolean | ParkingLocationCountOutputTypeCountIncidentsArgs
+    analytics?: boolean | ParkingLocationCountOutputTypeCountAnalyticsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ParkingLocationCountOutputType without action
+   */
+  export type ParkingLocationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocationCountOutputType
+     */
+    select?: ParkingLocationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ParkingLocationCountOutputType without action
+   */
+  export type ParkingLocationCountOutputTypeCountSlotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParkingSlotWhereInput
+  }
+
+  /**
+   * ParkingLocationCountOutputType without action
+   */
+  export type ParkingLocationCountOutputTypeCountUserRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserRoleWhereInput
+  }
+
+  /**
+   * ParkingLocationCountOutputType without action
+   */
+  export type ParkingLocationCountOutputTypeCountIncidentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IncidentWhereInput
+  }
+
+  /**
+   * ParkingLocationCountOutputType without action
+   */
+  export type ParkingLocationCountOutputTypeCountAnalyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParkingAnalyticsWhereInput
+  }
+
 
   /**
    * Count Type ParkingSlotCountOutputType
@@ -1615,6 +2145,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BookingCountOutputType
+   */
+
+  export type BookingCountOutputType = {
+    incidents: number
+  }
+
+  export type BookingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    incidents?: boolean | BookingCountOutputTypeCountIncidentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BookingCountOutputType without action
+   */
+  export type BookingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingCountOutputType
+     */
+    select?: BookingCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BookingCountOutputType without action
+   */
+  export type BookingCountOutputTypeCountIncidentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IncidentWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -1634,6 +2195,7 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     image: string | null
+    passwordHash: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1644,6 +2206,7 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     image: string | null
+    passwordHash: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1654,6 +2217,7 @@ export namespace Prisma {
     email: number
     emailVerified: number
     image: number
+    passwordHash: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1666,6 +2230,7 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    passwordHash?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1676,6 +2241,7 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    passwordHash?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1686,6 +2252,7 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    passwordHash?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1769,6 +2336,7 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     image: string | null
+    passwordHash: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1796,6 +2364,7 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    passwordHash?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
@@ -1803,6 +2372,8 @@ export namespace Prisma {
     bookings?: boolean | User$bookingsArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     payments?: boolean | User$paymentsArgs<ExtArgs>
+    userRoles?: boolean | User$userRolesArgs<ExtArgs>
+    incidents?: boolean | User$incidentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1812,6 +2383,7 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    passwordHash?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1822,6 +2394,7 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    passwordHash?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1832,17 +2405,20 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    passwordHash?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "passwordHash" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     bookings?: boolean | User$bookingsArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     payments?: boolean | User$paymentsArgs<ExtArgs>
+    userRoles?: boolean | User$userRolesArgs<ExtArgs>
+    incidents?: boolean | User$incidentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1856,6 +2432,8 @@ export namespace Prisma {
       bookings: Prisma.$BookingPayload<ExtArgs>[]
       notifications: Prisma.$NotificationPayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
+      userRoles: Prisma.$UserRolePayload<ExtArgs>[]
+      incidents: Prisma.$IncidentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1863,6 +2441,7 @@ export namespace Prisma {
       email: string | null
       emailVerified: Date | null
       image: string | null
+      passwordHash: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -2264,6 +2843,8 @@ export namespace Prisma {
     bookings<T extends User$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, User$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends User$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    userRoles<T extends User$userRolesArgs<ExtArgs> = {}>(args?: Subset<T, User$userRolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    incidents<T extends User$incidentsArgs<ExtArgs> = {}>(args?: Subset<T, User$incidentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2298,6 +2879,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'DateTime'>
     readonly image: FieldRef<"User", 'String'>
+    readonly passwordHash: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -2805,6 +3387,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
+  }
+
+  /**
+   * User.userRoles
+   */
+  export type User$userRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    where?: UserRoleWhereInput
+    orderBy?: UserRoleOrderByWithRelationInput | UserRoleOrderByWithRelationInput[]
+    cursor?: UserRoleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserRoleScalarFieldEnum | UserRoleScalarFieldEnum[]
+  }
+
+  /**
+   * User.incidents
+   */
+  export type User$incidentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    where?: IncidentWhereInput
+    orderBy?: IncidentOrderByWithRelationInput | IncidentOrderByWithRelationInput[]
+    cursor?: IncidentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IncidentScalarFieldEnum | IncidentScalarFieldEnum[]
   }
 
   /**
@@ -6024,6 +6654,2387 @@ export namespace Prisma {
 
 
   /**
+   * Model UserRole
+   */
+
+  export type AggregateUserRole = {
+    _count: UserRoleCountAggregateOutputType | null
+    _min: UserRoleMinAggregateOutputType | null
+    _max: UserRoleMaxAggregateOutputType | null
+  }
+
+  export type UserRoleMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    role: string | null
+    locationId: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserRoleMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    role: string | null
+    locationId: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserRoleCountAggregateOutputType = {
+    id: number
+    userId: number
+    role: number
+    locationId: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserRoleMinAggregateInputType = {
+    id?: true
+    userId?: true
+    role?: true
+    locationId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserRoleMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    role?: true
+    locationId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserRoleCountAggregateInputType = {
+    id?: true
+    userId?: true
+    role?: true
+    locationId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserRoleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserRole to aggregate.
+     */
+    where?: UserRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserRoles to fetch.
+     */
+    orderBy?: UserRoleOrderByWithRelationInput | UserRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserRoles
+    **/
+    _count?: true | UserRoleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserRoleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserRoleMaxAggregateInputType
+  }
+
+  export type GetUserRoleAggregateType<T extends UserRoleAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserRole]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserRole[P]>
+      : GetScalarType<T[P], AggregateUserRole[P]>
+  }
+
+
+
+
+  export type UserRoleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserRoleWhereInput
+    orderBy?: UserRoleOrderByWithAggregationInput | UserRoleOrderByWithAggregationInput[]
+    by: UserRoleScalarFieldEnum[] | UserRoleScalarFieldEnum
+    having?: UserRoleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserRoleCountAggregateInputType | true
+    _min?: UserRoleMinAggregateInputType
+    _max?: UserRoleMaxAggregateInputType
+  }
+
+  export type UserRoleGroupByOutputType = {
+    id: string
+    userId: string
+    role: string
+    locationId: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: UserRoleCountAggregateOutputType | null
+    _min: UserRoleMinAggregateOutputType | null
+    _max: UserRoleMaxAggregateOutputType | null
+  }
+
+  type GetUserRoleGroupByPayload<T extends UserRoleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserRoleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserRoleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserRoleGroupByOutputType[P]>
+            : GetScalarType<T[P], UserRoleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserRoleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    role?: boolean
+    locationId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    location?: boolean | UserRole$locationArgs<ExtArgs>
+  }, ExtArgs["result"]["userRole"]>
+
+  export type UserRoleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    role?: boolean
+    locationId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    location?: boolean | UserRole$locationArgs<ExtArgs>
+  }, ExtArgs["result"]["userRole"]>
+
+  export type UserRoleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    role?: boolean
+    locationId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    location?: boolean | UserRole$locationArgs<ExtArgs>
+  }, ExtArgs["result"]["userRole"]>
+
+  export type UserRoleSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    role?: boolean
+    locationId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserRoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "role" | "locationId" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["userRole"]>
+  export type UserRoleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    location?: boolean | UserRole$locationArgs<ExtArgs>
+  }
+  export type UserRoleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    location?: boolean | UserRole$locationArgs<ExtArgs>
+  }
+  export type UserRoleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    location?: boolean | UserRole$locationArgs<ExtArgs>
+  }
+
+  export type $UserRolePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserRole"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      location: Prisma.$ParkingLocationPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      role: string
+      locationId: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["userRole"]>
+    composites: {}
+  }
+
+  type UserRoleGetPayload<S extends boolean | null | undefined | UserRoleDefaultArgs> = $Result.GetResult<Prisma.$UserRolePayload, S>
+
+  type UserRoleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserRoleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserRoleCountAggregateInputType | true
+    }
+
+  export interface UserRoleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserRole'], meta: { name: 'UserRole' } }
+    /**
+     * Find zero or one UserRole that matches the filter.
+     * @param {UserRoleFindUniqueArgs} args - Arguments to find a UserRole
+     * @example
+     * // Get one UserRole
+     * const userRole = await prisma.userRole.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserRoleFindUniqueArgs>(args: SelectSubset<T, UserRoleFindUniqueArgs<ExtArgs>>): Prisma__UserRoleClient<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserRole that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserRoleFindUniqueOrThrowArgs} args - Arguments to find a UserRole
+     * @example
+     * // Get one UserRole
+     * const userRole = await prisma.userRole.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserRoleFindUniqueOrThrowArgs>(args: SelectSubset<T, UserRoleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserRoleClient<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserRole that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRoleFindFirstArgs} args - Arguments to find a UserRole
+     * @example
+     * // Get one UserRole
+     * const userRole = await prisma.userRole.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserRoleFindFirstArgs>(args?: SelectSubset<T, UserRoleFindFirstArgs<ExtArgs>>): Prisma__UserRoleClient<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserRole that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRoleFindFirstOrThrowArgs} args - Arguments to find a UserRole
+     * @example
+     * // Get one UserRole
+     * const userRole = await prisma.userRole.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserRoleFindFirstOrThrowArgs>(args?: SelectSubset<T, UserRoleFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserRoleClient<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserRoles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRoleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserRoles
+     * const userRoles = await prisma.userRole.findMany()
+     * 
+     * // Get first 10 UserRoles
+     * const userRoles = await prisma.userRole.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userRoleWithIdOnly = await prisma.userRole.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserRoleFindManyArgs>(args?: SelectSubset<T, UserRoleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserRole.
+     * @param {UserRoleCreateArgs} args - Arguments to create a UserRole.
+     * @example
+     * // Create one UserRole
+     * const UserRole = await prisma.userRole.create({
+     *   data: {
+     *     // ... data to create a UserRole
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserRoleCreateArgs>(args: SelectSubset<T, UserRoleCreateArgs<ExtArgs>>): Prisma__UserRoleClient<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserRoles.
+     * @param {UserRoleCreateManyArgs} args - Arguments to create many UserRoles.
+     * @example
+     * // Create many UserRoles
+     * const userRole = await prisma.userRole.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserRoleCreateManyArgs>(args?: SelectSubset<T, UserRoleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserRoles and returns the data saved in the database.
+     * @param {UserRoleCreateManyAndReturnArgs} args - Arguments to create many UserRoles.
+     * @example
+     * // Create many UserRoles
+     * const userRole = await prisma.userRole.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserRoles and only return the `id`
+     * const userRoleWithIdOnly = await prisma.userRole.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserRoleCreateManyAndReturnArgs>(args?: SelectSubset<T, UserRoleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserRole.
+     * @param {UserRoleDeleteArgs} args - Arguments to delete one UserRole.
+     * @example
+     * // Delete one UserRole
+     * const UserRole = await prisma.userRole.delete({
+     *   where: {
+     *     // ... filter to delete one UserRole
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserRoleDeleteArgs>(args: SelectSubset<T, UserRoleDeleteArgs<ExtArgs>>): Prisma__UserRoleClient<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserRole.
+     * @param {UserRoleUpdateArgs} args - Arguments to update one UserRole.
+     * @example
+     * // Update one UserRole
+     * const userRole = await prisma.userRole.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserRoleUpdateArgs>(args: SelectSubset<T, UserRoleUpdateArgs<ExtArgs>>): Prisma__UserRoleClient<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserRoles.
+     * @param {UserRoleDeleteManyArgs} args - Arguments to filter UserRoles to delete.
+     * @example
+     * // Delete a few UserRoles
+     * const { count } = await prisma.userRole.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserRoleDeleteManyArgs>(args?: SelectSubset<T, UserRoleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRoleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserRoles
+     * const userRole = await prisma.userRole.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserRoleUpdateManyArgs>(args: SelectSubset<T, UserRoleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserRoles and returns the data updated in the database.
+     * @param {UserRoleUpdateManyAndReturnArgs} args - Arguments to update many UserRoles.
+     * @example
+     * // Update many UserRoles
+     * const userRole = await prisma.userRole.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserRoles and only return the `id`
+     * const userRoleWithIdOnly = await prisma.userRole.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserRoleUpdateManyAndReturnArgs>(args: SelectSubset<T, UserRoleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserRole.
+     * @param {UserRoleUpsertArgs} args - Arguments to update or create a UserRole.
+     * @example
+     * // Update or create a UserRole
+     * const userRole = await prisma.userRole.upsert({
+     *   create: {
+     *     // ... data to create a UserRole
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserRole we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserRoleUpsertArgs>(args: SelectSubset<T, UserRoleUpsertArgs<ExtArgs>>): Prisma__UserRoleClient<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRoleCountArgs} args - Arguments to filter UserRoles to count.
+     * @example
+     * // Count the number of UserRoles
+     * const count = await prisma.userRole.count({
+     *   where: {
+     *     // ... the filter for the UserRoles we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserRoleCountArgs>(
+      args?: Subset<T, UserRoleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserRoleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserRole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRoleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserRoleAggregateArgs>(args: Subset<T, UserRoleAggregateArgs>): Prisma.PrismaPromise<GetUserRoleAggregateType<T>>
+
+    /**
+     * Group by UserRole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRoleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserRoleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserRoleGroupByArgs['orderBy'] }
+        : { orderBy?: UserRoleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserRoleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserRoleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserRole model
+   */
+  readonly fields: UserRoleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserRole.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserRoleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    location<T extends UserRole$locationArgs<ExtArgs> = {}>(args?: Subset<T, UserRole$locationArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserRole model
+   */
+  interface UserRoleFieldRefs {
+    readonly id: FieldRef<"UserRole", 'String'>
+    readonly userId: FieldRef<"UserRole", 'String'>
+    readonly role: FieldRef<"UserRole", 'String'>
+    readonly locationId: FieldRef<"UserRole", 'String'>
+    readonly isActive: FieldRef<"UserRole", 'Boolean'>
+    readonly createdAt: FieldRef<"UserRole", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserRole", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserRole findUnique
+   */
+  export type UserRoleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which UserRole to fetch.
+     */
+    where: UserRoleWhereUniqueInput
+  }
+
+  /**
+   * UserRole findUniqueOrThrow
+   */
+  export type UserRoleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which UserRole to fetch.
+     */
+    where: UserRoleWhereUniqueInput
+  }
+
+  /**
+   * UserRole findFirst
+   */
+  export type UserRoleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which UserRole to fetch.
+     */
+    where?: UserRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserRoles to fetch.
+     */
+    orderBy?: UserRoleOrderByWithRelationInput | UserRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserRoles.
+     */
+    cursor?: UserRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserRoles.
+     */
+    distinct?: UserRoleScalarFieldEnum | UserRoleScalarFieldEnum[]
+  }
+
+  /**
+   * UserRole findFirstOrThrow
+   */
+  export type UserRoleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which UserRole to fetch.
+     */
+    where?: UserRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserRoles to fetch.
+     */
+    orderBy?: UserRoleOrderByWithRelationInput | UserRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserRoles.
+     */
+    cursor?: UserRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserRoles.
+     */
+    distinct?: UserRoleScalarFieldEnum | UserRoleScalarFieldEnum[]
+  }
+
+  /**
+   * UserRole findMany
+   */
+  export type UserRoleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which UserRoles to fetch.
+     */
+    where?: UserRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserRoles to fetch.
+     */
+    orderBy?: UserRoleOrderByWithRelationInput | UserRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserRoles.
+     */
+    cursor?: UserRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserRoles.
+     */
+    skip?: number
+    distinct?: UserRoleScalarFieldEnum | UserRoleScalarFieldEnum[]
+  }
+
+  /**
+   * UserRole create
+   */
+  export type UserRoleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserRole.
+     */
+    data: XOR<UserRoleCreateInput, UserRoleUncheckedCreateInput>
+  }
+
+  /**
+   * UserRole createMany
+   */
+  export type UserRoleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserRoles.
+     */
+    data: UserRoleCreateManyInput | UserRoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserRole createManyAndReturn
+   */
+  export type UserRoleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserRoles.
+     */
+    data: UserRoleCreateManyInput | UserRoleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserRole update
+   */
+  export type UserRoleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserRole.
+     */
+    data: XOR<UserRoleUpdateInput, UserRoleUncheckedUpdateInput>
+    /**
+     * Choose, which UserRole to update.
+     */
+    where: UserRoleWhereUniqueInput
+  }
+
+  /**
+   * UserRole updateMany
+   */
+  export type UserRoleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserRoles.
+     */
+    data: XOR<UserRoleUpdateManyMutationInput, UserRoleUncheckedUpdateManyInput>
+    /**
+     * Filter which UserRoles to update
+     */
+    where?: UserRoleWhereInput
+    /**
+     * Limit how many UserRoles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserRole updateManyAndReturn
+   */
+  export type UserRoleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * The data used to update UserRoles.
+     */
+    data: XOR<UserRoleUpdateManyMutationInput, UserRoleUncheckedUpdateManyInput>
+    /**
+     * Filter which UserRoles to update
+     */
+    where?: UserRoleWhereInput
+    /**
+     * Limit how many UserRoles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserRole upsert
+   */
+  export type UserRoleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserRole to update in case it exists.
+     */
+    where: UserRoleWhereUniqueInput
+    /**
+     * In case the UserRole found by the `where` argument doesn't exist, create a new UserRole with this data.
+     */
+    create: XOR<UserRoleCreateInput, UserRoleUncheckedCreateInput>
+    /**
+     * In case the UserRole was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserRoleUpdateInput, UserRoleUncheckedUpdateInput>
+  }
+
+  /**
+   * UserRole delete
+   */
+  export type UserRoleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    /**
+     * Filter which UserRole to delete.
+     */
+    where: UserRoleWhereUniqueInput
+  }
+
+  /**
+   * UserRole deleteMany
+   */
+  export type UserRoleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserRoles to delete
+     */
+    where?: UserRoleWhereInput
+    /**
+     * Limit how many UserRoles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserRole.location
+   */
+  export type UserRole$locationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    where?: ParkingLocationWhereInput
+  }
+
+  /**
+   * UserRole without action
+   */
+  export type UserRoleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ParkingLocation
+   */
+
+  export type AggregateParkingLocation = {
+    _count: ParkingLocationCountAggregateOutputType | null
+    _avg: ParkingLocationAvgAggregateOutputType | null
+    _sum: ParkingLocationSumAggregateOutputType | null
+    _min: ParkingLocationMinAggregateOutputType | null
+    _max: ParkingLocationMaxAggregateOutputType | null
+  }
+
+  export type ParkingLocationAvgAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type ParkingLocationSumAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type ParkingLocationMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    address: string | null
+    latitude: number | null
+    longitude: number | null
+    description: string | null
+    features: string | null
+    operatingHours: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ParkingLocationMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    address: string | null
+    latitude: number | null
+    longitude: number | null
+    description: string | null
+    features: string | null
+    operatingHours: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ParkingLocationCountAggregateOutputType = {
+    id: number
+    name: number
+    address: number
+    latitude: number
+    longitude: number
+    description: number
+    features: number
+    operatingHours: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ParkingLocationAvgAggregateInputType = {
+    latitude?: true
+    longitude?: true
+  }
+
+  export type ParkingLocationSumAggregateInputType = {
+    latitude?: true
+    longitude?: true
+  }
+
+  export type ParkingLocationMinAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    latitude?: true
+    longitude?: true
+    description?: true
+    features?: true
+    operatingHours?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ParkingLocationMaxAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    latitude?: true
+    longitude?: true
+    description?: true
+    features?: true
+    operatingHours?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ParkingLocationCountAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    latitude?: true
+    longitude?: true
+    description?: true
+    features?: true
+    operatingHours?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ParkingLocationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParkingLocation to aggregate.
+     */
+    where?: ParkingLocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingLocations to fetch.
+     */
+    orderBy?: ParkingLocationOrderByWithRelationInput | ParkingLocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ParkingLocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingLocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingLocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ParkingLocations
+    **/
+    _count?: true | ParkingLocationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ParkingLocationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ParkingLocationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ParkingLocationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ParkingLocationMaxAggregateInputType
+  }
+
+  export type GetParkingLocationAggregateType<T extends ParkingLocationAggregateArgs> = {
+        [P in keyof T & keyof AggregateParkingLocation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateParkingLocation[P]>
+      : GetScalarType<T[P], AggregateParkingLocation[P]>
+  }
+
+
+
+
+  export type ParkingLocationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParkingLocationWhereInput
+    orderBy?: ParkingLocationOrderByWithAggregationInput | ParkingLocationOrderByWithAggregationInput[]
+    by: ParkingLocationScalarFieldEnum[] | ParkingLocationScalarFieldEnum
+    having?: ParkingLocationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ParkingLocationCountAggregateInputType | true
+    _avg?: ParkingLocationAvgAggregateInputType
+    _sum?: ParkingLocationSumAggregateInputType
+    _min?: ParkingLocationMinAggregateInputType
+    _max?: ParkingLocationMaxAggregateInputType
+  }
+
+  export type ParkingLocationGroupByOutputType = {
+    id: string
+    name: string
+    address: string
+    latitude: number | null
+    longitude: number | null
+    description: string | null
+    features: string | null
+    operatingHours: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ParkingLocationCountAggregateOutputType | null
+    _avg: ParkingLocationAvgAggregateOutputType | null
+    _sum: ParkingLocationSumAggregateOutputType | null
+    _min: ParkingLocationMinAggregateOutputType | null
+    _max: ParkingLocationMaxAggregateOutputType | null
+  }
+
+  type GetParkingLocationGroupByPayload<T extends ParkingLocationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ParkingLocationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ParkingLocationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ParkingLocationGroupByOutputType[P]>
+            : GetScalarType<T[P], ParkingLocationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ParkingLocationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    description?: boolean
+    features?: boolean
+    operatingHours?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    slots?: boolean | ParkingLocation$slotsArgs<ExtArgs>
+    userRoles?: boolean | ParkingLocation$userRolesArgs<ExtArgs>
+    incidents?: boolean | ParkingLocation$incidentsArgs<ExtArgs>
+    analytics?: boolean | ParkingLocation$analyticsArgs<ExtArgs>
+    _count?: boolean | ParkingLocationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parkingLocation"]>
+
+  export type ParkingLocationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    description?: boolean
+    features?: boolean
+    operatingHours?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["parkingLocation"]>
+
+  export type ParkingLocationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    description?: boolean
+    features?: boolean
+    operatingHours?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["parkingLocation"]>
+
+  export type ParkingLocationSelectScalar = {
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    description?: boolean
+    features?: boolean
+    operatingHours?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ParkingLocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "address" | "latitude" | "longitude" | "description" | "features" | "operatingHours" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["parkingLocation"]>
+  export type ParkingLocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    slots?: boolean | ParkingLocation$slotsArgs<ExtArgs>
+    userRoles?: boolean | ParkingLocation$userRolesArgs<ExtArgs>
+    incidents?: boolean | ParkingLocation$incidentsArgs<ExtArgs>
+    analytics?: boolean | ParkingLocation$analyticsArgs<ExtArgs>
+    _count?: boolean | ParkingLocationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ParkingLocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ParkingLocationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ParkingLocationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ParkingLocation"
+    objects: {
+      slots: Prisma.$ParkingSlotPayload<ExtArgs>[]
+      userRoles: Prisma.$UserRolePayload<ExtArgs>[]
+      incidents: Prisma.$IncidentPayload<ExtArgs>[]
+      analytics: Prisma.$ParkingAnalyticsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      address: string
+      latitude: number | null
+      longitude: number | null
+      description: string | null
+      features: string | null
+      operatingHours: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["parkingLocation"]>
+    composites: {}
+  }
+
+  type ParkingLocationGetPayload<S extends boolean | null | undefined | ParkingLocationDefaultArgs> = $Result.GetResult<Prisma.$ParkingLocationPayload, S>
+
+  type ParkingLocationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ParkingLocationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ParkingLocationCountAggregateInputType | true
+    }
+
+  export interface ParkingLocationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ParkingLocation'], meta: { name: 'ParkingLocation' } }
+    /**
+     * Find zero or one ParkingLocation that matches the filter.
+     * @param {ParkingLocationFindUniqueArgs} args - Arguments to find a ParkingLocation
+     * @example
+     * // Get one ParkingLocation
+     * const parkingLocation = await prisma.parkingLocation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ParkingLocationFindUniqueArgs>(args: SelectSubset<T, ParkingLocationFindUniqueArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ParkingLocation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ParkingLocationFindUniqueOrThrowArgs} args - Arguments to find a ParkingLocation
+     * @example
+     * // Get one ParkingLocation
+     * const parkingLocation = await prisma.parkingLocation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ParkingLocationFindUniqueOrThrowArgs>(args: SelectSubset<T, ParkingLocationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParkingLocation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLocationFindFirstArgs} args - Arguments to find a ParkingLocation
+     * @example
+     * // Get one ParkingLocation
+     * const parkingLocation = await prisma.parkingLocation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ParkingLocationFindFirstArgs>(args?: SelectSubset<T, ParkingLocationFindFirstArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParkingLocation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLocationFindFirstOrThrowArgs} args - Arguments to find a ParkingLocation
+     * @example
+     * // Get one ParkingLocation
+     * const parkingLocation = await prisma.parkingLocation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ParkingLocationFindFirstOrThrowArgs>(args?: SelectSubset<T, ParkingLocationFindFirstOrThrowArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ParkingLocations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLocationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ParkingLocations
+     * const parkingLocations = await prisma.parkingLocation.findMany()
+     * 
+     * // Get first 10 ParkingLocations
+     * const parkingLocations = await prisma.parkingLocation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const parkingLocationWithIdOnly = await prisma.parkingLocation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ParkingLocationFindManyArgs>(args?: SelectSubset<T, ParkingLocationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ParkingLocation.
+     * @param {ParkingLocationCreateArgs} args - Arguments to create a ParkingLocation.
+     * @example
+     * // Create one ParkingLocation
+     * const ParkingLocation = await prisma.parkingLocation.create({
+     *   data: {
+     *     // ... data to create a ParkingLocation
+     *   }
+     * })
+     * 
+     */
+    create<T extends ParkingLocationCreateArgs>(args: SelectSubset<T, ParkingLocationCreateArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ParkingLocations.
+     * @param {ParkingLocationCreateManyArgs} args - Arguments to create many ParkingLocations.
+     * @example
+     * // Create many ParkingLocations
+     * const parkingLocation = await prisma.parkingLocation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ParkingLocationCreateManyArgs>(args?: SelectSubset<T, ParkingLocationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ParkingLocations and returns the data saved in the database.
+     * @param {ParkingLocationCreateManyAndReturnArgs} args - Arguments to create many ParkingLocations.
+     * @example
+     * // Create many ParkingLocations
+     * const parkingLocation = await prisma.parkingLocation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ParkingLocations and only return the `id`
+     * const parkingLocationWithIdOnly = await prisma.parkingLocation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ParkingLocationCreateManyAndReturnArgs>(args?: SelectSubset<T, ParkingLocationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ParkingLocation.
+     * @param {ParkingLocationDeleteArgs} args - Arguments to delete one ParkingLocation.
+     * @example
+     * // Delete one ParkingLocation
+     * const ParkingLocation = await prisma.parkingLocation.delete({
+     *   where: {
+     *     // ... filter to delete one ParkingLocation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ParkingLocationDeleteArgs>(args: SelectSubset<T, ParkingLocationDeleteArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ParkingLocation.
+     * @param {ParkingLocationUpdateArgs} args - Arguments to update one ParkingLocation.
+     * @example
+     * // Update one ParkingLocation
+     * const parkingLocation = await prisma.parkingLocation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ParkingLocationUpdateArgs>(args: SelectSubset<T, ParkingLocationUpdateArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ParkingLocations.
+     * @param {ParkingLocationDeleteManyArgs} args - Arguments to filter ParkingLocations to delete.
+     * @example
+     * // Delete a few ParkingLocations
+     * const { count } = await prisma.parkingLocation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ParkingLocationDeleteManyArgs>(args?: SelectSubset<T, ParkingLocationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParkingLocations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLocationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ParkingLocations
+     * const parkingLocation = await prisma.parkingLocation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ParkingLocationUpdateManyArgs>(args: SelectSubset<T, ParkingLocationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParkingLocations and returns the data updated in the database.
+     * @param {ParkingLocationUpdateManyAndReturnArgs} args - Arguments to update many ParkingLocations.
+     * @example
+     * // Update many ParkingLocations
+     * const parkingLocation = await prisma.parkingLocation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ParkingLocations and only return the `id`
+     * const parkingLocationWithIdOnly = await prisma.parkingLocation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ParkingLocationUpdateManyAndReturnArgs>(args: SelectSubset<T, ParkingLocationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ParkingLocation.
+     * @param {ParkingLocationUpsertArgs} args - Arguments to update or create a ParkingLocation.
+     * @example
+     * // Update or create a ParkingLocation
+     * const parkingLocation = await prisma.parkingLocation.upsert({
+     *   create: {
+     *     // ... data to create a ParkingLocation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ParkingLocation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ParkingLocationUpsertArgs>(args: SelectSubset<T, ParkingLocationUpsertArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ParkingLocations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLocationCountArgs} args - Arguments to filter ParkingLocations to count.
+     * @example
+     * // Count the number of ParkingLocations
+     * const count = await prisma.parkingLocation.count({
+     *   where: {
+     *     // ... the filter for the ParkingLocations we want to count
+     *   }
+     * })
+    **/
+    count<T extends ParkingLocationCountArgs>(
+      args?: Subset<T, ParkingLocationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ParkingLocationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ParkingLocation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLocationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ParkingLocationAggregateArgs>(args: Subset<T, ParkingLocationAggregateArgs>): Prisma.PrismaPromise<GetParkingLocationAggregateType<T>>
+
+    /**
+     * Group by ParkingLocation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLocationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ParkingLocationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ParkingLocationGroupByArgs['orderBy'] }
+        : { orderBy?: ParkingLocationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ParkingLocationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetParkingLocationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ParkingLocation model
+   */
+  readonly fields: ParkingLocationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ParkingLocation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ParkingLocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    slots<T extends ParkingLocation$slotsArgs<ExtArgs> = {}>(args?: Subset<T, ParkingLocation$slotsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingSlotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    userRoles<T extends ParkingLocation$userRolesArgs<ExtArgs> = {}>(args?: Subset<T, ParkingLocation$userRolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    incidents<T extends ParkingLocation$incidentsArgs<ExtArgs> = {}>(args?: Subset<T, ParkingLocation$incidentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    analytics<T extends ParkingLocation$analyticsArgs<ExtArgs> = {}>(args?: Subset<T, ParkingLocation$analyticsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ParkingLocation model
+   */
+  interface ParkingLocationFieldRefs {
+    readonly id: FieldRef<"ParkingLocation", 'String'>
+    readonly name: FieldRef<"ParkingLocation", 'String'>
+    readonly address: FieldRef<"ParkingLocation", 'String'>
+    readonly latitude: FieldRef<"ParkingLocation", 'Float'>
+    readonly longitude: FieldRef<"ParkingLocation", 'Float'>
+    readonly description: FieldRef<"ParkingLocation", 'String'>
+    readonly features: FieldRef<"ParkingLocation", 'String'>
+    readonly operatingHours: FieldRef<"ParkingLocation", 'String'>
+    readonly isActive: FieldRef<"ParkingLocation", 'Boolean'>
+    readonly createdAt: FieldRef<"ParkingLocation", 'DateTime'>
+    readonly updatedAt: FieldRef<"ParkingLocation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ParkingLocation findUnique
+   */
+  export type ParkingLocationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLocation to fetch.
+     */
+    where: ParkingLocationWhereUniqueInput
+  }
+
+  /**
+   * ParkingLocation findUniqueOrThrow
+   */
+  export type ParkingLocationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLocation to fetch.
+     */
+    where: ParkingLocationWhereUniqueInput
+  }
+
+  /**
+   * ParkingLocation findFirst
+   */
+  export type ParkingLocationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLocation to fetch.
+     */
+    where?: ParkingLocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingLocations to fetch.
+     */
+    orderBy?: ParkingLocationOrderByWithRelationInput | ParkingLocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParkingLocations.
+     */
+    cursor?: ParkingLocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingLocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingLocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParkingLocations.
+     */
+    distinct?: ParkingLocationScalarFieldEnum | ParkingLocationScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLocation findFirstOrThrow
+   */
+  export type ParkingLocationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLocation to fetch.
+     */
+    where?: ParkingLocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingLocations to fetch.
+     */
+    orderBy?: ParkingLocationOrderByWithRelationInput | ParkingLocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParkingLocations.
+     */
+    cursor?: ParkingLocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingLocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingLocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParkingLocations.
+     */
+    distinct?: ParkingLocationScalarFieldEnum | ParkingLocationScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLocation findMany
+   */
+  export type ParkingLocationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLocations to fetch.
+     */
+    where?: ParkingLocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingLocations to fetch.
+     */
+    orderBy?: ParkingLocationOrderByWithRelationInput | ParkingLocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ParkingLocations.
+     */
+    cursor?: ParkingLocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingLocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingLocations.
+     */
+    skip?: number
+    distinct?: ParkingLocationScalarFieldEnum | ParkingLocationScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLocation create
+   */
+  export type ParkingLocationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ParkingLocation.
+     */
+    data: XOR<ParkingLocationCreateInput, ParkingLocationUncheckedCreateInput>
+  }
+
+  /**
+   * ParkingLocation createMany
+   */
+  export type ParkingLocationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ParkingLocations.
+     */
+    data: ParkingLocationCreateManyInput | ParkingLocationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParkingLocation createManyAndReturn
+   */
+  export type ParkingLocationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * The data used to create many ParkingLocations.
+     */
+    data: ParkingLocationCreateManyInput | ParkingLocationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParkingLocation update
+   */
+  export type ParkingLocationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ParkingLocation.
+     */
+    data: XOR<ParkingLocationUpdateInput, ParkingLocationUncheckedUpdateInput>
+    /**
+     * Choose, which ParkingLocation to update.
+     */
+    where: ParkingLocationWhereUniqueInput
+  }
+
+  /**
+   * ParkingLocation updateMany
+   */
+  export type ParkingLocationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ParkingLocations.
+     */
+    data: XOR<ParkingLocationUpdateManyMutationInput, ParkingLocationUncheckedUpdateManyInput>
+    /**
+     * Filter which ParkingLocations to update
+     */
+    where?: ParkingLocationWhereInput
+    /**
+     * Limit how many ParkingLocations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingLocation updateManyAndReturn
+   */
+  export type ParkingLocationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * The data used to update ParkingLocations.
+     */
+    data: XOR<ParkingLocationUpdateManyMutationInput, ParkingLocationUncheckedUpdateManyInput>
+    /**
+     * Filter which ParkingLocations to update
+     */
+    where?: ParkingLocationWhereInput
+    /**
+     * Limit how many ParkingLocations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingLocation upsert
+   */
+  export type ParkingLocationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ParkingLocation to update in case it exists.
+     */
+    where: ParkingLocationWhereUniqueInput
+    /**
+     * In case the ParkingLocation found by the `where` argument doesn't exist, create a new ParkingLocation with this data.
+     */
+    create: XOR<ParkingLocationCreateInput, ParkingLocationUncheckedCreateInput>
+    /**
+     * In case the ParkingLocation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ParkingLocationUpdateInput, ParkingLocationUncheckedUpdateInput>
+  }
+
+  /**
+   * ParkingLocation delete
+   */
+  export type ParkingLocationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+    /**
+     * Filter which ParkingLocation to delete.
+     */
+    where: ParkingLocationWhereUniqueInput
+  }
+
+  /**
+   * ParkingLocation deleteMany
+   */
+  export type ParkingLocationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParkingLocations to delete
+     */
+    where?: ParkingLocationWhereInput
+    /**
+     * Limit how many ParkingLocations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingLocation.slots
+   */
+  export type ParkingLocation$slotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingSlot
+     */
+    select?: ParkingSlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingSlot
+     */
+    omit?: ParkingSlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingSlotInclude<ExtArgs> | null
+    where?: ParkingSlotWhereInput
+    orderBy?: ParkingSlotOrderByWithRelationInput | ParkingSlotOrderByWithRelationInput[]
+    cursor?: ParkingSlotWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ParkingSlotScalarFieldEnum | ParkingSlotScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLocation.userRoles
+   */
+  export type ParkingLocation$userRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRole
+     */
+    select?: UserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRole
+     */
+    omit?: UserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserRoleInclude<ExtArgs> | null
+    where?: UserRoleWhereInput
+    orderBy?: UserRoleOrderByWithRelationInput | UserRoleOrderByWithRelationInput[]
+    cursor?: UserRoleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserRoleScalarFieldEnum | UserRoleScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLocation.incidents
+   */
+  export type ParkingLocation$incidentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    where?: IncidentWhereInput
+    orderBy?: IncidentOrderByWithRelationInput | IncidentOrderByWithRelationInput[]
+    cursor?: IncidentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IncidentScalarFieldEnum | IncidentScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLocation.analytics
+   */
+  export type ParkingLocation$analyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    where?: ParkingAnalyticsWhereInput
+    orderBy?: ParkingAnalyticsOrderByWithRelationInput | ParkingAnalyticsOrderByWithRelationInput[]
+    cursor?: ParkingAnalyticsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ParkingAnalyticsScalarFieldEnum | ParkingAnalyticsScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLocation without action
+   */
+  export type ParkingLocationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLocation
+     */
+    select?: ParkingLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLocation
+     */
+    omit?: ParkingLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLocationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model ParkingSlot
    */
 
@@ -6036,75 +9047,99 @@ export namespace Prisma {
   }
 
   export type ParkingSlotAvgAggregateOutputType = {
-    price: number | null
+    basePrice: number | null
   }
 
   export type ParkingSlotSumAggregateOutputType = {
-    price: number | null
+    basePrice: number | null
   }
 
   export type ParkingSlotMinAggregateOutputType = {
     id: string | null
-    name: string | null
-    location: string | null
-    price: number | null
+    slotNumber: string | null
+    locationId: string | null
+    type: string | null
+    basePrice: number | null
+    status: string | null
+    features: string | null
     rules: string | null
-    isAvailable: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ParkingSlotMaxAggregateOutputType = {
     id: string | null
-    name: string | null
-    location: string | null
-    price: number | null
+    slotNumber: string | null
+    locationId: string | null
+    type: string | null
+    basePrice: number | null
+    status: string | null
+    features: string | null
     rules: string | null
-    isAvailable: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ParkingSlotCountAggregateOutputType = {
     id: number
-    name: number
-    location: number
-    price: number
+    slotNumber: number
+    locationId: number
+    type: number
+    basePrice: number
+    status: number
+    features: number
     rules: number
-    isAvailable: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type ParkingSlotAvgAggregateInputType = {
-    price?: true
+    basePrice?: true
   }
 
   export type ParkingSlotSumAggregateInputType = {
-    price?: true
+    basePrice?: true
   }
 
   export type ParkingSlotMinAggregateInputType = {
     id?: true
-    name?: true
-    location?: true
-    price?: true
+    slotNumber?: true
+    locationId?: true
+    type?: true
+    basePrice?: true
+    status?: true
+    features?: true
     rules?: true
-    isAvailable?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ParkingSlotMaxAggregateInputType = {
     id?: true
-    name?: true
-    location?: true
-    price?: true
+    slotNumber?: true
+    locationId?: true
+    type?: true
+    basePrice?: true
+    status?: true
+    features?: true
     rules?: true
-    isAvailable?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ParkingSlotCountAggregateInputType = {
     id?: true
-    name?: true
-    location?: true
-    price?: true
+    slotNumber?: true
+    locationId?: true
+    type?: true
+    basePrice?: true
+    status?: true
+    features?: true
     rules?: true
-    isAvailable?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -6196,11 +9231,15 @@ export namespace Prisma {
 
   export type ParkingSlotGroupByOutputType = {
     id: string
-    name: string
-    location: string
-    price: number
+    slotNumber: string
+    locationId: string
+    type: string
+    basePrice: number
+    status: string
+    features: string | null
     rules: string | null
-    isAvailable: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: ParkingSlotCountAggregateOutputType | null
     _avg: ParkingSlotAvgAggregateOutputType | null
     _sum: ParkingSlotSumAggregateOutputType | null
@@ -6224,62 +9263,91 @@ export namespace Prisma {
 
   export type ParkingSlotSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    location?: boolean
-    price?: boolean
+    slotNumber?: boolean
+    locationId?: boolean
+    type?: boolean
+    basePrice?: boolean
+    status?: boolean
+    features?: boolean
     rules?: boolean
-    isAvailable?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
     bookings?: boolean | ParkingSlot$bookingsArgs<ExtArgs>
     _count?: boolean | ParkingSlotCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parkingSlot"]>
 
   export type ParkingSlotSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    location?: boolean
-    price?: boolean
+    slotNumber?: boolean
+    locationId?: boolean
+    type?: boolean
+    basePrice?: boolean
+    status?: boolean
+    features?: boolean
     rules?: boolean
-    isAvailable?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parkingSlot"]>
 
   export type ParkingSlotSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    location?: boolean
-    price?: boolean
+    slotNumber?: boolean
+    locationId?: boolean
+    type?: boolean
+    basePrice?: boolean
+    status?: boolean
+    features?: boolean
     rules?: boolean
-    isAvailable?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parkingSlot"]>
 
   export type ParkingSlotSelectScalar = {
     id?: boolean
-    name?: boolean
-    location?: boolean
-    price?: boolean
+    slotNumber?: boolean
+    locationId?: boolean
+    type?: boolean
+    basePrice?: boolean
+    status?: boolean
+    features?: boolean
     rules?: boolean
-    isAvailable?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ParkingSlotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "location" | "price" | "rules" | "isAvailable", ExtArgs["result"]["parkingSlot"]>
+  export type ParkingSlotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slotNumber" | "locationId" | "type" | "basePrice" | "status" | "features" | "rules" | "createdAt" | "updatedAt", ExtArgs["result"]["parkingSlot"]>
   export type ParkingSlotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
     bookings?: boolean | ParkingSlot$bookingsArgs<ExtArgs>
     _count?: boolean | ParkingSlotCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type ParkingSlotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type ParkingSlotIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ParkingSlotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+  }
+  export type ParkingSlotIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+  }
 
   export type $ParkingSlotPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ParkingSlot"
     objects: {
+      location: Prisma.$ParkingLocationPayload<ExtArgs>
       bookings: Prisma.$BookingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
-      location: string
-      price: number
+      slotNumber: string
+      locationId: string
+      type: string
+      basePrice: number
+      status: string
+      features: string | null
       rules: string | null
-      isAvailable: boolean
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["parkingSlot"]>
     composites: {}
   }
@@ -6674,6 +9742,7 @@ export namespace Prisma {
    */
   export interface Prisma__ParkingSlotClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    location<T extends ParkingLocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParkingLocationDefaultArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     bookings<T extends ParkingSlot$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, ParkingSlot$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6705,11 +9774,15 @@ export namespace Prisma {
    */
   interface ParkingSlotFieldRefs {
     readonly id: FieldRef<"ParkingSlot", 'String'>
-    readonly name: FieldRef<"ParkingSlot", 'String'>
-    readonly location: FieldRef<"ParkingSlot", 'String'>
-    readonly price: FieldRef<"ParkingSlot", 'Float'>
+    readonly slotNumber: FieldRef<"ParkingSlot", 'String'>
+    readonly locationId: FieldRef<"ParkingSlot", 'String'>
+    readonly type: FieldRef<"ParkingSlot", 'String'>
+    readonly basePrice: FieldRef<"ParkingSlot", 'Float'>
+    readonly status: FieldRef<"ParkingSlot", 'String'>
+    readonly features: FieldRef<"ParkingSlot", 'String'>
     readonly rules: FieldRef<"ParkingSlot", 'String'>
-    readonly isAvailable: FieldRef<"ParkingSlot", 'Boolean'>
+    readonly createdAt: FieldRef<"ParkingSlot", 'DateTime'>
+    readonly updatedAt: FieldRef<"ParkingSlot", 'DateTime'>
   }
     
 
@@ -6959,6 +10032,10 @@ export namespace Prisma {
      */
     data: ParkingSlotCreateManyInput | ParkingSlotCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingSlotIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7029,6 +10106,10 @@ export namespace Prisma {
      * Limit how many ParkingSlots to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingSlotIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7146,8 +10227,20 @@ export namespace Prisma {
 
   export type AggregateBooking = {
     _count: BookingCountAggregateOutputType | null
+    _avg: BookingAvgAggregateOutputType | null
+    _sum: BookingSumAggregateOutputType | null
     _min: BookingMinAggregateOutputType | null
     _max: BookingMaxAggregateOutputType | null
+  }
+
+  export type BookingAvgAggregateOutputType = {
+    totalAmount: number | null
+    extendedTimes: number | null
+  }
+
+  export type BookingSumAggregateOutputType = {
+    totalAmount: number | null
+    extendedTimes: number | null
   }
 
   export type BookingMinAggregateOutputType = {
@@ -7156,7 +10249,16 @@ export namespace Prisma {
     slotId: string | null
     startTime: Date | null
     endTime: Date | null
+    actualStartTime: Date | null
+    actualEndTime: Date | null
+    totalAmount: number | null
     status: string | null
+    qrCode: string | null
+    checkInCode: string | null
+    extendedTimes: number | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type BookingMaxAggregateOutputType = {
@@ -7165,7 +10267,16 @@ export namespace Prisma {
     slotId: string | null
     startTime: Date | null
     endTime: Date | null
+    actualStartTime: Date | null
+    actualEndTime: Date | null
+    totalAmount: number | null
     status: string | null
+    qrCode: string | null
+    checkInCode: string | null
+    extendedTimes: number | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type BookingCountAggregateOutputType = {
@@ -7174,10 +10285,29 @@ export namespace Prisma {
     slotId: number
     startTime: number
     endTime: number
+    actualStartTime: number
+    actualEndTime: number
+    totalAmount: number
     status: number
+    qrCode: number
+    checkInCode: number
+    extendedTimes: number
+    notes: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
+
+  export type BookingAvgAggregateInputType = {
+    totalAmount?: true
+    extendedTimes?: true
+  }
+
+  export type BookingSumAggregateInputType = {
+    totalAmount?: true
+    extendedTimes?: true
+  }
 
   export type BookingMinAggregateInputType = {
     id?: true
@@ -7185,7 +10315,16 @@ export namespace Prisma {
     slotId?: true
     startTime?: true
     endTime?: true
+    actualStartTime?: true
+    actualEndTime?: true
+    totalAmount?: true
     status?: true
+    qrCode?: true
+    checkInCode?: true
+    extendedTimes?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type BookingMaxAggregateInputType = {
@@ -7194,7 +10333,16 @@ export namespace Prisma {
     slotId?: true
     startTime?: true
     endTime?: true
+    actualStartTime?: true
+    actualEndTime?: true
+    totalAmount?: true
     status?: true
+    qrCode?: true
+    checkInCode?: true
+    extendedTimes?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type BookingCountAggregateInputType = {
@@ -7203,7 +10351,16 @@ export namespace Prisma {
     slotId?: true
     startTime?: true
     endTime?: true
+    actualStartTime?: true
+    actualEndTime?: true
+    totalAmount?: true
     status?: true
+    qrCode?: true
+    checkInCode?: true
+    extendedTimes?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -7245,6 +10402,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: BookingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BookingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: BookingMinAggregateInputType
@@ -7275,6 +10444,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: BookingCountAggregateInputType | true
+    _avg?: BookingAvgAggregateInputType
+    _sum?: BookingSumAggregateInputType
     _min?: BookingMinAggregateInputType
     _max?: BookingMaxAggregateInputType
   }
@@ -7285,8 +10456,19 @@ export namespace Prisma {
     slotId: string
     startTime: Date
     endTime: Date
+    actualStartTime: Date | null
+    actualEndTime: Date | null
+    totalAmount: number
     status: string
+    qrCode: string | null
+    checkInCode: string | null
+    extendedTimes: number
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
     _count: BookingCountAggregateOutputType | null
+    _avg: BookingAvgAggregateOutputType | null
+    _sum: BookingSumAggregateOutputType | null
     _min: BookingMinAggregateOutputType | null
     _max: BookingMaxAggregateOutputType | null
   }
@@ -7311,10 +10493,21 @@ export namespace Prisma {
     slotId?: boolean
     startTime?: boolean
     endTime?: boolean
+    actualStartTime?: boolean
+    actualEndTime?: boolean
+    totalAmount?: boolean
     status?: boolean
+    qrCode?: boolean
+    checkInCode?: boolean
+    extendedTimes?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     slot?: boolean | ParkingSlotDefaultArgs<ExtArgs>
     payment?: boolean | Booking$paymentArgs<ExtArgs>
+    incidents?: boolean | Booking$incidentsArgs<ExtArgs>
+    _count?: boolean | BookingCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
 
   export type BookingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7323,7 +10516,16 @@ export namespace Prisma {
     slotId?: boolean
     startTime?: boolean
     endTime?: boolean
+    actualStartTime?: boolean
+    actualEndTime?: boolean
+    totalAmount?: boolean
     status?: boolean
+    qrCode?: boolean
+    checkInCode?: boolean
+    extendedTimes?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     slot?: boolean | ParkingSlotDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
@@ -7334,7 +10536,16 @@ export namespace Prisma {
     slotId?: boolean
     startTime?: boolean
     endTime?: boolean
+    actualStartTime?: boolean
+    actualEndTime?: boolean
+    totalAmount?: boolean
     status?: boolean
+    qrCode?: boolean
+    checkInCode?: boolean
+    extendedTimes?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     slot?: boolean | ParkingSlotDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
@@ -7345,14 +10556,25 @@ export namespace Prisma {
     slotId?: boolean
     startTime?: boolean
     endTime?: boolean
+    actualStartTime?: boolean
+    actualEndTime?: boolean
+    totalAmount?: boolean
     status?: boolean
+    qrCode?: boolean
+    checkInCode?: boolean
+    extendedTimes?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "slotId" | "startTime" | "endTime" | "status", ExtArgs["result"]["booking"]>
+  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "slotId" | "startTime" | "endTime" | "actualStartTime" | "actualEndTime" | "totalAmount" | "status" | "qrCode" | "checkInCode" | "extendedTimes" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
   export type BookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     slot?: boolean | ParkingSlotDefaultArgs<ExtArgs>
     payment?: boolean | Booking$paymentArgs<ExtArgs>
+    incidents?: boolean | Booking$incidentsArgs<ExtArgs>
+    _count?: boolean | BookingCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BookingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -7369,6 +10591,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       slot: Prisma.$ParkingSlotPayload<ExtArgs>
       payment: Prisma.$PaymentPayload<ExtArgs> | null
+      incidents: Prisma.$IncidentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7376,7 +10599,16 @@ export namespace Prisma {
       slotId: string
       startTime: Date
       endTime: Date
+      actualStartTime: Date | null
+      actualEndTime: Date | null
+      totalAmount: number
       status: string
+      qrCode: string | null
+      checkInCode: string | null
+      extendedTimes: number
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["booking"]>
     composites: {}
   }
@@ -7774,6 +11006,7 @@ export namespace Prisma {
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     slot<T extends ParkingSlotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParkingSlotDefaultArgs<ExtArgs>>): Prisma__ParkingSlotClient<$Result.GetResult<Prisma.$ParkingSlotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     payment<T extends Booking$paymentArgs<ExtArgs> = {}>(args?: Subset<T, Booking$paymentArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    incidents<T extends Booking$incidentsArgs<ExtArgs> = {}>(args?: Subset<T, Booking$incidentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7808,7 +11041,16 @@ export namespace Prisma {
     readonly slotId: FieldRef<"Booking", 'String'>
     readonly startTime: FieldRef<"Booking", 'DateTime'>
     readonly endTime: FieldRef<"Booking", 'DateTime'>
+    readonly actualStartTime: FieldRef<"Booking", 'DateTime'>
+    readonly actualEndTime: FieldRef<"Booking", 'DateTime'>
+    readonly totalAmount: FieldRef<"Booking", 'Float'>
     readonly status: FieldRef<"Booking", 'String'>
+    readonly qrCode: FieldRef<"Booking", 'String'>
+    readonly checkInCode: FieldRef<"Booking", 'String'>
+    readonly extendedTimes: FieldRef<"Booking", 'Int'>
+    readonly notes: FieldRef<"Booking", 'String'>
+    readonly createdAt: FieldRef<"Booking", 'DateTime'>
+    readonly updatedAt: FieldRef<"Booking", 'DateTime'>
   }
     
 
@@ -8224,6 +11466,30 @@ export namespace Prisma {
   }
 
   /**
+   * Booking.incidents
+   */
+  export type Booking$incidentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    where?: IncidentWhereInput
+    orderBy?: IncidentOrderByWithRelationInput | IncidentOrderByWithRelationInput[]
+    cursor?: IncidentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IncidentScalarFieldEnum | IncidentScalarFieldEnum[]
+  }
+
+  /**
    * Booking without action
    */
   export type BookingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8269,6 +11535,12 @@ export namespace Prisma {
     amount: number | null
     method: string | null
     status: string | null
+    transactionId: string | null
+    gatewayResponse: string | null
+    paidAt: Date | null
+    refundedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PaymentMaxAggregateOutputType = {
@@ -8278,6 +11550,12 @@ export namespace Prisma {
     amount: number | null
     method: string | null
     status: string | null
+    transactionId: string | null
+    gatewayResponse: string | null
+    paidAt: Date | null
+    refundedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PaymentCountAggregateOutputType = {
@@ -8287,6 +11565,12 @@ export namespace Prisma {
     amount: number
     method: number
     status: number
+    transactionId: number
+    gatewayResponse: number
+    paidAt: number
+    refundedAt: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -8306,6 +11590,12 @@ export namespace Prisma {
     amount?: true
     method?: true
     status?: true
+    transactionId?: true
+    gatewayResponse?: true
+    paidAt?: true
+    refundedAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type PaymentMaxAggregateInputType = {
@@ -8315,6 +11605,12 @@ export namespace Prisma {
     amount?: true
     method?: true
     status?: true
+    transactionId?: true
+    gatewayResponse?: true
+    paidAt?: true
+    refundedAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type PaymentCountAggregateInputType = {
@@ -8324,6 +11620,12 @@ export namespace Prisma {
     amount?: true
     method?: true
     status?: true
+    transactionId?: true
+    gatewayResponse?: true
+    paidAt?: true
+    refundedAt?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -8420,6 +11722,12 @@ export namespace Prisma {
     amount: number
     method: string
     status: string
+    transactionId: string | null
+    gatewayResponse: string | null
+    paidAt: Date | null
+    refundedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
     _count: PaymentCountAggregateOutputType | null
     _avg: PaymentAvgAggregateOutputType | null
     _sum: PaymentSumAggregateOutputType | null
@@ -8448,6 +11756,12 @@ export namespace Prisma {
     amount?: boolean
     method?: boolean
     status?: boolean
+    transactionId?: boolean
+    gatewayResponse?: boolean
+    paidAt?: boolean
+    refundedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     booking?: boolean | BookingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
@@ -8459,6 +11773,12 @@ export namespace Prisma {
     amount?: boolean
     method?: boolean
     status?: boolean
+    transactionId?: boolean
+    gatewayResponse?: boolean
+    paidAt?: boolean
+    refundedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     booking?: boolean | BookingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
@@ -8470,6 +11790,12 @@ export namespace Prisma {
     amount?: boolean
     method?: boolean
     status?: boolean
+    transactionId?: boolean
+    gatewayResponse?: boolean
+    paidAt?: boolean
+    refundedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     booking?: boolean | BookingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
@@ -8481,9 +11807,15 @@ export namespace Prisma {
     amount?: boolean
     method?: boolean
     status?: boolean
+    transactionId?: boolean
+    gatewayResponse?: boolean
+    paidAt?: boolean
+    refundedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "bookingId" | "amount" | "method" | "status", ExtArgs["result"]["payment"]>
+  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "bookingId" | "amount" | "method" | "status" | "transactionId" | "gatewayResponse" | "paidAt" | "refundedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["payment"]>
   export type PaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     booking?: boolean | BookingDefaultArgs<ExtArgs>
@@ -8510,6 +11842,12 @@ export namespace Prisma {
       amount: number
       method: string
       status: string
+      transactionId: string | null
+      gatewayResponse: string | null
+      paidAt: Date | null
+      refundedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["payment"]>
     composites: {}
   }
@@ -8941,6 +12279,12 @@ export namespace Prisma {
     readonly amount: FieldRef<"Payment", 'Float'>
     readonly method: FieldRef<"Payment", 'String'>
     readonly status: FieldRef<"Payment", 'String'>
+    readonly transactionId: FieldRef<"Payment", 'String'>
+    readonly gatewayResponse: FieldRef<"Payment", 'String'>
+    readonly paidAt: FieldRef<"Payment", 'DateTime'>
+    readonly refundedAt: FieldRef<"Payment", 'DateTime'>
+    readonly createdAt: FieldRef<"Payment", 'DateTime'>
+    readonly updatedAt: FieldRef<"Payment", 'DateTime'>
   }
     
 
@@ -9368,27 +12712,39 @@ export namespace Prisma {
   export type NotificationMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    title: string | null
     message: string | null
     type: string | null
+    priority: string | null
     isRead: boolean | null
+    readAt: Date | null
+    data: string | null
     createdAt: Date | null
   }
 
   export type NotificationMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    title: string | null
     message: string | null
     type: string | null
+    priority: string | null
     isRead: boolean | null
+    readAt: Date | null
+    data: string | null
     createdAt: Date | null
   }
 
   export type NotificationCountAggregateOutputType = {
     id: number
     userId: number
+    title: number
     message: number
     type: number
+    priority: number
     isRead: number
+    readAt: number
+    data: number
     createdAt: number
     _all: number
   }
@@ -9397,27 +12753,39 @@ export namespace Prisma {
   export type NotificationMinAggregateInputType = {
     id?: true
     userId?: true
+    title?: true
     message?: true
     type?: true
+    priority?: true
     isRead?: true
+    readAt?: true
+    data?: true
     createdAt?: true
   }
 
   export type NotificationMaxAggregateInputType = {
     id?: true
     userId?: true
+    title?: true
     message?: true
     type?: true
+    priority?: true
     isRead?: true
+    readAt?: true
+    data?: true
     createdAt?: true
   }
 
   export type NotificationCountAggregateInputType = {
     id?: true
     userId?: true
+    title?: true
     message?: true
     type?: true
+    priority?: true
     isRead?: true
+    readAt?: true
+    data?: true
     createdAt?: true
     _all?: true
   }
@@ -9497,9 +12865,13 @@ export namespace Prisma {
   export type NotificationGroupByOutputType = {
     id: string
     userId: string
+    title: string
     message: string
     type: string
+    priority: string
     isRead: boolean
+    readAt: Date | null
+    data: string | null
     createdAt: Date
     _count: NotificationCountAggregateOutputType | null
     _min: NotificationMinAggregateOutputType | null
@@ -9523,9 +12895,13 @@ export namespace Prisma {
   export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    title?: boolean
     message?: boolean
     type?: boolean
+    priority?: boolean
     isRead?: boolean
+    readAt?: boolean
+    data?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
@@ -9533,9 +12909,13 @@ export namespace Prisma {
   export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    title?: boolean
     message?: boolean
     type?: boolean
+    priority?: boolean
     isRead?: boolean
+    readAt?: boolean
+    data?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
@@ -9543,9 +12923,13 @@ export namespace Prisma {
   export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    title?: boolean
     message?: boolean
     type?: boolean
+    priority?: boolean
     isRead?: boolean
+    readAt?: boolean
+    data?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
@@ -9553,13 +12937,17 @@ export namespace Prisma {
   export type NotificationSelectScalar = {
     id?: boolean
     userId?: boolean
+    title?: boolean
     message?: boolean
     type?: boolean
+    priority?: boolean
     isRead?: boolean
+    readAt?: boolean
+    data?: boolean
     createdAt?: boolean
   }
 
-  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "message" | "type" | "isRead" | "createdAt", ExtArgs["result"]["notification"]>
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "message" | "type" | "priority" | "isRead" | "readAt" | "data" | "createdAt", ExtArgs["result"]["notification"]>
   export type NotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -9578,9 +12966,13 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      title: string
       message: string
       type: string
+      priority: string
       isRead: boolean
+      readAt: Date | null
+      data: string | null
       createdAt: Date
     }, ExtArgs["result"]["notification"]>
     composites: {}
@@ -10008,9 +13400,13 @@ export namespace Prisma {
   interface NotificationFieldRefs {
     readonly id: FieldRef<"Notification", 'String'>
     readonly userId: FieldRef<"Notification", 'String'>
+    readonly title: FieldRef<"Notification", 'String'>
     readonly message: FieldRef<"Notification", 'String'>
     readonly type: FieldRef<"Notification", 'String'>
+    readonly priority: FieldRef<"Notification", 'String'>
     readonly isRead: FieldRef<"Notification", 'Boolean'>
+    readonly readAt: FieldRef<"Notification", 'DateTime'>
+    readonly data: FieldRef<"Notification", 'String'>
     readonly createdAt: FieldRef<"Notification", 'DateTime'>
   }
     
@@ -10427,6 +13823,3436 @@ export namespace Prisma {
 
 
   /**
+   * Model Incident
+   */
+
+  export type AggregateIncident = {
+    _count: IncidentCountAggregateOutputType | null
+    _min: IncidentMinAggregateOutputType | null
+    _max: IncidentMaxAggregateOutputType | null
+  }
+
+  export type IncidentMinAggregateOutputType = {
+    id: string | null
+    bookingId: string | null
+    locationId: string | null
+    reporterId: string | null
+    type: string | null
+    severity: string | null
+    title: string | null
+    description: string | null
+    status: string | null
+    resolution: string | null
+    resolvedBy: string | null
+    resolvedAt: Date | null
+    images: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IncidentMaxAggregateOutputType = {
+    id: string | null
+    bookingId: string | null
+    locationId: string | null
+    reporterId: string | null
+    type: string | null
+    severity: string | null
+    title: string | null
+    description: string | null
+    status: string | null
+    resolution: string | null
+    resolvedBy: string | null
+    resolvedAt: Date | null
+    images: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IncidentCountAggregateOutputType = {
+    id: number
+    bookingId: number
+    locationId: number
+    reporterId: number
+    type: number
+    severity: number
+    title: number
+    description: number
+    status: number
+    resolution: number
+    resolvedBy: number
+    resolvedAt: number
+    images: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type IncidentMinAggregateInputType = {
+    id?: true
+    bookingId?: true
+    locationId?: true
+    reporterId?: true
+    type?: true
+    severity?: true
+    title?: true
+    description?: true
+    status?: true
+    resolution?: true
+    resolvedBy?: true
+    resolvedAt?: true
+    images?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IncidentMaxAggregateInputType = {
+    id?: true
+    bookingId?: true
+    locationId?: true
+    reporterId?: true
+    type?: true
+    severity?: true
+    title?: true
+    description?: true
+    status?: true
+    resolution?: true
+    resolvedBy?: true
+    resolvedAt?: true
+    images?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IncidentCountAggregateInputType = {
+    id?: true
+    bookingId?: true
+    locationId?: true
+    reporterId?: true
+    type?: true
+    severity?: true
+    title?: true
+    description?: true
+    status?: true
+    resolution?: true
+    resolvedBy?: true
+    resolvedAt?: true
+    images?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type IncidentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Incident to aggregate.
+     */
+    where?: IncidentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Incidents to fetch.
+     */
+    orderBy?: IncidentOrderByWithRelationInput | IncidentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: IncidentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Incidents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Incidents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Incidents
+    **/
+    _count?: true | IncidentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IncidentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IncidentMaxAggregateInputType
+  }
+
+  export type GetIncidentAggregateType<T extends IncidentAggregateArgs> = {
+        [P in keyof T & keyof AggregateIncident]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIncident[P]>
+      : GetScalarType<T[P], AggregateIncident[P]>
+  }
+
+
+
+
+  export type IncidentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IncidentWhereInput
+    orderBy?: IncidentOrderByWithAggregationInput | IncidentOrderByWithAggregationInput[]
+    by: IncidentScalarFieldEnum[] | IncidentScalarFieldEnum
+    having?: IncidentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IncidentCountAggregateInputType | true
+    _min?: IncidentMinAggregateInputType
+    _max?: IncidentMaxAggregateInputType
+  }
+
+  export type IncidentGroupByOutputType = {
+    id: string
+    bookingId: string | null
+    locationId: string
+    reporterId: string
+    type: string
+    severity: string
+    title: string
+    description: string
+    status: string
+    resolution: string | null
+    resolvedBy: string | null
+    resolvedAt: Date | null
+    images: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: IncidentCountAggregateOutputType | null
+    _min: IncidentMinAggregateOutputType | null
+    _max: IncidentMaxAggregateOutputType | null
+  }
+
+  type GetIncidentGroupByPayload<T extends IncidentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IncidentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IncidentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IncidentGroupByOutputType[P]>
+            : GetScalarType<T[P], IncidentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IncidentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bookingId?: boolean
+    locationId?: boolean
+    reporterId?: boolean
+    type?: boolean
+    severity?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    resolution?: boolean
+    resolvedBy?: boolean
+    resolvedAt?: boolean
+    images?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    booking?: boolean | Incident$bookingArgs<ExtArgs>
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+    reporter?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["incident"]>
+
+  export type IncidentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bookingId?: boolean
+    locationId?: boolean
+    reporterId?: boolean
+    type?: boolean
+    severity?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    resolution?: boolean
+    resolvedBy?: boolean
+    resolvedAt?: boolean
+    images?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    booking?: boolean | Incident$bookingArgs<ExtArgs>
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+    reporter?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["incident"]>
+
+  export type IncidentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bookingId?: boolean
+    locationId?: boolean
+    reporterId?: boolean
+    type?: boolean
+    severity?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    resolution?: boolean
+    resolvedBy?: boolean
+    resolvedAt?: boolean
+    images?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    booking?: boolean | Incident$bookingArgs<ExtArgs>
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+    reporter?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["incident"]>
+
+  export type IncidentSelectScalar = {
+    id?: boolean
+    bookingId?: boolean
+    locationId?: boolean
+    reporterId?: boolean
+    type?: boolean
+    severity?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    resolution?: boolean
+    resolvedBy?: boolean
+    resolvedAt?: boolean
+    images?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type IncidentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "bookingId" | "locationId" | "reporterId" | "type" | "severity" | "title" | "description" | "status" | "resolution" | "resolvedBy" | "resolvedAt" | "images" | "createdAt" | "updatedAt", ExtArgs["result"]["incident"]>
+  export type IncidentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    booking?: boolean | Incident$bookingArgs<ExtArgs>
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+    reporter?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type IncidentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    booking?: boolean | Incident$bookingArgs<ExtArgs>
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+    reporter?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type IncidentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    booking?: boolean | Incident$bookingArgs<ExtArgs>
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+    reporter?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $IncidentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Incident"
+    objects: {
+      booking: Prisma.$BookingPayload<ExtArgs> | null
+      location: Prisma.$ParkingLocationPayload<ExtArgs>
+      reporter: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      bookingId: string | null
+      locationId: string
+      reporterId: string
+      type: string
+      severity: string
+      title: string
+      description: string
+      status: string
+      resolution: string | null
+      resolvedBy: string | null
+      resolvedAt: Date | null
+      images: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["incident"]>
+    composites: {}
+  }
+
+  type IncidentGetPayload<S extends boolean | null | undefined | IncidentDefaultArgs> = $Result.GetResult<Prisma.$IncidentPayload, S>
+
+  type IncidentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IncidentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IncidentCountAggregateInputType | true
+    }
+
+  export interface IncidentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Incident'], meta: { name: 'Incident' } }
+    /**
+     * Find zero or one Incident that matches the filter.
+     * @param {IncidentFindUniqueArgs} args - Arguments to find a Incident
+     * @example
+     * // Get one Incident
+     * const incident = await prisma.incident.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IncidentFindUniqueArgs>(args: SelectSubset<T, IncidentFindUniqueArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Incident that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {IncidentFindUniqueOrThrowArgs} args - Arguments to find a Incident
+     * @example
+     * // Get one Incident
+     * const incident = await prisma.incident.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IncidentFindUniqueOrThrowArgs>(args: SelectSubset<T, IncidentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Incident that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IncidentFindFirstArgs} args - Arguments to find a Incident
+     * @example
+     * // Get one Incident
+     * const incident = await prisma.incident.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IncidentFindFirstArgs>(args?: SelectSubset<T, IncidentFindFirstArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Incident that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IncidentFindFirstOrThrowArgs} args - Arguments to find a Incident
+     * @example
+     * // Get one Incident
+     * const incident = await prisma.incident.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IncidentFindFirstOrThrowArgs>(args?: SelectSubset<T, IncidentFindFirstOrThrowArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Incidents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IncidentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Incidents
+     * const incidents = await prisma.incident.findMany()
+     * 
+     * // Get first 10 Incidents
+     * const incidents = await prisma.incident.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const incidentWithIdOnly = await prisma.incident.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends IncidentFindManyArgs>(args?: SelectSubset<T, IncidentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Incident.
+     * @param {IncidentCreateArgs} args - Arguments to create a Incident.
+     * @example
+     * // Create one Incident
+     * const Incident = await prisma.incident.create({
+     *   data: {
+     *     // ... data to create a Incident
+     *   }
+     * })
+     * 
+     */
+    create<T extends IncidentCreateArgs>(args: SelectSubset<T, IncidentCreateArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Incidents.
+     * @param {IncidentCreateManyArgs} args - Arguments to create many Incidents.
+     * @example
+     * // Create many Incidents
+     * const incident = await prisma.incident.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends IncidentCreateManyArgs>(args?: SelectSubset<T, IncidentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Incidents and returns the data saved in the database.
+     * @param {IncidentCreateManyAndReturnArgs} args - Arguments to create many Incidents.
+     * @example
+     * // Create many Incidents
+     * const incident = await prisma.incident.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Incidents and only return the `id`
+     * const incidentWithIdOnly = await prisma.incident.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends IncidentCreateManyAndReturnArgs>(args?: SelectSubset<T, IncidentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Incident.
+     * @param {IncidentDeleteArgs} args - Arguments to delete one Incident.
+     * @example
+     * // Delete one Incident
+     * const Incident = await prisma.incident.delete({
+     *   where: {
+     *     // ... filter to delete one Incident
+     *   }
+     * })
+     * 
+     */
+    delete<T extends IncidentDeleteArgs>(args: SelectSubset<T, IncidentDeleteArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Incident.
+     * @param {IncidentUpdateArgs} args - Arguments to update one Incident.
+     * @example
+     * // Update one Incident
+     * const incident = await prisma.incident.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends IncidentUpdateArgs>(args: SelectSubset<T, IncidentUpdateArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Incidents.
+     * @param {IncidentDeleteManyArgs} args - Arguments to filter Incidents to delete.
+     * @example
+     * // Delete a few Incidents
+     * const { count } = await prisma.incident.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends IncidentDeleteManyArgs>(args?: SelectSubset<T, IncidentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Incidents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IncidentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Incidents
+     * const incident = await prisma.incident.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends IncidentUpdateManyArgs>(args: SelectSubset<T, IncidentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Incidents and returns the data updated in the database.
+     * @param {IncidentUpdateManyAndReturnArgs} args - Arguments to update many Incidents.
+     * @example
+     * // Update many Incidents
+     * const incident = await prisma.incident.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Incidents and only return the `id`
+     * const incidentWithIdOnly = await prisma.incident.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends IncidentUpdateManyAndReturnArgs>(args: SelectSubset<T, IncidentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Incident.
+     * @param {IncidentUpsertArgs} args - Arguments to update or create a Incident.
+     * @example
+     * // Update or create a Incident
+     * const incident = await prisma.incident.upsert({
+     *   create: {
+     *     // ... data to create a Incident
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Incident we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IncidentUpsertArgs>(args: SelectSubset<T, IncidentUpsertArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Incidents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IncidentCountArgs} args - Arguments to filter Incidents to count.
+     * @example
+     * // Count the number of Incidents
+     * const count = await prisma.incident.count({
+     *   where: {
+     *     // ... the filter for the Incidents we want to count
+     *   }
+     * })
+    **/
+    count<T extends IncidentCountArgs>(
+      args?: Subset<T, IncidentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IncidentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Incident.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IncidentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IncidentAggregateArgs>(args: Subset<T, IncidentAggregateArgs>): Prisma.PrismaPromise<GetIncidentAggregateType<T>>
+
+    /**
+     * Group by Incident.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IncidentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends IncidentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IncidentGroupByArgs['orderBy'] }
+        : { orderBy?: IncidentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IncidentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIncidentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Incident model
+   */
+  readonly fields: IncidentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Incident.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IncidentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    booking<T extends Incident$bookingArgs<ExtArgs> = {}>(args?: Subset<T, Incident$bookingArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    location<T extends ParkingLocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParkingLocationDefaultArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    reporter<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Incident model
+   */
+  interface IncidentFieldRefs {
+    readonly id: FieldRef<"Incident", 'String'>
+    readonly bookingId: FieldRef<"Incident", 'String'>
+    readonly locationId: FieldRef<"Incident", 'String'>
+    readonly reporterId: FieldRef<"Incident", 'String'>
+    readonly type: FieldRef<"Incident", 'String'>
+    readonly severity: FieldRef<"Incident", 'String'>
+    readonly title: FieldRef<"Incident", 'String'>
+    readonly description: FieldRef<"Incident", 'String'>
+    readonly status: FieldRef<"Incident", 'String'>
+    readonly resolution: FieldRef<"Incident", 'String'>
+    readonly resolvedBy: FieldRef<"Incident", 'String'>
+    readonly resolvedAt: FieldRef<"Incident", 'DateTime'>
+    readonly images: FieldRef<"Incident", 'String'>
+    readonly createdAt: FieldRef<"Incident", 'DateTime'>
+    readonly updatedAt: FieldRef<"Incident", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Incident findUnique
+   */
+  export type IncidentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * Filter, which Incident to fetch.
+     */
+    where: IncidentWhereUniqueInput
+  }
+
+  /**
+   * Incident findUniqueOrThrow
+   */
+  export type IncidentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * Filter, which Incident to fetch.
+     */
+    where: IncidentWhereUniqueInput
+  }
+
+  /**
+   * Incident findFirst
+   */
+  export type IncidentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * Filter, which Incident to fetch.
+     */
+    where?: IncidentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Incidents to fetch.
+     */
+    orderBy?: IncidentOrderByWithRelationInput | IncidentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Incidents.
+     */
+    cursor?: IncidentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Incidents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Incidents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Incidents.
+     */
+    distinct?: IncidentScalarFieldEnum | IncidentScalarFieldEnum[]
+  }
+
+  /**
+   * Incident findFirstOrThrow
+   */
+  export type IncidentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * Filter, which Incident to fetch.
+     */
+    where?: IncidentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Incidents to fetch.
+     */
+    orderBy?: IncidentOrderByWithRelationInput | IncidentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Incidents.
+     */
+    cursor?: IncidentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Incidents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Incidents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Incidents.
+     */
+    distinct?: IncidentScalarFieldEnum | IncidentScalarFieldEnum[]
+  }
+
+  /**
+   * Incident findMany
+   */
+  export type IncidentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * Filter, which Incidents to fetch.
+     */
+    where?: IncidentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Incidents to fetch.
+     */
+    orderBy?: IncidentOrderByWithRelationInput | IncidentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Incidents.
+     */
+    cursor?: IncidentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Incidents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Incidents.
+     */
+    skip?: number
+    distinct?: IncidentScalarFieldEnum | IncidentScalarFieldEnum[]
+  }
+
+  /**
+   * Incident create
+   */
+  export type IncidentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Incident.
+     */
+    data: XOR<IncidentCreateInput, IncidentUncheckedCreateInput>
+  }
+
+  /**
+   * Incident createMany
+   */
+  export type IncidentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Incidents.
+     */
+    data: IncidentCreateManyInput | IncidentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Incident createManyAndReturn
+   */
+  export type IncidentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * The data used to create many Incidents.
+     */
+    data: IncidentCreateManyInput | IncidentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Incident update
+   */
+  export type IncidentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Incident.
+     */
+    data: XOR<IncidentUpdateInput, IncidentUncheckedUpdateInput>
+    /**
+     * Choose, which Incident to update.
+     */
+    where: IncidentWhereUniqueInput
+  }
+
+  /**
+   * Incident updateMany
+   */
+  export type IncidentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Incidents.
+     */
+    data: XOR<IncidentUpdateManyMutationInput, IncidentUncheckedUpdateManyInput>
+    /**
+     * Filter which Incidents to update
+     */
+    where?: IncidentWhereInput
+    /**
+     * Limit how many Incidents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Incident updateManyAndReturn
+   */
+  export type IncidentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * The data used to update Incidents.
+     */
+    data: XOR<IncidentUpdateManyMutationInput, IncidentUncheckedUpdateManyInput>
+    /**
+     * Filter which Incidents to update
+     */
+    where?: IncidentWhereInput
+    /**
+     * Limit how many Incidents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Incident upsert
+   */
+  export type IncidentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Incident to update in case it exists.
+     */
+    where: IncidentWhereUniqueInput
+    /**
+     * In case the Incident found by the `where` argument doesn't exist, create a new Incident with this data.
+     */
+    create: XOR<IncidentCreateInput, IncidentUncheckedCreateInput>
+    /**
+     * In case the Incident was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IncidentUpdateInput, IncidentUncheckedUpdateInput>
+  }
+
+  /**
+   * Incident delete
+   */
+  export type IncidentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+    /**
+     * Filter which Incident to delete.
+     */
+    where: IncidentWhereUniqueInput
+  }
+
+  /**
+   * Incident deleteMany
+   */
+  export type IncidentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Incidents to delete
+     */
+    where?: IncidentWhereInput
+    /**
+     * Limit how many Incidents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Incident.booking
+   */
+  export type Incident$bookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Booking
+     */
+    omit?: BookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    where?: BookingWhereInput
+  }
+
+  /**
+   * Incident without action
+   */
+  export type IncidentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Incident
+     */
+    select?: IncidentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Incident
+     */
+    omit?: IncidentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ParkingAnalytics
+   */
+
+  export type AggregateParkingAnalytics = {
+    _count: ParkingAnalyticsCountAggregateOutputType | null
+    _avg: ParkingAnalyticsAvgAggregateOutputType | null
+    _sum: ParkingAnalyticsSumAggregateOutputType | null
+    _min: ParkingAnalyticsMinAggregateOutputType | null
+    _max: ParkingAnalyticsMaxAggregateOutputType | null
+  }
+
+  export type ParkingAnalyticsAvgAggregateOutputType = {
+    totalSlots: number | null
+    occupiedSlots: number | null
+    totalBookings: number | null
+    totalRevenue: number | null
+    averageStayTime: number | null
+  }
+
+  export type ParkingAnalyticsSumAggregateOutputType = {
+    totalSlots: number | null
+    occupiedSlots: number | null
+    totalBookings: number | null
+    totalRevenue: number | null
+    averageStayTime: number | null
+  }
+
+  export type ParkingAnalyticsMinAggregateOutputType = {
+    id: string | null
+    locationId: string | null
+    date: Date | null
+    totalSlots: number | null
+    occupiedSlots: number | null
+    totalBookings: number | null
+    totalRevenue: number | null
+    averageStayTime: number | null
+    peakHours: string | null
+    createdAt: Date | null
+  }
+
+  export type ParkingAnalyticsMaxAggregateOutputType = {
+    id: string | null
+    locationId: string | null
+    date: Date | null
+    totalSlots: number | null
+    occupiedSlots: number | null
+    totalBookings: number | null
+    totalRevenue: number | null
+    averageStayTime: number | null
+    peakHours: string | null
+    createdAt: Date | null
+  }
+
+  export type ParkingAnalyticsCountAggregateOutputType = {
+    id: number
+    locationId: number
+    date: number
+    totalSlots: number
+    occupiedSlots: number
+    totalBookings: number
+    totalRevenue: number
+    averageStayTime: number
+    peakHours: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ParkingAnalyticsAvgAggregateInputType = {
+    totalSlots?: true
+    occupiedSlots?: true
+    totalBookings?: true
+    totalRevenue?: true
+    averageStayTime?: true
+  }
+
+  export type ParkingAnalyticsSumAggregateInputType = {
+    totalSlots?: true
+    occupiedSlots?: true
+    totalBookings?: true
+    totalRevenue?: true
+    averageStayTime?: true
+  }
+
+  export type ParkingAnalyticsMinAggregateInputType = {
+    id?: true
+    locationId?: true
+    date?: true
+    totalSlots?: true
+    occupiedSlots?: true
+    totalBookings?: true
+    totalRevenue?: true
+    averageStayTime?: true
+    peakHours?: true
+    createdAt?: true
+  }
+
+  export type ParkingAnalyticsMaxAggregateInputType = {
+    id?: true
+    locationId?: true
+    date?: true
+    totalSlots?: true
+    occupiedSlots?: true
+    totalBookings?: true
+    totalRevenue?: true
+    averageStayTime?: true
+    peakHours?: true
+    createdAt?: true
+  }
+
+  export type ParkingAnalyticsCountAggregateInputType = {
+    id?: true
+    locationId?: true
+    date?: true
+    totalSlots?: true
+    occupiedSlots?: true
+    totalBookings?: true
+    totalRevenue?: true
+    averageStayTime?: true
+    peakHours?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ParkingAnalyticsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParkingAnalytics to aggregate.
+     */
+    where?: ParkingAnalyticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingAnalytics to fetch.
+     */
+    orderBy?: ParkingAnalyticsOrderByWithRelationInput | ParkingAnalyticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ParkingAnalyticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingAnalytics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingAnalytics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ParkingAnalytics
+    **/
+    _count?: true | ParkingAnalyticsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ParkingAnalyticsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ParkingAnalyticsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ParkingAnalyticsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ParkingAnalyticsMaxAggregateInputType
+  }
+
+  export type GetParkingAnalyticsAggregateType<T extends ParkingAnalyticsAggregateArgs> = {
+        [P in keyof T & keyof AggregateParkingAnalytics]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateParkingAnalytics[P]>
+      : GetScalarType<T[P], AggregateParkingAnalytics[P]>
+  }
+
+
+
+
+  export type ParkingAnalyticsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParkingAnalyticsWhereInput
+    orderBy?: ParkingAnalyticsOrderByWithAggregationInput | ParkingAnalyticsOrderByWithAggregationInput[]
+    by: ParkingAnalyticsScalarFieldEnum[] | ParkingAnalyticsScalarFieldEnum
+    having?: ParkingAnalyticsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ParkingAnalyticsCountAggregateInputType | true
+    _avg?: ParkingAnalyticsAvgAggregateInputType
+    _sum?: ParkingAnalyticsSumAggregateInputType
+    _min?: ParkingAnalyticsMinAggregateInputType
+    _max?: ParkingAnalyticsMaxAggregateInputType
+  }
+
+  export type ParkingAnalyticsGroupByOutputType = {
+    id: string
+    locationId: string
+    date: Date
+    totalSlots: number
+    occupiedSlots: number
+    totalBookings: number
+    totalRevenue: number
+    averageStayTime: number | null
+    peakHours: string | null
+    createdAt: Date
+    _count: ParkingAnalyticsCountAggregateOutputType | null
+    _avg: ParkingAnalyticsAvgAggregateOutputType | null
+    _sum: ParkingAnalyticsSumAggregateOutputType | null
+    _min: ParkingAnalyticsMinAggregateOutputType | null
+    _max: ParkingAnalyticsMaxAggregateOutputType | null
+  }
+
+  type GetParkingAnalyticsGroupByPayload<T extends ParkingAnalyticsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ParkingAnalyticsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ParkingAnalyticsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ParkingAnalyticsGroupByOutputType[P]>
+            : GetScalarType<T[P], ParkingAnalyticsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ParkingAnalyticsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locationId?: boolean
+    date?: boolean
+    totalSlots?: boolean
+    occupiedSlots?: boolean
+    totalBookings?: boolean
+    totalRevenue?: boolean
+    averageStayTime?: boolean
+    peakHours?: boolean
+    createdAt?: boolean
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parkingAnalytics"]>
+
+  export type ParkingAnalyticsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locationId?: boolean
+    date?: boolean
+    totalSlots?: boolean
+    occupiedSlots?: boolean
+    totalBookings?: boolean
+    totalRevenue?: boolean
+    averageStayTime?: boolean
+    peakHours?: boolean
+    createdAt?: boolean
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parkingAnalytics"]>
+
+  export type ParkingAnalyticsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locationId?: boolean
+    date?: boolean
+    totalSlots?: boolean
+    occupiedSlots?: boolean
+    totalBookings?: boolean
+    totalRevenue?: boolean
+    averageStayTime?: boolean
+    peakHours?: boolean
+    createdAt?: boolean
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parkingAnalytics"]>
+
+  export type ParkingAnalyticsSelectScalar = {
+    id?: boolean
+    locationId?: boolean
+    date?: boolean
+    totalSlots?: boolean
+    occupiedSlots?: boolean
+    totalBookings?: boolean
+    totalRevenue?: boolean
+    averageStayTime?: boolean
+    peakHours?: boolean
+    createdAt?: boolean
+  }
+
+  export type ParkingAnalyticsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationId" | "date" | "totalSlots" | "occupiedSlots" | "totalBookings" | "totalRevenue" | "averageStayTime" | "peakHours" | "createdAt", ExtArgs["result"]["parkingAnalytics"]>
+  export type ParkingAnalyticsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+  }
+  export type ParkingAnalyticsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+  }
+  export type ParkingAnalyticsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    location?: boolean | ParkingLocationDefaultArgs<ExtArgs>
+  }
+
+  export type $ParkingAnalyticsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ParkingAnalytics"
+    objects: {
+      location: Prisma.$ParkingLocationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      locationId: string
+      date: Date
+      totalSlots: number
+      occupiedSlots: number
+      totalBookings: number
+      totalRevenue: number
+      averageStayTime: number | null
+      peakHours: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["parkingAnalytics"]>
+    composites: {}
+  }
+
+  type ParkingAnalyticsGetPayload<S extends boolean | null | undefined | ParkingAnalyticsDefaultArgs> = $Result.GetResult<Prisma.$ParkingAnalyticsPayload, S>
+
+  type ParkingAnalyticsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ParkingAnalyticsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ParkingAnalyticsCountAggregateInputType | true
+    }
+
+  export interface ParkingAnalyticsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ParkingAnalytics'], meta: { name: 'ParkingAnalytics' } }
+    /**
+     * Find zero or one ParkingAnalytics that matches the filter.
+     * @param {ParkingAnalyticsFindUniqueArgs} args - Arguments to find a ParkingAnalytics
+     * @example
+     * // Get one ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ParkingAnalyticsFindUniqueArgs>(args: SelectSubset<T, ParkingAnalyticsFindUniqueArgs<ExtArgs>>): Prisma__ParkingAnalyticsClient<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ParkingAnalytics that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ParkingAnalyticsFindUniqueOrThrowArgs} args - Arguments to find a ParkingAnalytics
+     * @example
+     * // Get one ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ParkingAnalyticsFindUniqueOrThrowArgs>(args: SelectSubset<T, ParkingAnalyticsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ParkingAnalyticsClient<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParkingAnalytics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingAnalyticsFindFirstArgs} args - Arguments to find a ParkingAnalytics
+     * @example
+     * // Get one ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ParkingAnalyticsFindFirstArgs>(args?: SelectSubset<T, ParkingAnalyticsFindFirstArgs<ExtArgs>>): Prisma__ParkingAnalyticsClient<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParkingAnalytics that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingAnalyticsFindFirstOrThrowArgs} args - Arguments to find a ParkingAnalytics
+     * @example
+     * // Get one ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ParkingAnalyticsFindFirstOrThrowArgs>(args?: SelectSubset<T, ParkingAnalyticsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ParkingAnalyticsClient<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ParkingAnalytics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingAnalyticsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.findMany()
+     * 
+     * // Get first 10 ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const parkingAnalyticsWithIdOnly = await prisma.parkingAnalytics.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ParkingAnalyticsFindManyArgs>(args?: SelectSubset<T, ParkingAnalyticsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ParkingAnalytics.
+     * @param {ParkingAnalyticsCreateArgs} args - Arguments to create a ParkingAnalytics.
+     * @example
+     * // Create one ParkingAnalytics
+     * const ParkingAnalytics = await prisma.parkingAnalytics.create({
+     *   data: {
+     *     // ... data to create a ParkingAnalytics
+     *   }
+     * })
+     * 
+     */
+    create<T extends ParkingAnalyticsCreateArgs>(args: SelectSubset<T, ParkingAnalyticsCreateArgs<ExtArgs>>): Prisma__ParkingAnalyticsClient<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ParkingAnalytics.
+     * @param {ParkingAnalyticsCreateManyArgs} args - Arguments to create many ParkingAnalytics.
+     * @example
+     * // Create many ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ParkingAnalyticsCreateManyArgs>(args?: SelectSubset<T, ParkingAnalyticsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ParkingAnalytics and returns the data saved in the database.
+     * @param {ParkingAnalyticsCreateManyAndReturnArgs} args - Arguments to create many ParkingAnalytics.
+     * @example
+     * // Create many ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ParkingAnalytics and only return the `id`
+     * const parkingAnalyticsWithIdOnly = await prisma.parkingAnalytics.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ParkingAnalyticsCreateManyAndReturnArgs>(args?: SelectSubset<T, ParkingAnalyticsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ParkingAnalytics.
+     * @param {ParkingAnalyticsDeleteArgs} args - Arguments to delete one ParkingAnalytics.
+     * @example
+     * // Delete one ParkingAnalytics
+     * const ParkingAnalytics = await prisma.parkingAnalytics.delete({
+     *   where: {
+     *     // ... filter to delete one ParkingAnalytics
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ParkingAnalyticsDeleteArgs>(args: SelectSubset<T, ParkingAnalyticsDeleteArgs<ExtArgs>>): Prisma__ParkingAnalyticsClient<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ParkingAnalytics.
+     * @param {ParkingAnalyticsUpdateArgs} args - Arguments to update one ParkingAnalytics.
+     * @example
+     * // Update one ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ParkingAnalyticsUpdateArgs>(args: SelectSubset<T, ParkingAnalyticsUpdateArgs<ExtArgs>>): Prisma__ParkingAnalyticsClient<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ParkingAnalytics.
+     * @param {ParkingAnalyticsDeleteManyArgs} args - Arguments to filter ParkingAnalytics to delete.
+     * @example
+     * // Delete a few ParkingAnalytics
+     * const { count } = await prisma.parkingAnalytics.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ParkingAnalyticsDeleteManyArgs>(args?: SelectSubset<T, ParkingAnalyticsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParkingAnalytics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingAnalyticsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ParkingAnalyticsUpdateManyArgs>(args: SelectSubset<T, ParkingAnalyticsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParkingAnalytics and returns the data updated in the database.
+     * @param {ParkingAnalyticsUpdateManyAndReturnArgs} args - Arguments to update many ParkingAnalytics.
+     * @example
+     * // Update many ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ParkingAnalytics and only return the `id`
+     * const parkingAnalyticsWithIdOnly = await prisma.parkingAnalytics.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ParkingAnalyticsUpdateManyAndReturnArgs>(args: SelectSubset<T, ParkingAnalyticsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ParkingAnalytics.
+     * @param {ParkingAnalyticsUpsertArgs} args - Arguments to update or create a ParkingAnalytics.
+     * @example
+     * // Update or create a ParkingAnalytics
+     * const parkingAnalytics = await prisma.parkingAnalytics.upsert({
+     *   create: {
+     *     // ... data to create a ParkingAnalytics
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ParkingAnalytics we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ParkingAnalyticsUpsertArgs>(args: SelectSubset<T, ParkingAnalyticsUpsertArgs<ExtArgs>>): Prisma__ParkingAnalyticsClient<$Result.GetResult<Prisma.$ParkingAnalyticsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ParkingAnalytics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingAnalyticsCountArgs} args - Arguments to filter ParkingAnalytics to count.
+     * @example
+     * // Count the number of ParkingAnalytics
+     * const count = await prisma.parkingAnalytics.count({
+     *   where: {
+     *     // ... the filter for the ParkingAnalytics we want to count
+     *   }
+     * })
+    **/
+    count<T extends ParkingAnalyticsCountArgs>(
+      args?: Subset<T, ParkingAnalyticsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ParkingAnalyticsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ParkingAnalytics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingAnalyticsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ParkingAnalyticsAggregateArgs>(args: Subset<T, ParkingAnalyticsAggregateArgs>): Prisma.PrismaPromise<GetParkingAnalyticsAggregateType<T>>
+
+    /**
+     * Group by ParkingAnalytics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingAnalyticsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ParkingAnalyticsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ParkingAnalyticsGroupByArgs['orderBy'] }
+        : { orderBy?: ParkingAnalyticsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ParkingAnalyticsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetParkingAnalyticsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ParkingAnalytics model
+   */
+  readonly fields: ParkingAnalyticsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ParkingAnalytics.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ParkingAnalyticsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    location<T extends ParkingLocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParkingLocationDefaultArgs<ExtArgs>>): Prisma__ParkingLocationClient<$Result.GetResult<Prisma.$ParkingLocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ParkingAnalytics model
+   */
+  interface ParkingAnalyticsFieldRefs {
+    readonly id: FieldRef<"ParkingAnalytics", 'String'>
+    readonly locationId: FieldRef<"ParkingAnalytics", 'String'>
+    readonly date: FieldRef<"ParkingAnalytics", 'DateTime'>
+    readonly totalSlots: FieldRef<"ParkingAnalytics", 'Int'>
+    readonly occupiedSlots: FieldRef<"ParkingAnalytics", 'Int'>
+    readonly totalBookings: FieldRef<"ParkingAnalytics", 'Int'>
+    readonly totalRevenue: FieldRef<"ParkingAnalytics", 'Float'>
+    readonly averageStayTime: FieldRef<"ParkingAnalytics", 'Float'>
+    readonly peakHours: FieldRef<"ParkingAnalytics", 'String'>
+    readonly createdAt: FieldRef<"ParkingAnalytics", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ParkingAnalytics findUnique
+   */
+  export type ParkingAnalyticsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingAnalytics to fetch.
+     */
+    where: ParkingAnalyticsWhereUniqueInput
+  }
+
+  /**
+   * ParkingAnalytics findUniqueOrThrow
+   */
+  export type ParkingAnalyticsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingAnalytics to fetch.
+     */
+    where: ParkingAnalyticsWhereUniqueInput
+  }
+
+  /**
+   * ParkingAnalytics findFirst
+   */
+  export type ParkingAnalyticsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingAnalytics to fetch.
+     */
+    where?: ParkingAnalyticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingAnalytics to fetch.
+     */
+    orderBy?: ParkingAnalyticsOrderByWithRelationInput | ParkingAnalyticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParkingAnalytics.
+     */
+    cursor?: ParkingAnalyticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingAnalytics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingAnalytics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParkingAnalytics.
+     */
+    distinct?: ParkingAnalyticsScalarFieldEnum | ParkingAnalyticsScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingAnalytics findFirstOrThrow
+   */
+  export type ParkingAnalyticsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingAnalytics to fetch.
+     */
+    where?: ParkingAnalyticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingAnalytics to fetch.
+     */
+    orderBy?: ParkingAnalyticsOrderByWithRelationInput | ParkingAnalyticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParkingAnalytics.
+     */
+    cursor?: ParkingAnalyticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingAnalytics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingAnalytics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParkingAnalytics.
+     */
+    distinct?: ParkingAnalyticsScalarFieldEnum | ParkingAnalyticsScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingAnalytics findMany
+   */
+  export type ParkingAnalyticsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingAnalytics to fetch.
+     */
+    where?: ParkingAnalyticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingAnalytics to fetch.
+     */
+    orderBy?: ParkingAnalyticsOrderByWithRelationInput | ParkingAnalyticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ParkingAnalytics.
+     */
+    cursor?: ParkingAnalyticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingAnalytics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingAnalytics.
+     */
+    skip?: number
+    distinct?: ParkingAnalyticsScalarFieldEnum | ParkingAnalyticsScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingAnalytics create
+   */
+  export type ParkingAnalyticsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ParkingAnalytics.
+     */
+    data: XOR<ParkingAnalyticsCreateInput, ParkingAnalyticsUncheckedCreateInput>
+  }
+
+  /**
+   * ParkingAnalytics createMany
+   */
+  export type ParkingAnalyticsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ParkingAnalytics.
+     */
+    data: ParkingAnalyticsCreateManyInput | ParkingAnalyticsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParkingAnalytics createManyAndReturn
+   */
+  export type ParkingAnalyticsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * The data used to create many ParkingAnalytics.
+     */
+    data: ParkingAnalyticsCreateManyInput | ParkingAnalyticsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ParkingAnalytics update
+   */
+  export type ParkingAnalyticsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ParkingAnalytics.
+     */
+    data: XOR<ParkingAnalyticsUpdateInput, ParkingAnalyticsUncheckedUpdateInput>
+    /**
+     * Choose, which ParkingAnalytics to update.
+     */
+    where: ParkingAnalyticsWhereUniqueInput
+  }
+
+  /**
+   * ParkingAnalytics updateMany
+   */
+  export type ParkingAnalyticsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ParkingAnalytics.
+     */
+    data: XOR<ParkingAnalyticsUpdateManyMutationInput, ParkingAnalyticsUncheckedUpdateManyInput>
+    /**
+     * Filter which ParkingAnalytics to update
+     */
+    where?: ParkingAnalyticsWhereInput
+    /**
+     * Limit how many ParkingAnalytics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingAnalytics updateManyAndReturn
+   */
+  export type ParkingAnalyticsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * The data used to update ParkingAnalytics.
+     */
+    data: XOR<ParkingAnalyticsUpdateManyMutationInput, ParkingAnalyticsUncheckedUpdateManyInput>
+    /**
+     * Filter which ParkingAnalytics to update
+     */
+    where?: ParkingAnalyticsWhereInput
+    /**
+     * Limit how many ParkingAnalytics to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ParkingAnalytics upsert
+   */
+  export type ParkingAnalyticsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ParkingAnalytics to update in case it exists.
+     */
+    where: ParkingAnalyticsWhereUniqueInput
+    /**
+     * In case the ParkingAnalytics found by the `where` argument doesn't exist, create a new ParkingAnalytics with this data.
+     */
+    create: XOR<ParkingAnalyticsCreateInput, ParkingAnalyticsUncheckedCreateInput>
+    /**
+     * In case the ParkingAnalytics was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ParkingAnalyticsUpdateInput, ParkingAnalyticsUncheckedUpdateInput>
+  }
+
+  /**
+   * ParkingAnalytics delete
+   */
+  export type ParkingAnalyticsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter which ParkingAnalytics to delete.
+     */
+    where: ParkingAnalyticsWhereUniqueInput
+  }
+
+  /**
+   * ParkingAnalytics deleteMany
+   */
+  export type ParkingAnalyticsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParkingAnalytics to delete
+     */
+    where?: ParkingAnalyticsWhereInput
+    /**
+     * Limit how many ParkingAnalytics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingAnalytics without action
+   */
+  export type ParkingAnalyticsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingAnalytics
+     */
+    select?: ParkingAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingAnalytics
+     */
+    omit?: ParkingAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingAnalyticsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SystemSettings
+   */
+
+  export type AggregateSystemSettings = {
+    _count: SystemSettingsCountAggregateOutputType | null
+    _min: SystemSettingsMinAggregateOutputType | null
+    _max: SystemSettingsMaxAggregateOutputType | null
+  }
+
+  export type SystemSettingsMinAggregateOutputType = {
+    id: string | null
+    key: string | null
+    value: string | null
+    description: string | null
+    isActive: boolean | null
+    updatedBy: string | null
+    updatedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type SystemSettingsMaxAggregateOutputType = {
+    id: string | null
+    key: string | null
+    value: string | null
+    description: string | null
+    isActive: boolean | null
+    updatedBy: string | null
+    updatedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type SystemSettingsCountAggregateOutputType = {
+    id: number
+    key: number
+    value: number
+    description: number
+    isActive: number
+    updatedBy: number
+    updatedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type SystemSettingsMinAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    description?: true
+    isActive?: true
+    updatedBy?: true
+    updatedAt?: true
+    createdAt?: true
+  }
+
+  export type SystemSettingsMaxAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    description?: true
+    isActive?: true
+    updatedBy?: true
+    updatedAt?: true
+    createdAt?: true
+  }
+
+  export type SystemSettingsCountAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    description?: true
+    isActive?: true
+    updatedBy?: true
+    updatedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type SystemSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SystemSettings to aggregate.
+     */
+    where?: SystemSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemSettings to fetch.
+     */
+    orderBy?: SystemSettingsOrderByWithRelationInput | SystemSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SystemSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SystemSettings
+    **/
+    _count?: true | SystemSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SystemSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SystemSettingsMaxAggregateInputType
+  }
+
+  export type GetSystemSettingsAggregateType<T extends SystemSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateSystemSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSystemSettings[P]>
+      : GetScalarType<T[P], AggregateSystemSettings[P]>
+  }
+
+
+
+
+  export type SystemSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SystemSettingsWhereInput
+    orderBy?: SystemSettingsOrderByWithAggregationInput | SystemSettingsOrderByWithAggregationInput[]
+    by: SystemSettingsScalarFieldEnum[] | SystemSettingsScalarFieldEnum
+    having?: SystemSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SystemSettingsCountAggregateInputType | true
+    _min?: SystemSettingsMinAggregateInputType
+    _max?: SystemSettingsMaxAggregateInputType
+  }
+
+  export type SystemSettingsGroupByOutputType = {
+    id: string
+    key: string
+    value: string
+    description: string | null
+    isActive: boolean
+    updatedBy: string | null
+    updatedAt: Date
+    createdAt: Date
+    _count: SystemSettingsCountAggregateOutputType | null
+    _min: SystemSettingsMinAggregateOutputType | null
+    _max: SystemSettingsMaxAggregateOutputType | null
+  }
+
+  type GetSystemSettingsGroupByPayload<T extends SystemSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SystemSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SystemSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SystemSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], SystemSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SystemSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    description?: boolean
+    isActive?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["systemSettings"]>
+
+  export type SystemSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    description?: boolean
+    isActive?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["systemSettings"]>
+
+  export type SystemSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    description?: boolean
+    isActive?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["systemSettings"]>
+
+  export type SystemSettingsSelectScalar = {
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    description?: boolean
+    isActive?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type SystemSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "value" | "description" | "isActive" | "updatedBy" | "updatedAt" | "createdAt", ExtArgs["result"]["systemSettings"]>
+
+  export type $SystemSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SystemSettings"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      key: string
+      value: string
+      description: string | null
+      isActive: boolean
+      updatedBy: string | null
+      updatedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["systemSettings"]>
+    composites: {}
+  }
+
+  type SystemSettingsGetPayload<S extends boolean | null | undefined | SystemSettingsDefaultArgs> = $Result.GetResult<Prisma.$SystemSettingsPayload, S>
+
+  type SystemSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SystemSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SystemSettingsCountAggregateInputType | true
+    }
+
+  export interface SystemSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SystemSettings'], meta: { name: 'SystemSettings' } }
+    /**
+     * Find zero or one SystemSettings that matches the filter.
+     * @param {SystemSettingsFindUniqueArgs} args - Arguments to find a SystemSettings
+     * @example
+     * // Get one SystemSettings
+     * const systemSettings = await prisma.systemSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SystemSettingsFindUniqueArgs>(args: SelectSubset<T, SystemSettingsFindUniqueArgs<ExtArgs>>): Prisma__SystemSettingsClient<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SystemSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SystemSettingsFindUniqueOrThrowArgs} args - Arguments to find a SystemSettings
+     * @example
+     * // Get one SystemSettings
+     * const systemSettings = await prisma.systemSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SystemSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, SystemSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SystemSettingsClient<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SystemSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemSettingsFindFirstArgs} args - Arguments to find a SystemSettings
+     * @example
+     * // Get one SystemSettings
+     * const systemSettings = await prisma.systemSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SystemSettingsFindFirstArgs>(args?: SelectSubset<T, SystemSettingsFindFirstArgs<ExtArgs>>): Prisma__SystemSettingsClient<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SystemSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemSettingsFindFirstOrThrowArgs} args - Arguments to find a SystemSettings
+     * @example
+     * // Get one SystemSettings
+     * const systemSettings = await prisma.systemSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SystemSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, SystemSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__SystemSettingsClient<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SystemSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SystemSettings
+     * const systemSettings = await prisma.systemSettings.findMany()
+     * 
+     * // Get first 10 SystemSettings
+     * const systemSettings = await prisma.systemSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const systemSettingsWithIdOnly = await prisma.systemSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SystemSettingsFindManyArgs>(args?: SelectSubset<T, SystemSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SystemSettings.
+     * @param {SystemSettingsCreateArgs} args - Arguments to create a SystemSettings.
+     * @example
+     * // Create one SystemSettings
+     * const SystemSettings = await prisma.systemSettings.create({
+     *   data: {
+     *     // ... data to create a SystemSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends SystemSettingsCreateArgs>(args: SelectSubset<T, SystemSettingsCreateArgs<ExtArgs>>): Prisma__SystemSettingsClient<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SystemSettings.
+     * @param {SystemSettingsCreateManyArgs} args - Arguments to create many SystemSettings.
+     * @example
+     * // Create many SystemSettings
+     * const systemSettings = await prisma.systemSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SystemSettingsCreateManyArgs>(args?: SelectSubset<T, SystemSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SystemSettings and returns the data saved in the database.
+     * @param {SystemSettingsCreateManyAndReturnArgs} args - Arguments to create many SystemSettings.
+     * @example
+     * // Create many SystemSettings
+     * const systemSettings = await prisma.systemSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SystemSettings and only return the `id`
+     * const systemSettingsWithIdOnly = await prisma.systemSettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SystemSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, SystemSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SystemSettings.
+     * @param {SystemSettingsDeleteArgs} args - Arguments to delete one SystemSettings.
+     * @example
+     * // Delete one SystemSettings
+     * const SystemSettings = await prisma.systemSettings.delete({
+     *   where: {
+     *     // ... filter to delete one SystemSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SystemSettingsDeleteArgs>(args: SelectSubset<T, SystemSettingsDeleteArgs<ExtArgs>>): Prisma__SystemSettingsClient<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SystemSettings.
+     * @param {SystemSettingsUpdateArgs} args - Arguments to update one SystemSettings.
+     * @example
+     * // Update one SystemSettings
+     * const systemSettings = await prisma.systemSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SystemSettingsUpdateArgs>(args: SelectSubset<T, SystemSettingsUpdateArgs<ExtArgs>>): Prisma__SystemSettingsClient<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SystemSettings.
+     * @param {SystemSettingsDeleteManyArgs} args - Arguments to filter SystemSettings to delete.
+     * @example
+     * // Delete a few SystemSettings
+     * const { count } = await prisma.systemSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SystemSettingsDeleteManyArgs>(args?: SelectSubset<T, SystemSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SystemSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SystemSettings
+     * const systemSettings = await prisma.systemSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SystemSettingsUpdateManyArgs>(args: SelectSubset<T, SystemSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SystemSettings and returns the data updated in the database.
+     * @param {SystemSettingsUpdateManyAndReturnArgs} args - Arguments to update many SystemSettings.
+     * @example
+     * // Update many SystemSettings
+     * const systemSettings = await prisma.systemSettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SystemSettings and only return the `id`
+     * const systemSettingsWithIdOnly = await prisma.systemSettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SystemSettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, SystemSettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SystemSettings.
+     * @param {SystemSettingsUpsertArgs} args - Arguments to update or create a SystemSettings.
+     * @example
+     * // Update or create a SystemSettings
+     * const systemSettings = await prisma.systemSettings.upsert({
+     *   create: {
+     *     // ... data to create a SystemSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SystemSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SystemSettingsUpsertArgs>(args: SelectSubset<T, SystemSettingsUpsertArgs<ExtArgs>>): Prisma__SystemSettingsClient<$Result.GetResult<Prisma.$SystemSettingsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SystemSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemSettingsCountArgs} args - Arguments to filter SystemSettings to count.
+     * @example
+     * // Count the number of SystemSettings
+     * const count = await prisma.systemSettings.count({
+     *   where: {
+     *     // ... the filter for the SystemSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends SystemSettingsCountArgs>(
+      args?: Subset<T, SystemSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SystemSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SystemSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SystemSettingsAggregateArgs>(args: Subset<T, SystemSettingsAggregateArgs>): Prisma.PrismaPromise<GetSystemSettingsAggregateType<T>>
+
+    /**
+     * Group by SystemSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SystemSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SystemSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: SystemSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SystemSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSystemSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SystemSettings model
+   */
+  readonly fields: SystemSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SystemSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SystemSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SystemSettings model
+   */
+  interface SystemSettingsFieldRefs {
+    readonly id: FieldRef<"SystemSettings", 'String'>
+    readonly key: FieldRef<"SystemSettings", 'String'>
+    readonly value: FieldRef<"SystemSettings", 'String'>
+    readonly description: FieldRef<"SystemSettings", 'String'>
+    readonly isActive: FieldRef<"SystemSettings", 'Boolean'>
+    readonly updatedBy: FieldRef<"SystemSettings", 'String'>
+    readonly updatedAt: FieldRef<"SystemSettings", 'DateTime'>
+    readonly createdAt: FieldRef<"SystemSettings", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SystemSettings findUnique
+   */
+  export type SystemSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemSettings to fetch.
+     */
+    where: SystemSettingsWhereUniqueInput
+  }
+
+  /**
+   * SystemSettings findUniqueOrThrow
+   */
+  export type SystemSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemSettings to fetch.
+     */
+    where: SystemSettingsWhereUniqueInput
+  }
+
+  /**
+   * SystemSettings findFirst
+   */
+  export type SystemSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemSettings to fetch.
+     */
+    where?: SystemSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemSettings to fetch.
+     */
+    orderBy?: SystemSettingsOrderByWithRelationInput | SystemSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SystemSettings.
+     */
+    cursor?: SystemSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SystemSettings.
+     */
+    distinct?: SystemSettingsScalarFieldEnum | SystemSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * SystemSettings findFirstOrThrow
+   */
+  export type SystemSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemSettings to fetch.
+     */
+    where?: SystemSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemSettings to fetch.
+     */
+    orderBy?: SystemSettingsOrderByWithRelationInput | SystemSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SystemSettings.
+     */
+    cursor?: SystemSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SystemSettings.
+     */
+    distinct?: SystemSettingsScalarFieldEnum | SystemSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * SystemSettings findMany
+   */
+  export type SystemSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemSettings to fetch.
+     */
+    where?: SystemSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemSettings to fetch.
+     */
+    orderBy?: SystemSettingsOrderByWithRelationInput | SystemSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SystemSettings.
+     */
+    cursor?: SystemSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemSettings.
+     */
+    skip?: number
+    distinct?: SystemSettingsScalarFieldEnum | SystemSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * SystemSettings create
+   */
+  export type SystemSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a SystemSettings.
+     */
+    data: XOR<SystemSettingsCreateInput, SystemSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * SystemSettings createMany
+   */
+  export type SystemSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SystemSettings.
+     */
+    data: SystemSettingsCreateManyInput | SystemSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SystemSettings createManyAndReturn
+   */
+  export type SystemSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many SystemSettings.
+     */
+    data: SystemSettingsCreateManyInput | SystemSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SystemSettings update
+   */
+  export type SystemSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a SystemSettings.
+     */
+    data: XOR<SystemSettingsUpdateInput, SystemSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which SystemSettings to update.
+     */
+    where: SystemSettingsWhereUniqueInput
+  }
+
+  /**
+   * SystemSettings updateMany
+   */
+  export type SystemSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SystemSettings.
+     */
+    data: XOR<SystemSettingsUpdateManyMutationInput, SystemSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which SystemSettings to update
+     */
+    where?: SystemSettingsWhereInput
+    /**
+     * Limit how many SystemSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SystemSettings updateManyAndReturn
+   */
+  export type SystemSettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update SystemSettings.
+     */
+    data: XOR<SystemSettingsUpdateManyMutationInput, SystemSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which SystemSettings to update
+     */
+    where?: SystemSettingsWhereInput
+    /**
+     * Limit how many SystemSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SystemSettings upsert
+   */
+  export type SystemSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the SystemSettings to update in case it exists.
+     */
+    where: SystemSettingsWhereUniqueInput
+    /**
+     * In case the SystemSettings found by the `where` argument doesn't exist, create a new SystemSettings with this data.
+     */
+    create: XOR<SystemSettingsCreateInput, SystemSettingsUncheckedCreateInput>
+    /**
+     * In case the SystemSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SystemSettingsUpdateInput, SystemSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * SystemSettings delete
+   */
+  export type SystemSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+    /**
+     * Filter which SystemSettings to delete.
+     */
+    where: SystemSettingsWhereUniqueInput
+  }
+
+  /**
+   * SystemSettings deleteMany
+   */
+  export type SystemSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SystemSettings to delete
+     */
+    where?: SystemSettingsWhereInput
+    /**
+     * Limit how many SystemSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SystemSettings without action
+   */
+  export type SystemSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemSettings
+     */
+    select?: SystemSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemSettings
+     */
+    omit?: SystemSettingsOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10446,6 +17272,7 @@ export namespace Prisma {
     email: 'email',
     emailVerified: 'emailVerified',
     image: 'image',
+    passwordHash: 'passwordHash',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -10490,13 +17317,47 @@ export namespace Prisma {
   export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
 
 
-  export const ParkingSlotScalarFieldEnum: {
+  export const UserRoleScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    role: 'role',
+    locationId: 'locationId',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
+
+
+  export const ParkingLocationScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    location: 'location',
-    price: 'price',
+    address: 'address',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    description: 'description',
+    features: 'features',
+    operatingHours: 'operatingHours',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ParkingLocationScalarFieldEnum = (typeof ParkingLocationScalarFieldEnum)[keyof typeof ParkingLocationScalarFieldEnum]
+
+
+  export const ParkingSlotScalarFieldEnum: {
+    id: 'id',
+    slotNumber: 'slotNumber',
+    locationId: 'locationId',
+    type: 'type',
+    basePrice: 'basePrice',
+    status: 'status',
+    features: 'features',
     rules: 'rules',
-    isAvailable: 'isAvailable'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ParkingSlotScalarFieldEnum = (typeof ParkingSlotScalarFieldEnum)[keyof typeof ParkingSlotScalarFieldEnum]
@@ -10508,7 +17369,16 @@ export namespace Prisma {
     slotId: 'slotId',
     startTime: 'startTime',
     endTime: 'endTime',
-    status: 'status'
+    actualStartTime: 'actualStartTime',
+    actualEndTime: 'actualEndTime',
+    totalAmount: 'totalAmount',
+    status: 'status',
+    qrCode: 'qrCode',
+    checkInCode: 'checkInCode',
+    extendedTimes: 'extendedTimes',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
@@ -10520,7 +17390,13 @@ export namespace Prisma {
     bookingId: 'bookingId',
     amount: 'amount',
     method: 'method',
-    status: 'status'
+    status: 'status',
+    transactionId: 'transactionId',
+    gatewayResponse: 'gatewayResponse',
+    paidAt: 'paidAt',
+    refundedAt: 'refundedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
@@ -10529,13 +17405,68 @@ export namespace Prisma {
   export const NotificationScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    title: 'title',
     message: 'message',
     type: 'type',
+    priority: 'priority',
     isRead: 'isRead',
+    readAt: 'readAt',
+    data: 'data',
     createdAt: 'createdAt'
   };
 
   export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+  export const IncidentScalarFieldEnum: {
+    id: 'id',
+    bookingId: 'bookingId',
+    locationId: 'locationId',
+    reporterId: 'reporterId',
+    type: 'type',
+    severity: 'severity',
+    title: 'title',
+    description: 'description',
+    status: 'status',
+    resolution: 'resolution',
+    resolvedBy: 'resolvedBy',
+    resolvedAt: 'resolvedAt',
+    images: 'images',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type IncidentScalarFieldEnum = (typeof IncidentScalarFieldEnum)[keyof typeof IncidentScalarFieldEnum]
+
+
+  export const ParkingAnalyticsScalarFieldEnum: {
+    id: 'id',
+    locationId: 'locationId',
+    date: 'date',
+    totalSlots: 'totalSlots',
+    occupiedSlots: 'occupiedSlots',
+    totalBookings: 'totalBookings',
+    totalRevenue: 'totalRevenue',
+    averageStayTime: 'averageStayTime',
+    peakHours: 'peakHours',
+    createdAt: 'createdAt'
+  };
+
+  export type ParkingAnalyticsScalarFieldEnum = (typeof ParkingAnalyticsScalarFieldEnum)[keyof typeof ParkingAnalyticsScalarFieldEnum]
+
+
+  export const SystemSettingsScalarFieldEnum: {
+    id: 'id',
+    key: 'key',
+    value: 'value',
+    description: 'description',
+    isActive: 'isActive',
+    updatedBy: 'updatedBy',
+    updatedAt: 'updatedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type SystemSettingsScalarFieldEnum = (typeof SystemSettingsScalarFieldEnum)[keyof typeof SystemSettingsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10610,6 +17541,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -10620,13 +17558,6 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -10642,6 +17573,7 @@ export namespace Prisma {
     email?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
+    passwordHash?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
@@ -10649,6 +17581,8 @@ export namespace Prisma {
     bookings?: BookingListRelationFilter
     notifications?: NotificationListRelationFilter
     payments?: PaymentListRelationFilter
+    userRoles?: UserRoleListRelationFilter
+    incidents?: IncidentListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -10657,6 +17591,7 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    passwordHash?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
@@ -10664,6 +17599,8 @@ export namespace Prisma {
     bookings?: BookingOrderByRelationAggregateInput
     notifications?: NotificationOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
+    userRoles?: UserRoleOrderByRelationAggregateInput
+    incidents?: IncidentOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -10675,6 +17612,7 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
+    passwordHash?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
@@ -10682,6 +17620,8 @@ export namespace Prisma {
     bookings?: BookingListRelationFilter
     notifications?: NotificationListRelationFilter
     payments?: PaymentListRelationFilter
+    userRoles?: UserRoleListRelationFilter
+    incidents?: IncidentListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -10690,6 +17630,7 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    passwordHash?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -10706,6 +17647,7 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"User"> | string | null
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
+    passwordHash?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -10896,49 +17838,234 @@ export namespace Prisma {
     expires?: DateTimeWithAggregatesFilter<"VerificationToken"> | Date | string
   }
 
+  export type UserRoleWhereInput = {
+    AND?: UserRoleWhereInput | UserRoleWhereInput[]
+    OR?: UserRoleWhereInput[]
+    NOT?: UserRoleWhereInput | UserRoleWhereInput[]
+    id?: StringFilter<"UserRole"> | string
+    userId?: StringFilter<"UserRole"> | string
+    role?: StringFilter<"UserRole"> | string
+    locationId?: StringNullableFilter<"UserRole"> | string | null
+    isActive?: BoolFilter<"UserRole"> | boolean
+    createdAt?: DateTimeFilter<"UserRole"> | Date | string
+    updatedAt?: DateTimeFilter<"UserRole"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    location?: XOR<ParkingLocationNullableScalarRelationFilter, ParkingLocationWhereInput> | null
+  }
+
+  export type UserRoleOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    locationId?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    location?: ParkingLocationOrderByWithRelationInput
+  }
+
+  export type UserRoleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_role_locationId?: UserRoleUserIdRoleLocationIdCompoundUniqueInput
+    AND?: UserRoleWhereInput | UserRoleWhereInput[]
+    OR?: UserRoleWhereInput[]
+    NOT?: UserRoleWhereInput | UserRoleWhereInput[]
+    userId?: StringFilter<"UserRole"> | string
+    role?: StringFilter<"UserRole"> | string
+    locationId?: StringNullableFilter<"UserRole"> | string | null
+    isActive?: BoolFilter<"UserRole"> | boolean
+    createdAt?: DateTimeFilter<"UserRole"> | Date | string
+    updatedAt?: DateTimeFilter<"UserRole"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    location?: XOR<ParkingLocationNullableScalarRelationFilter, ParkingLocationWhereInput> | null
+  }, "id" | "userId_role_locationId">
+
+  export type UserRoleOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    locationId?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserRoleCountOrderByAggregateInput
+    _max?: UserRoleMaxOrderByAggregateInput
+    _min?: UserRoleMinOrderByAggregateInput
+  }
+
+  export type UserRoleScalarWhereWithAggregatesInput = {
+    AND?: UserRoleScalarWhereWithAggregatesInput | UserRoleScalarWhereWithAggregatesInput[]
+    OR?: UserRoleScalarWhereWithAggregatesInput[]
+    NOT?: UserRoleScalarWhereWithAggregatesInput | UserRoleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserRole"> | string
+    userId?: StringWithAggregatesFilter<"UserRole"> | string
+    role?: StringWithAggregatesFilter<"UserRole"> | string
+    locationId?: StringNullableWithAggregatesFilter<"UserRole"> | string | null
+    isActive?: BoolWithAggregatesFilter<"UserRole"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"UserRole"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserRole"> | Date | string
+  }
+
+  export type ParkingLocationWhereInput = {
+    AND?: ParkingLocationWhereInput | ParkingLocationWhereInput[]
+    OR?: ParkingLocationWhereInput[]
+    NOT?: ParkingLocationWhereInput | ParkingLocationWhereInput[]
+    id?: StringFilter<"ParkingLocation"> | string
+    name?: StringFilter<"ParkingLocation"> | string
+    address?: StringFilter<"ParkingLocation"> | string
+    latitude?: FloatNullableFilter<"ParkingLocation"> | number | null
+    longitude?: FloatNullableFilter<"ParkingLocation"> | number | null
+    description?: StringNullableFilter<"ParkingLocation"> | string | null
+    features?: StringNullableFilter<"ParkingLocation"> | string | null
+    operatingHours?: StringNullableFilter<"ParkingLocation"> | string | null
+    isActive?: BoolFilter<"ParkingLocation"> | boolean
+    createdAt?: DateTimeFilter<"ParkingLocation"> | Date | string
+    updatedAt?: DateTimeFilter<"ParkingLocation"> | Date | string
+    slots?: ParkingSlotListRelationFilter
+    userRoles?: UserRoleListRelationFilter
+    incidents?: IncidentListRelationFilter
+    analytics?: ParkingAnalyticsListRelationFilter
+  }
+
+  export type ParkingLocationOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    features?: SortOrderInput | SortOrder
+    operatingHours?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    slots?: ParkingSlotOrderByRelationAggregateInput
+    userRoles?: UserRoleOrderByRelationAggregateInput
+    incidents?: IncidentOrderByRelationAggregateInput
+    analytics?: ParkingAnalyticsOrderByRelationAggregateInput
+  }
+
+  export type ParkingLocationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ParkingLocationWhereInput | ParkingLocationWhereInput[]
+    OR?: ParkingLocationWhereInput[]
+    NOT?: ParkingLocationWhereInput | ParkingLocationWhereInput[]
+    name?: StringFilter<"ParkingLocation"> | string
+    address?: StringFilter<"ParkingLocation"> | string
+    latitude?: FloatNullableFilter<"ParkingLocation"> | number | null
+    longitude?: FloatNullableFilter<"ParkingLocation"> | number | null
+    description?: StringNullableFilter<"ParkingLocation"> | string | null
+    features?: StringNullableFilter<"ParkingLocation"> | string | null
+    operatingHours?: StringNullableFilter<"ParkingLocation"> | string | null
+    isActive?: BoolFilter<"ParkingLocation"> | boolean
+    createdAt?: DateTimeFilter<"ParkingLocation"> | Date | string
+    updatedAt?: DateTimeFilter<"ParkingLocation"> | Date | string
+    slots?: ParkingSlotListRelationFilter
+    userRoles?: UserRoleListRelationFilter
+    incidents?: IncidentListRelationFilter
+    analytics?: ParkingAnalyticsListRelationFilter
+  }, "id">
+
+  export type ParkingLocationOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    features?: SortOrderInput | SortOrder
+    operatingHours?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ParkingLocationCountOrderByAggregateInput
+    _avg?: ParkingLocationAvgOrderByAggregateInput
+    _max?: ParkingLocationMaxOrderByAggregateInput
+    _min?: ParkingLocationMinOrderByAggregateInput
+    _sum?: ParkingLocationSumOrderByAggregateInput
+  }
+
+  export type ParkingLocationScalarWhereWithAggregatesInput = {
+    AND?: ParkingLocationScalarWhereWithAggregatesInput | ParkingLocationScalarWhereWithAggregatesInput[]
+    OR?: ParkingLocationScalarWhereWithAggregatesInput[]
+    NOT?: ParkingLocationScalarWhereWithAggregatesInput | ParkingLocationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ParkingLocation"> | string
+    name?: StringWithAggregatesFilter<"ParkingLocation"> | string
+    address?: StringWithAggregatesFilter<"ParkingLocation"> | string
+    latitude?: FloatNullableWithAggregatesFilter<"ParkingLocation"> | number | null
+    longitude?: FloatNullableWithAggregatesFilter<"ParkingLocation"> | number | null
+    description?: StringNullableWithAggregatesFilter<"ParkingLocation"> | string | null
+    features?: StringNullableWithAggregatesFilter<"ParkingLocation"> | string | null
+    operatingHours?: StringNullableWithAggregatesFilter<"ParkingLocation"> | string | null
+    isActive?: BoolWithAggregatesFilter<"ParkingLocation"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ParkingLocation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ParkingLocation"> | Date | string
+  }
+
   export type ParkingSlotWhereInput = {
     AND?: ParkingSlotWhereInput | ParkingSlotWhereInput[]
     OR?: ParkingSlotWhereInput[]
     NOT?: ParkingSlotWhereInput | ParkingSlotWhereInput[]
     id?: StringFilter<"ParkingSlot"> | string
-    name?: StringFilter<"ParkingSlot"> | string
-    location?: StringFilter<"ParkingSlot"> | string
-    price?: FloatFilter<"ParkingSlot"> | number
+    slotNumber?: StringFilter<"ParkingSlot"> | string
+    locationId?: StringFilter<"ParkingSlot"> | string
+    type?: StringFilter<"ParkingSlot"> | string
+    basePrice?: FloatFilter<"ParkingSlot"> | number
+    status?: StringFilter<"ParkingSlot"> | string
+    features?: StringNullableFilter<"ParkingSlot"> | string | null
     rules?: StringNullableFilter<"ParkingSlot"> | string | null
-    isAvailable?: BoolFilter<"ParkingSlot"> | boolean
+    createdAt?: DateTimeFilter<"ParkingSlot"> | Date | string
+    updatedAt?: DateTimeFilter<"ParkingSlot"> | Date | string
+    location?: XOR<ParkingLocationScalarRelationFilter, ParkingLocationWhereInput>
     bookings?: BookingListRelationFilter
   }
 
   export type ParkingSlotOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
-    location?: SortOrder
-    price?: SortOrder
+    slotNumber?: SortOrder
+    locationId?: SortOrder
+    type?: SortOrder
+    basePrice?: SortOrder
+    status?: SortOrder
+    features?: SortOrderInput | SortOrder
     rules?: SortOrderInput | SortOrder
-    isAvailable?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    location?: ParkingLocationOrderByWithRelationInput
     bookings?: BookingOrderByRelationAggregateInput
   }
 
   export type ParkingSlotWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    locationId_slotNumber?: ParkingSlotLocationIdSlotNumberCompoundUniqueInput
     AND?: ParkingSlotWhereInput | ParkingSlotWhereInput[]
     OR?: ParkingSlotWhereInput[]
     NOT?: ParkingSlotWhereInput | ParkingSlotWhereInput[]
-    name?: StringFilter<"ParkingSlot"> | string
-    location?: StringFilter<"ParkingSlot"> | string
-    price?: FloatFilter<"ParkingSlot"> | number
+    slotNumber?: StringFilter<"ParkingSlot"> | string
+    locationId?: StringFilter<"ParkingSlot"> | string
+    type?: StringFilter<"ParkingSlot"> | string
+    basePrice?: FloatFilter<"ParkingSlot"> | number
+    status?: StringFilter<"ParkingSlot"> | string
+    features?: StringNullableFilter<"ParkingSlot"> | string | null
     rules?: StringNullableFilter<"ParkingSlot"> | string | null
-    isAvailable?: BoolFilter<"ParkingSlot"> | boolean
+    createdAt?: DateTimeFilter<"ParkingSlot"> | Date | string
+    updatedAt?: DateTimeFilter<"ParkingSlot"> | Date | string
+    location?: XOR<ParkingLocationScalarRelationFilter, ParkingLocationWhereInput>
     bookings?: BookingListRelationFilter
-  }, "id">
+  }, "id" | "locationId_slotNumber">
 
   export type ParkingSlotOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
-    location?: SortOrder
-    price?: SortOrder
+    slotNumber?: SortOrder
+    locationId?: SortOrder
+    type?: SortOrder
+    basePrice?: SortOrder
+    status?: SortOrder
+    features?: SortOrderInput | SortOrder
     rules?: SortOrderInput | SortOrder
-    isAvailable?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ParkingSlotCountOrderByAggregateInput
     _avg?: ParkingSlotAvgOrderByAggregateInput
     _max?: ParkingSlotMaxOrderByAggregateInput
@@ -10951,11 +18078,15 @@ export namespace Prisma {
     OR?: ParkingSlotScalarWhereWithAggregatesInput[]
     NOT?: ParkingSlotScalarWhereWithAggregatesInput | ParkingSlotScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ParkingSlot"> | string
-    name?: StringWithAggregatesFilter<"ParkingSlot"> | string
-    location?: StringWithAggregatesFilter<"ParkingSlot"> | string
-    price?: FloatWithAggregatesFilter<"ParkingSlot"> | number
+    slotNumber?: StringWithAggregatesFilter<"ParkingSlot"> | string
+    locationId?: StringWithAggregatesFilter<"ParkingSlot"> | string
+    type?: StringWithAggregatesFilter<"ParkingSlot"> | string
+    basePrice?: FloatWithAggregatesFilter<"ParkingSlot"> | number
+    status?: StringWithAggregatesFilter<"ParkingSlot"> | string
+    features?: StringNullableWithAggregatesFilter<"ParkingSlot"> | string | null
     rules?: StringNullableWithAggregatesFilter<"ParkingSlot"> | string | null
-    isAvailable?: BoolWithAggregatesFilter<"ParkingSlot"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ParkingSlot"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ParkingSlot"> | Date | string
   }
 
   export type BookingWhereInput = {
@@ -10967,10 +18098,20 @@ export namespace Prisma {
     slotId?: StringFilter<"Booking"> | string
     startTime?: DateTimeFilter<"Booking"> | Date | string
     endTime?: DateTimeFilter<"Booking"> | Date | string
+    actualStartTime?: DateTimeNullableFilter<"Booking"> | Date | string | null
+    actualEndTime?: DateTimeNullableFilter<"Booking"> | Date | string | null
+    totalAmount?: FloatFilter<"Booking"> | number
     status?: StringFilter<"Booking"> | string
+    qrCode?: StringNullableFilter<"Booking"> | string | null
+    checkInCode?: StringNullableFilter<"Booking"> | string | null
+    extendedTimes?: IntFilter<"Booking"> | number
+    notes?: StringNullableFilter<"Booking"> | string | null
+    createdAt?: DateTimeFilter<"Booking"> | Date | string
+    updatedAt?: DateTimeFilter<"Booking"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     slot?: XOR<ParkingSlotScalarRelationFilter, ParkingSlotWhereInput>
     payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
+    incidents?: IncidentListRelationFilter
   }
 
   export type BookingOrderByWithRelationInput = {
@@ -10979,14 +18120,26 @@ export namespace Prisma {
     slotId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    actualStartTime?: SortOrderInput | SortOrder
+    actualEndTime?: SortOrderInput | SortOrder
+    totalAmount?: SortOrder
     status?: SortOrder
+    qrCode?: SortOrderInput | SortOrder
+    checkInCode?: SortOrderInput | SortOrder
+    extendedTimes?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     slot?: ParkingSlotOrderByWithRelationInput
     payment?: PaymentOrderByWithRelationInput
+    incidents?: IncidentOrderByRelationAggregateInput
   }
 
   export type BookingWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    qrCode?: string
+    checkInCode?: string
     AND?: BookingWhereInput | BookingWhereInput[]
     OR?: BookingWhereInput[]
     NOT?: BookingWhereInput | BookingWhereInput[]
@@ -10994,11 +18147,19 @@ export namespace Prisma {
     slotId?: StringFilter<"Booking"> | string
     startTime?: DateTimeFilter<"Booking"> | Date | string
     endTime?: DateTimeFilter<"Booking"> | Date | string
+    actualStartTime?: DateTimeNullableFilter<"Booking"> | Date | string | null
+    actualEndTime?: DateTimeNullableFilter<"Booking"> | Date | string | null
+    totalAmount?: FloatFilter<"Booking"> | number
     status?: StringFilter<"Booking"> | string
+    extendedTimes?: IntFilter<"Booking"> | number
+    notes?: StringNullableFilter<"Booking"> | string | null
+    createdAt?: DateTimeFilter<"Booking"> | Date | string
+    updatedAt?: DateTimeFilter<"Booking"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     slot?: XOR<ParkingSlotScalarRelationFilter, ParkingSlotWhereInput>
     payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
-  }, "id">
+    incidents?: IncidentListRelationFilter
+  }, "id" | "qrCode" | "checkInCode">
 
   export type BookingOrderByWithAggregationInput = {
     id?: SortOrder
@@ -11006,10 +18167,21 @@ export namespace Prisma {
     slotId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    actualStartTime?: SortOrderInput | SortOrder
+    actualEndTime?: SortOrderInput | SortOrder
+    totalAmount?: SortOrder
     status?: SortOrder
+    qrCode?: SortOrderInput | SortOrder
+    checkInCode?: SortOrderInput | SortOrder
+    extendedTimes?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: BookingCountOrderByAggregateInput
+    _avg?: BookingAvgOrderByAggregateInput
     _max?: BookingMaxOrderByAggregateInput
     _min?: BookingMinOrderByAggregateInput
+    _sum?: BookingSumOrderByAggregateInput
   }
 
   export type BookingScalarWhereWithAggregatesInput = {
@@ -11021,7 +18193,16 @@ export namespace Prisma {
     slotId?: StringWithAggregatesFilter<"Booking"> | string
     startTime?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
     endTime?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
+    actualStartTime?: DateTimeNullableWithAggregatesFilter<"Booking"> | Date | string | null
+    actualEndTime?: DateTimeNullableWithAggregatesFilter<"Booking"> | Date | string | null
+    totalAmount?: FloatWithAggregatesFilter<"Booking"> | number
     status?: StringWithAggregatesFilter<"Booking"> | string
+    qrCode?: StringNullableWithAggregatesFilter<"Booking"> | string | null
+    checkInCode?: StringNullableWithAggregatesFilter<"Booking"> | string | null
+    extendedTimes?: IntWithAggregatesFilter<"Booking"> | number
+    notes?: StringNullableWithAggregatesFilter<"Booking"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
   }
 
   export type PaymentWhereInput = {
@@ -11034,6 +18215,12 @@ export namespace Prisma {
     amount?: FloatFilter<"Payment"> | number
     method?: StringFilter<"Payment"> | string
     status?: StringFilter<"Payment"> | string
+    transactionId?: StringNullableFilter<"Payment"> | string | null
+    gatewayResponse?: StringNullableFilter<"Payment"> | string | null
+    paidAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    refundedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    createdAt?: DateTimeFilter<"Payment"> | Date | string
+    updatedAt?: DateTimeFilter<"Payment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     booking?: XOR<BookingScalarRelationFilter, BookingWhereInput>
   }
@@ -11045,6 +18232,12 @@ export namespace Prisma {
     amount?: SortOrder
     method?: SortOrder
     status?: SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    gatewayResponse?: SortOrderInput | SortOrder
+    paidAt?: SortOrderInput | SortOrder
+    refundedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     booking?: BookingOrderByWithRelationInput
   }
@@ -11052,6 +18245,7 @@ export namespace Prisma {
   export type PaymentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     bookingId?: string
+    transactionId?: string
     AND?: PaymentWhereInput | PaymentWhereInput[]
     OR?: PaymentWhereInput[]
     NOT?: PaymentWhereInput | PaymentWhereInput[]
@@ -11059,9 +18253,14 @@ export namespace Prisma {
     amount?: FloatFilter<"Payment"> | number
     method?: StringFilter<"Payment"> | string
     status?: StringFilter<"Payment"> | string
+    gatewayResponse?: StringNullableFilter<"Payment"> | string | null
+    paidAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    refundedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    createdAt?: DateTimeFilter<"Payment"> | Date | string
+    updatedAt?: DateTimeFilter<"Payment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     booking?: XOR<BookingScalarRelationFilter, BookingWhereInput>
-  }, "id" | "bookingId">
+  }, "id" | "bookingId" | "transactionId">
 
   export type PaymentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -11070,6 +18269,12 @@ export namespace Prisma {
     amount?: SortOrder
     method?: SortOrder
     status?: SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    gatewayResponse?: SortOrderInput | SortOrder
+    paidAt?: SortOrderInput | SortOrder
+    refundedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: PaymentCountOrderByAggregateInput
     _avg?: PaymentAvgOrderByAggregateInput
     _max?: PaymentMaxOrderByAggregateInput
@@ -11087,6 +18292,12 @@ export namespace Prisma {
     amount?: FloatWithAggregatesFilter<"Payment"> | number
     method?: StringWithAggregatesFilter<"Payment"> | string
     status?: StringWithAggregatesFilter<"Payment"> | string
+    transactionId?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    gatewayResponse?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    paidAt?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
+    refundedAt?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
   }
 
   export type NotificationWhereInput = {
@@ -11095,9 +18306,13 @@ export namespace Prisma {
     NOT?: NotificationWhereInput | NotificationWhereInput[]
     id?: StringFilter<"Notification"> | string
     userId?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
     message?: StringFilter<"Notification"> | string
     type?: StringFilter<"Notification"> | string
+    priority?: StringFilter<"Notification"> | string
     isRead?: BoolFilter<"Notification"> | boolean
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    data?: StringNullableFilter<"Notification"> | string | null
     createdAt?: DateTimeFilter<"Notification"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -11105,9 +18320,13 @@ export namespace Prisma {
   export type NotificationOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    title?: SortOrder
     message?: SortOrder
     type?: SortOrder
+    priority?: SortOrder
     isRead?: SortOrder
+    readAt?: SortOrderInput | SortOrder
+    data?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -11118,9 +18337,13 @@ export namespace Prisma {
     OR?: NotificationWhereInput[]
     NOT?: NotificationWhereInput | NotificationWhereInput[]
     userId?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
     message?: StringFilter<"Notification"> | string
     type?: StringFilter<"Notification"> | string
+    priority?: StringFilter<"Notification"> | string
     isRead?: BoolFilter<"Notification"> | boolean
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    data?: StringNullableFilter<"Notification"> | string | null
     createdAt?: DateTimeFilter<"Notification"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -11128,9 +18351,13 @@ export namespace Prisma {
   export type NotificationOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    title?: SortOrder
     message?: SortOrder
     type?: SortOrder
+    priority?: SortOrder
     isRead?: SortOrder
+    readAt?: SortOrderInput | SortOrder
+    data?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: NotificationCountOrderByAggregateInput
     _max?: NotificationMaxOrderByAggregateInput
@@ -11143,10 +18370,275 @@ export namespace Prisma {
     NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Notification"> | string
     userId?: StringWithAggregatesFilter<"Notification"> | string
+    title?: StringWithAggregatesFilter<"Notification"> | string
     message?: StringWithAggregatesFilter<"Notification"> | string
     type?: StringWithAggregatesFilter<"Notification"> | string
+    priority?: StringWithAggregatesFilter<"Notification"> | string
     isRead?: BoolWithAggregatesFilter<"Notification"> | boolean
+    readAt?: DateTimeNullableWithAggregatesFilter<"Notification"> | Date | string | null
+    data?: StringNullableWithAggregatesFilter<"Notification"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+  }
+
+  export type IncidentWhereInput = {
+    AND?: IncidentWhereInput | IncidentWhereInput[]
+    OR?: IncidentWhereInput[]
+    NOT?: IncidentWhereInput | IncidentWhereInput[]
+    id?: StringFilter<"Incident"> | string
+    bookingId?: StringNullableFilter<"Incident"> | string | null
+    locationId?: StringFilter<"Incident"> | string
+    reporterId?: StringFilter<"Incident"> | string
+    type?: StringFilter<"Incident"> | string
+    severity?: StringFilter<"Incident"> | string
+    title?: StringFilter<"Incident"> | string
+    description?: StringFilter<"Incident"> | string
+    status?: StringFilter<"Incident"> | string
+    resolution?: StringNullableFilter<"Incident"> | string | null
+    resolvedBy?: StringNullableFilter<"Incident"> | string | null
+    resolvedAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    images?: StringNullableFilter<"Incident"> | string | null
+    createdAt?: DateTimeFilter<"Incident"> | Date | string
+    updatedAt?: DateTimeFilter<"Incident"> | Date | string
+    booking?: XOR<BookingNullableScalarRelationFilter, BookingWhereInput> | null
+    location?: XOR<ParkingLocationScalarRelationFilter, ParkingLocationWhereInput>
+    reporter?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type IncidentOrderByWithRelationInput = {
+    id?: SortOrder
+    bookingId?: SortOrderInput | SortOrder
+    locationId?: SortOrder
+    reporterId?: SortOrder
+    type?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    resolution?: SortOrderInput | SortOrder
+    resolvedBy?: SortOrderInput | SortOrder
+    resolvedAt?: SortOrderInput | SortOrder
+    images?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    booking?: BookingOrderByWithRelationInput
+    location?: ParkingLocationOrderByWithRelationInput
+    reporter?: UserOrderByWithRelationInput
+  }
+
+  export type IncidentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: IncidentWhereInput | IncidentWhereInput[]
+    OR?: IncidentWhereInput[]
+    NOT?: IncidentWhereInput | IncidentWhereInput[]
+    bookingId?: StringNullableFilter<"Incident"> | string | null
+    locationId?: StringFilter<"Incident"> | string
+    reporterId?: StringFilter<"Incident"> | string
+    type?: StringFilter<"Incident"> | string
+    severity?: StringFilter<"Incident"> | string
+    title?: StringFilter<"Incident"> | string
+    description?: StringFilter<"Incident"> | string
+    status?: StringFilter<"Incident"> | string
+    resolution?: StringNullableFilter<"Incident"> | string | null
+    resolvedBy?: StringNullableFilter<"Incident"> | string | null
+    resolvedAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    images?: StringNullableFilter<"Incident"> | string | null
+    createdAt?: DateTimeFilter<"Incident"> | Date | string
+    updatedAt?: DateTimeFilter<"Incident"> | Date | string
+    booking?: XOR<BookingNullableScalarRelationFilter, BookingWhereInput> | null
+    location?: XOR<ParkingLocationScalarRelationFilter, ParkingLocationWhereInput>
+    reporter?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type IncidentOrderByWithAggregationInput = {
+    id?: SortOrder
+    bookingId?: SortOrderInput | SortOrder
+    locationId?: SortOrder
+    reporterId?: SortOrder
+    type?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    resolution?: SortOrderInput | SortOrder
+    resolvedBy?: SortOrderInput | SortOrder
+    resolvedAt?: SortOrderInput | SortOrder
+    images?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: IncidentCountOrderByAggregateInput
+    _max?: IncidentMaxOrderByAggregateInput
+    _min?: IncidentMinOrderByAggregateInput
+  }
+
+  export type IncidentScalarWhereWithAggregatesInput = {
+    AND?: IncidentScalarWhereWithAggregatesInput | IncidentScalarWhereWithAggregatesInput[]
+    OR?: IncidentScalarWhereWithAggregatesInput[]
+    NOT?: IncidentScalarWhereWithAggregatesInput | IncidentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Incident"> | string
+    bookingId?: StringNullableWithAggregatesFilter<"Incident"> | string | null
+    locationId?: StringWithAggregatesFilter<"Incident"> | string
+    reporterId?: StringWithAggregatesFilter<"Incident"> | string
+    type?: StringWithAggregatesFilter<"Incident"> | string
+    severity?: StringWithAggregatesFilter<"Incident"> | string
+    title?: StringWithAggregatesFilter<"Incident"> | string
+    description?: StringWithAggregatesFilter<"Incident"> | string
+    status?: StringWithAggregatesFilter<"Incident"> | string
+    resolution?: StringNullableWithAggregatesFilter<"Incident"> | string | null
+    resolvedBy?: StringNullableWithAggregatesFilter<"Incident"> | string | null
+    resolvedAt?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
+    images?: StringNullableWithAggregatesFilter<"Incident"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Incident"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Incident"> | Date | string
+  }
+
+  export type ParkingAnalyticsWhereInput = {
+    AND?: ParkingAnalyticsWhereInput | ParkingAnalyticsWhereInput[]
+    OR?: ParkingAnalyticsWhereInput[]
+    NOT?: ParkingAnalyticsWhereInput | ParkingAnalyticsWhereInput[]
+    id?: StringFilter<"ParkingAnalytics"> | string
+    locationId?: StringFilter<"ParkingAnalytics"> | string
+    date?: DateTimeFilter<"ParkingAnalytics"> | Date | string
+    totalSlots?: IntFilter<"ParkingAnalytics"> | number
+    occupiedSlots?: IntFilter<"ParkingAnalytics"> | number
+    totalBookings?: IntFilter<"ParkingAnalytics"> | number
+    totalRevenue?: FloatFilter<"ParkingAnalytics"> | number
+    averageStayTime?: FloatNullableFilter<"ParkingAnalytics"> | number | null
+    peakHours?: StringNullableFilter<"ParkingAnalytics"> | string | null
+    createdAt?: DateTimeFilter<"ParkingAnalytics"> | Date | string
+    location?: XOR<ParkingLocationScalarRelationFilter, ParkingLocationWhereInput>
+  }
+
+  export type ParkingAnalyticsOrderByWithRelationInput = {
+    id?: SortOrder
+    locationId?: SortOrder
+    date?: SortOrder
+    totalSlots?: SortOrder
+    occupiedSlots?: SortOrder
+    totalBookings?: SortOrder
+    totalRevenue?: SortOrder
+    averageStayTime?: SortOrderInput | SortOrder
+    peakHours?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    location?: ParkingLocationOrderByWithRelationInput
+  }
+
+  export type ParkingAnalyticsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    locationId_date?: ParkingAnalyticsLocationIdDateCompoundUniqueInput
+    AND?: ParkingAnalyticsWhereInput | ParkingAnalyticsWhereInput[]
+    OR?: ParkingAnalyticsWhereInput[]
+    NOT?: ParkingAnalyticsWhereInput | ParkingAnalyticsWhereInput[]
+    locationId?: StringFilter<"ParkingAnalytics"> | string
+    date?: DateTimeFilter<"ParkingAnalytics"> | Date | string
+    totalSlots?: IntFilter<"ParkingAnalytics"> | number
+    occupiedSlots?: IntFilter<"ParkingAnalytics"> | number
+    totalBookings?: IntFilter<"ParkingAnalytics"> | number
+    totalRevenue?: FloatFilter<"ParkingAnalytics"> | number
+    averageStayTime?: FloatNullableFilter<"ParkingAnalytics"> | number | null
+    peakHours?: StringNullableFilter<"ParkingAnalytics"> | string | null
+    createdAt?: DateTimeFilter<"ParkingAnalytics"> | Date | string
+    location?: XOR<ParkingLocationScalarRelationFilter, ParkingLocationWhereInput>
+  }, "id" | "locationId_date">
+
+  export type ParkingAnalyticsOrderByWithAggregationInput = {
+    id?: SortOrder
+    locationId?: SortOrder
+    date?: SortOrder
+    totalSlots?: SortOrder
+    occupiedSlots?: SortOrder
+    totalBookings?: SortOrder
+    totalRevenue?: SortOrder
+    averageStayTime?: SortOrderInput | SortOrder
+    peakHours?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ParkingAnalyticsCountOrderByAggregateInput
+    _avg?: ParkingAnalyticsAvgOrderByAggregateInput
+    _max?: ParkingAnalyticsMaxOrderByAggregateInput
+    _min?: ParkingAnalyticsMinOrderByAggregateInput
+    _sum?: ParkingAnalyticsSumOrderByAggregateInput
+  }
+
+  export type ParkingAnalyticsScalarWhereWithAggregatesInput = {
+    AND?: ParkingAnalyticsScalarWhereWithAggregatesInput | ParkingAnalyticsScalarWhereWithAggregatesInput[]
+    OR?: ParkingAnalyticsScalarWhereWithAggregatesInput[]
+    NOT?: ParkingAnalyticsScalarWhereWithAggregatesInput | ParkingAnalyticsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ParkingAnalytics"> | string
+    locationId?: StringWithAggregatesFilter<"ParkingAnalytics"> | string
+    date?: DateTimeWithAggregatesFilter<"ParkingAnalytics"> | Date | string
+    totalSlots?: IntWithAggregatesFilter<"ParkingAnalytics"> | number
+    occupiedSlots?: IntWithAggregatesFilter<"ParkingAnalytics"> | number
+    totalBookings?: IntWithAggregatesFilter<"ParkingAnalytics"> | number
+    totalRevenue?: FloatWithAggregatesFilter<"ParkingAnalytics"> | number
+    averageStayTime?: FloatNullableWithAggregatesFilter<"ParkingAnalytics"> | number | null
+    peakHours?: StringNullableWithAggregatesFilter<"ParkingAnalytics"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ParkingAnalytics"> | Date | string
+  }
+
+  export type SystemSettingsWhereInput = {
+    AND?: SystemSettingsWhereInput | SystemSettingsWhereInput[]
+    OR?: SystemSettingsWhereInput[]
+    NOT?: SystemSettingsWhereInput | SystemSettingsWhereInput[]
+    id?: StringFilter<"SystemSettings"> | string
+    key?: StringFilter<"SystemSettings"> | string
+    value?: StringFilter<"SystemSettings"> | string
+    description?: StringNullableFilter<"SystemSettings"> | string | null
+    isActive?: BoolFilter<"SystemSettings"> | boolean
+    updatedBy?: StringNullableFilter<"SystemSettings"> | string | null
+    updatedAt?: DateTimeFilter<"SystemSettings"> | Date | string
+    createdAt?: DateTimeFilter<"SystemSettings"> | Date | string
+  }
+
+  export type SystemSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    updatedBy?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SystemSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    key?: string
+    AND?: SystemSettingsWhereInput | SystemSettingsWhereInput[]
+    OR?: SystemSettingsWhereInput[]
+    NOT?: SystemSettingsWhereInput | SystemSettingsWhereInput[]
+    value?: StringFilter<"SystemSettings"> | string
+    description?: StringNullableFilter<"SystemSettings"> | string | null
+    isActive?: BoolFilter<"SystemSettings"> | boolean
+    updatedBy?: StringNullableFilter<"SystemSettings"> | string | null
+    updatedAt?: DateTimeFilter<"SystemSettings"> | Date | string
+    createdAt?: DateTimeFilter<"SystemSettings"> | Date | string
+  }, "id" | "key">
+
+  export type SystemSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    updatedBy?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: SystemSettingsCountOrderByAggregateInput
+    _max?: SystemSettingsMaxOrderByAggregateInput
+    _min?: SystemSettingsMinOrderByAggregateInput
+  }
+
+  export type SystemSettingsScalarWhereWithAggregatesInput = {
+    AND?: SystemSettingsScalarWhereWithAggregatesInput | SystemSettingsScalarWhereWithAggregatesInput[]
+    OR?: SystemSettingsScalarWhereWithAggregatesInput[]
+    NOT?: SystemSettingsScalarWhereWithAggregatesInput | SystemSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SystemSettings"> | string
+    key?: StringWithAggregatesFilter<"SystemSettings"> | string
+    value?: StringWithAggregatesFilter<"SystemSettings"> | string
+    description?: StringNullableWithAggregatesFilter<"SystemSettings"> | string | null
+    isActive?: BoolWithAggregatesFilter<"SystemSettings"> | boolean
+    updatedBy?: StringNullableWithAggregatesFilter<"SystemSettings"> | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"SystemSettings"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"SystemSettings"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -11155,6 +18647,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -11162,6 +18655,8 @@ export namespace Prisma {
     bookings?: BookingCreateNestedManyWithoutUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleCreateNestedManyWithoutUserInput
+    incidents?: IncidentCreateNestedManyWithoutReporterInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -11170,6 +18665,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -11177,6 +18673,8 @@ export namespace Prisma {
     bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutReporterInput
   }
 
   export type UserUpdateInput = {
@@ -11185,6 +18683,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -11192,6 +18691,8 @@ export namespace Prisma {
     bookings?: BookingUpdateManyWithoutUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUpdateManyWithoutReporterNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -11200,6 +18701,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -11207,6 +18709,8 @@ export namespace Prisma {
     bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutReporterNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -11215,6 +18719,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11225,6 +18730,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11235,6 +18741,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11433,81 +18940,300 @@ export namespace Prisma {
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ParkingSlotCreateInput = {
+  export type UserRoleCreateInput = {
+    id?: string
+    role: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutUserRolesInput
+    location?: ParkingLocationCreateNestedOneWithoutUserRolesInput
+  }
+
+  export type UserRoleUncheckedCreateInput = {
+    id?: string
+    userId: string
+    role: string
+    locationId?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserRoleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserRolesNestedInput
+    location?: ParkingLocationUpdateOneWithoutUserRolesNestedInput
+  }
+
+  export type UserRoleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserRoleCreateManyInput = {
+    id?: string
+    userId: string
+    role: string
+    locationId?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserRoleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserRoleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingLocationCreateInput = {
     id?: string
     name: string
-    location: string
-    price: number
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    slots?: ParkingSlotCreateNestedManyWithoutLocationInput
+    userRoles?: UserRoleCreateNestedManyWithoutLocationInput
+    incidents?: IncidentCreateNestedManyWithoutLocationInput
+    analytics?: ParkingAnalyticsCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationUncheckedCreateInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    slots?: ParkingSlotUncheckedCreateNestedManyWithoutLocationInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutLocationInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutLocationInput
+    analytics?: ParkingAnalyticsUncheckedCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slots?: ParkingSlotUpdateManyWithoutLocationNestedInput
+    userRoles?: UserRoleUpdateManyWithoutLocationNestedInput
+    incidents?: IncidentUpdateManyWithoutLocationNestedInput
+    analytics?: ParkingAnalyticsUpdateManyWithoutLocationNestedInput
+  }
+
+  export type ParkingLocationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slots?: ParkingSlotUncheckedUpdateManyWithoutLocationNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutLocationNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutLocationNestedInput
+    analytics?: ParkingAnalyticsUncheckedUpdateManyWithoutLocationNestedInput
+  }
+
+  export type ParkingLocationCreateManyInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ParkingLocationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingLocationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingSlotCreateInput = {
+    id?: string
+    slotNumber: string
+    type?: string
+    basePrice: number
+    status?: string
+    features?: string | null
     rules?: string | null
-    isAvailable?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    location: ParkingLocationCreateNestedOneWithoutSlotsInput
     bookings?: BookingCreateNestedManyWithoutSlotInput
   }
 
   export type ParkingSlotUncheckedCreateInput = {
     id?: string
-    name: string
-    location: string
-    price: number
+    slotNumber: string
+    locationId: string
+    type?: string
+    basePrice: number
+    status?: string
+    features?: string | null
     rules?: string | null
-    isAvailable?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     bookings?: BookingUncheckedCreateNestedManyWithoutSlotInput
   }
 
   export type ParkingSlotUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
     rules?: NullableStringFieldUpdateOperationsInput | string | null
-    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: ParkingLocationUpdateOneRequiredWithoutSlotsNestedInput
     bookings?: BookingUpdateManyWithoutSlotNestedInput
   }
 
   export type ParkingSlotUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
     rules?: NullableStringFieldUpdateOperationsInput | string | null
-    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookings?: BookingUncheckedUpdateManyWithoutSlotNestedInput
   }
 
   export type ParkingSlotCreateManyInput = {
     id?: string
-    name: string
-    location: string
-    price: number
+    slotNumber: string
+    locationId: string
+    type?: string
+    basePrice: number
+    status?: string
+    features?: string | null
     rules?: string | null
-    isAvailable?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ParkingSlotUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
     rules?: NullableStringFieldUpdateOperationsInput | string | null
-    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ParkingSlotUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
     rules?: NullableStringFieldUpdateOperationsInput | string | null
-    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookingCreateInput = {
     id?: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutBookingsInput
     slot: ParkingSlotCreateNestedOneWithoutBookingsInput
     payment?: PaymentCreateNestedOneWithoutBookingInput
+    incidents?: IncidentCreateNestedManyWithoutBookingInput
   }
 
   export type BookingUncheckedCreateInput = {
@@ -11516,18 +19242,38 @@ export namespace Prisma {
     slotId: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     payment?: PaymentUncheckedCreateNestedOneWithoutBookingInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutBookingInput
   }
 
   export type BookingUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBookingsNestedInput
     slot?: ParkingSlotUpdateOneRequiredWithoutBookingsNestedInput
     payment?: PaymentUpdateOneWithoutBookingNestedInput
+    incidents?: IncidentUpdateManyWithoutBookingNestedInput
   }
 
   export type BookingUncheckedUpdateInput = {
@@ -11536,8 +19282,18 @@ export namespace Prisma {
     slotId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     payment?: PaymentUncheckedUpdateOneWithoutBookingNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutBookingNestedInput
   }
 
   export type BookingCreateManyInput = {
@@ -11546,14 +19302,32 @@ export namespace Prisma {
     slotId: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type BookingUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookingUncheckedUpdateManyInput = {
@@ -11562,7 +19336,16 @@ export namespace Prisma {
     slotId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentCreateInput = {
@@ -11570,6 +19353,12 @@ export namespace Prisma {
     amount: number
     method: string
     status?: string
+    transactionId?: string | null
+    gatewayResponse?: string | null
+    paidAt?: Date | string | null
+    refundedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPaymentsInput
     booking: BookingCreateNestedOneWithoutPaymentInput
   }
@@ -11581,6 +19370,12 @@ export namespace Prisma {
     amount: number
     method: string
     status?: string
+    transactionId?: string | null
+    gatewayResponse?: string | null
+    paidAt?: Date | string | null
+    refundedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PaymentUpdateInput = {
@@ -11588,6 +19383,12 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPaymentsNestedInput
     booking?: BookingUpdateOneRequiredWithoutPaymentNestedInput
   }
@@ -11599,6 +19400,12 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentCreateManyInput = {
@@ -11608,6 +19415,12 @@ export namespace Prisma {
     amount: number
     method: string
     status?: string
+    transactionId?: string | null
+    gatewayResponse?: string | null
+    paidAt?: Date | string | null
+    refundedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PaymentUpdateManyMutationInput = {
@@ -11615,6 +19428,12 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentUncheckedUpdateManyInput = {
@@ -11624,13 +19443,23 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NotificationCreateInput = {
     id?: string
+    title: string
     message: string
     type: string
+    priority?: string
     isRead?: boolean
+    readAt?: Date | string | null
+    data?: string | null
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutNotificationsInput
   }
@@ -11638,17 +19467,25 @@ export namespace Prisma {
   export type NotificationUncheckedCreateInput = {
     id?: string
     userId: string
+    title: string
     message: string
     type: string
+    priority?: string
     isRead?: boolean
+    readAt?: Date | string | null
+    data?: string | null
     createdAt?: Date | string
   }
 
   export type NotificationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
   }
@@ -11656,35 +19493,341 @@ export namespace Prisma {
   export type NotificationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NotificationCreateManyInput = {
     id?: string
     userId: string
+    title: string
     message: string
     type: string
+    priority?: string
     isRead?: boolean
+    readAt?: Date | string | null
+    data?: string | null
     createdAt?: Date | string
   }
 
   export type NotificationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NotificationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentCreateInput = {
+    id?: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    booking?: BookingCreateNestedOneWithoutIncidentsInput
+    location: ParkingLocationCreateNestedOneWithoutIncidentsInput
+    reporter: UserCreateNestedOneWithoutIncidentsInput
+  }
+
+  export type IncidentUncheckedCreateInput = {
+    id?: string
+    bookingId?: string | null
+    locationId: string
+    reporterId: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IncidentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    booking?: BookingUpdateOneWithoutIncidentsNestedInput
+    location?: ParkingLocationUpdateOneRequiredWithoutIncidentsNestedInput
+    reporter?: UserUpdateOneRequiredWithoutIncidentsNestedInput
+  }
+
+  export type IncidentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookingId?: NullableStringFieldUpdateOperationsInput | string | null
+    locationId?: StringFieldUpdateOperationsInput | string
+    reporterId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentCreateManyInput = {
+    id?: string
+    bookingId?: string | null
+    locationId: string
+    reporterId: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IncidentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookingId?: NullableStringFieldUpdateOperationsInput | string | null
+    locationId?: StringFieldUpdateOperationsInput | string
+    reporterId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingAnalyticsCreateInput = {
+    id?: string
+    date: Date | string
+    totalSlots: number
+    occupiedSlots: number
+    totalBookings: number
+    totalRevenue: number
+    averageStayTime?: number | null
+    peakHours?: string | null
+    createdAt?: Date | string
+    location: ParkingLocationCreateNestedOneWithoutAnalyticsInput
+  }
+
+  export type ParkingAnalyticsUncheckedCreateInput = {
+    id?: string
+    locationId: string
+    date: Date | string
+    totalSlots: number
+    occupiedSlots: number
+    totalBookings: number
+    totalRevenue: number
+    averageStayTime?: number | null
+    peakHours?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ParkingAnalyticsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalSlots?: IntFieldUpdateOperationsInput | number
+    occupiedSlots?: IntFieldUpdateOperationsInput | number
+    totalBookings?: IntFieldUpdateOperationsInput | number
+    totalRevenue?: FloatFieldUpdateOperationsInput | number
+    averageStayTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    peakHours?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: ParkingLocationUpdateOneRequiredWithoutAnalyticsNestedInput
+  }
+
+  export type ParkingAnalyticsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalSlots?: IntFieldUpdateOperationsInput | number
+    occupiedSlots?: IntFieldUpdateOperationsInput | number
+    totalBookings?: IntFieldUpdateOperationsInput | number
+    totalRevenue?: FloatFieldUpdateOperationsInput | number
+    averageStayTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    peakHours?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingAnalyticsCreateManyInput = {
+    id?: string
+    locationId: string
+    date: Date | string
+    totalSlots: number
+    occupiedSlots: number
+    totalBookings: number
+    totalRevenue: number
+    averageStayTime?: number | null
+    peakHours?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ParkingAnalyticsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalSlots?: IntFieldUpdateOperationsInput | number
+    occupiedSlots?: IntFieldUpdateOperationsInput | number
+    totalBookings?: IntFieldUpdateOperationsInput | number
+    totalRevenue?: FloatFieldUpdateOperationsInput | number
+    averageStayTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    peakHours?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingAnalyticsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalSlots?: IntFieldUpdateOperationsInput | number
+    occupiedSlots?: IntFieldUpdateOperationsInput | number
+    totalBookings?: IntFieldUpdateOperationsInput | number
+    totalRevenue?: FloatFieldUpdateOperationsInput | number
+    averageStayTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    peakHours?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemSettingsCreateInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    isActive?: boolean
+    updatedBy?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type SystemSettingsUncheckedCreateInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    isActive?: boolean
+    updatedBy?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type SystemSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemSettingsCreateManyInput = {
+    id?: string
+    key: string
+    value: string
+    description?: string | null
+    isActive?: boolean
+    updatedBy?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type SystemSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11770,6 +19913,18 @@ export namespace Prisma {
     none?: PaymentWhereInput
   }
 
+  export type UserRoleListRelationFilter = {
+    every?: UserRoleWhereInput
+    some?: UserRoleWhereInput
+    none?: UserRoleWhereInput
+  }
+
+  export type IncidentListRelationFilter = {
+    every?: IncidentWhereInput
+    some?: IncidentWhereInput
+    none?: IncidentWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -11795,12 +19950,21 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type UserRoleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type IncidentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    passwordHash?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11811,6 +19975,7 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    passwordHash?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11821,6 +19986,7 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    passwordHash?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12023,6 +20189,159 @@ export namespace Prisma {
     expires?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type ParkingLocationNullableScalarRelationFilter = {
+    is?: ParkingLocationWhereInput | null
+    isNot?: ParkingLocationWhereInput | null
+  }
+
+  export type UserRoleUserIdRoleLocationIdCompoundUniqueInput = {
+    userId: string
+    role: string
+    locationId: string
+  }
+
+  export type UserRoleCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    locationId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserRoleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    locationId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserRoleMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    locationId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type ParkingSlotListRelationFilter = {
+    every?: ParkingSlotWhereInput
+    some?: ParkingSlotWhereInput
+    none?: ParkingSlotWhereInput
+  }
+
+  export type ParkingAnalyticsListRelationFilter = {
+    every?: ParkingAnalyticsWhereInput
+    some?: ParkingAnalyticsWhereInput
+    none?: ParkingAnalyticsWhereInput
+  }
+
+  export type ParkingSlotOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ParkingAnalyticsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ParkingLocationCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    description?: SortOrder
+    features?: SortOrder
+    operatingHours?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ParkingLocationAvgOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type ParkingLocationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    description?: SortOrder
+    features?: SortOrder
+    operatingHours?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ParkingLocationMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    description?: SortOrder
+    features?: SortOrder
+    operatingHours?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ParkingLocationSumOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -12034,44 +20353,61 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type ParkingLocationScalarRelationFilter = {
+    is?: ParkingLocationWhereInput
+    isNot?: ParkingLocationWhereInput
+  }
+
+  export type ParkingSlotLocationIdSlotNumberCompoundUniqueInput = {
+    locationId: string
+    slotNumber: string
   }
 
   export type ParkingSlotCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    location?: SortOrder
-    price?: SortOrder
+    slotNumber?: SortOrder
+    locationId?: SortOrder
+    type?: SortOrder
+    basePrice?: SortOrder
+    status?: SortOrder
+    features?: SortOrder
     rules?: SortOrder
-    isAvailable?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ParkingSlotAvgOrderByAggregateInput = {
-    price?: SortOrder
+    basePrice?: SortOrder
   }
 
   export type ParkingSlotMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    location?: SortOrder
-    price?: SortOrder
+    slotNumber?: SortOrder
+    locationId?: SortOrder
+    type?: SortOrder
+    basePrice?: SortOrder
+    status?: SortOrder
+    features?: SortOrder
     rules?: SortOrder
-    isAvailable?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ParkingSlotMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    location?: SortOrder
-    price?: SortOrder
+    slotNumber?: SortOrder
+    locationId?: SortOrder
+    type?: SortOrder
+    basePrice?: SortOrder
+    status?: SortOrder
+    features?: SortOrder
     rules?: SortOrder
-    isAvailable?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ParkingSlotSumOrderByAggregateInput = {
-    price?: SortOrder
+    basePrice?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -12090,12 +20426,15 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type ParkingSlotScalarRelationFilter = {
@@ -12114,7 +20453,21 @@ export namespace Prisma {
     slotId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    actualStartTime?: SortOrder
+    actualEndTime?: SortOrder
+    totalAmount?: SortOrder
     status?: SortOrder
+    qrCode?: SortOrder
+    checkInCode?: SortOrder
+    extendedTimes?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingAvgOrderByAggregateInput = {
+    totalAmount?: SortOrder
+    extendedTimes?: SortOrder
   }
 
   export type BookingMaxOrderByAggregateInput = {
@@ -12123,7 +20476,16 @@ export namespace Prisma {
     slotId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    actualStartTime?: SortOrder
+    actualEndTime?: SortOrder
+    totalAmount?: SortOrder
     status?: SortOrder
+    qrCode?: SortOrder
+    checkInCode?: SortOrder
+    extendedTimes?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type BookingMinOrderByAggregateInput = {
@@ -12132,7 +20494,37 @@ export namespace Prisma {
     slotId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    actualStartTime?: SortOrder
+    actualEndTime?: SortOrder
+    totalAmount?: SortOrder
     status?: SortOrder
+    qrCode?: SortOrder
+    checkInCode?: SortOrder
+    extendedTimes?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingSumOrderByAggregateInput = {
+    totalAmount?: SortOrder
+    extendedTimes?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type BookingScalarRelationFilter = {
@@ -12147,6 +20539,12 @@ export namespace Prisma {
     amount?: SortOrder
     method?: SortOrder
     status?: SortOrder
+    transactionId?: SortOrder
+    gatewayResponse?: SortOrder
+    paidAt?: SortOrder
+    refundedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PaymentAvgOrderByAggregateInput = {
@@ -12160,6 +20558,12 @@ export namespace Prisma {
     amount?: SortOrder
     method?: SortOrder
     status?: SortOrder
+    transactionId?: SortOrder
+    gatewayResponse?: SortOrder
+    paidAt?: SortOrder
+    refundedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PaymentMinOrderByAggregateInput = {
@@ -12169,6 +20573,12 @@ export namespace Prisma {
     amount?: SortOrder
     method?: SortOrder
     status?: SortOrder
+    transactionId?: SortOrder
+    gatewayResponse?: SortOrder
+    paidAt?: SortOrder
+    refundedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PaymentSumOrderByAggregateInput = {
@@ -12178,27 +20588,191 @@ export namespace Prisma {
   export type NotificationCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    title?: SortOrder
     message?: SortOrder
     type?: SortOrder
+    priority?: SortOrder
     isRead?: SortOrder
+    readAt?: SortOrder
+    data?: SortOrder
     createdAt?: SortOrder
   }
 
   export type NotificationMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    title?: SortOrder
     message?: SortOrder
     type?: SortOrder
+    priority?: SortOrder
     isRead?: SortOrder
+    readAt?: SortOrder
+    data?: SortOrder
     createdAt?: SortOrder
   }
 
   export type NotificationMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    title?: SortOrder
     message?: SortOrder
     type?: SortOrder
+    priority?: SortOrder
     isRead?: SortOrder
+    readAt?: SortOrder
+    data?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BookingNullableScalarRelationFilter = {
+    is?: BookingWhereInput | null
+    isNot?: BookingWhereInput | null
+  }
+
+  export type IncidentCountOrderByAggregateInput = {
+    id?: SortOrder
+    bookingId?: SortOrder
+    locationId?: SortOrder
+    reporterId?: SortOrder
+    type?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    resolution?: SortOrder
+    resolvedBy?: SortOrder
+    resolvedAt?: SortOrder
+    images?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IncidentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    bookingId?: SortOrder
+    locationId?: SortOrder
+    reporterId?: SortOrder
+    type?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    resolution?: SortOrder
+    resolvedBy?: SortOrder
+    resolvedAt?: SortOrder
+    images?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IncidentMinOrderByAggregateInput = {
+    id?: SortOrder
+    bookingId?: SortOrder
+    locationId?: SortOrder
+    reporterId?: SortOrder
+    type?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    resolution?: SortOrder
+    resolvedBy?: SortOrder
+    resolvedAt?: SortOrder
+    images?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ParkingAnalyticsLocationIdDateCompoundUniqueInput = {
+    locationId: string
+    date: Date | string
+  }
+
+  export type ParkingAnalyticsCountOrderByAggregateInput = {
+    id?: SortOrder
+    locationId?: SortOrder
+    date?: SortOrder
+    totalSlots?: SortOrder
+    occupiedSlots?: SortOrder
+    totalBookings?: SortOrder
+    totalRevenue?: SortOrder
+    averageStayTime?: SortOrder
+    peakHours?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ParkingAnalyticsAvgOrderByAggregateInput = {
+    totalSlots?: SortOrder
+    occupiedSlots?: SortOrder
+    totalBookings?: SortOrder
+    totalRevenue?: SortOrder
+    averageStayTime?: SortOrder
+  }
+
+  export type ParkingAnalyticsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    locationId?: SortOrder
+    date?: SortOrder
+    totalSlots?: SortOrder
+    occupiedSlots?: SortOrder
+    totalBookings?: SortOrder
+    totalRevenue?: SortOrder
+    averageStayTime?: SortOrder
+    peakHours?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ParkingAnalyticsMinOrderByAggregateInput = {
+    id?: SortOrder
+    locationId?: SortOrder
+    date?: SortOrder
+    totalSlots?: SortOrder
+    occupiedSlots?: SortOrder
+    totalBookings?: SortOrder
+    totalRevenue?: SortOrder
+    averageStayTime?: SortOrder
+    peakHours?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ParkingAnalyticsSumOrderByAggregateInput = {
+    totalSlots?: SortOrder
+    occupiedSlots?: SortOrder
+    totalBookings?: SortOrder
+    totalRevenue?: SortOrder
+    averageStayTime?: SortOrder
+  }
+
+  export type SystemSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SystemSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SystemSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -12237,6 +20811,20 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
+  export type UserRoleCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserRoleCreateWithoutUserInput, UserRoleUncheckedCreateWithoutUserInput> | UserRoleCreateWithoutUserInput[] | UserRoleUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserRoleCreateOrConnectWithoutUserInput | UserRoleCreateOrConnectWithoutUserInput[]
+    createMany?: UserRoleCreateManyUserInputEnvelope
+    connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+  }
+
+  export type IncidentCreateNestedManyWithoutReporterInput = {
+    create?: XOR<IncidentCreateWithoutReporterInput, IncidentUncheckedCreateWithoutReporterInput> | IncidentCreateWithoutReporterInput[] | IncidentUncheckedCreateWithoutReporterInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutReporterInput | IncidentCreateOrConnectWithoutReporterInput[]
+    createMany?: IncidentCreateManyReporterInputEnvelope
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -12270,6 +20858,20 @@ export namespace Prisma {
     connectOrCreate?: PaymentCreateOrConnectWithoutUserInput | PaymentCreateOrConnectWithoutUserInput[]
     createMany?: PaymentCreateManyUserInputEnvelope
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  }
+
+  export type UserRoleUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserRoleCreateWithoutUserInput, UserRoleUncheckedCreateWithoutUserInput> | UserRoleCreateWithoutUserInput[] | UserRoleUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserRoleCreateOrConnectWithoutUserInput | UserRoleCreateOrConnectWithoutUserInput[]
+    createMany?: UserRoleCreateManyUserInputEnvelope
+    connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+  }
+
+  export type IncidentUncheckedCreateNestedManyWithoutReporterInput = {
+    create?: XOR<IncidentCreateWithoutReporterInput, IncidentUncheckedCreateWithoutReporterInput> | IncidentCreateWithoutReporterInput[] | IncidentUncheckedCreateWithoutReporterInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutReporterInput | IncidentCreateOrConnectWithoutReporterInput[]
+    createMany?: IncidentCreateManyReporterInputEnvelope
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -12358,6 +20960,34 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
+  export type UserRoleUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserRoleCreateWithoutUserInput, UserRoleUncheckedCreateWithoutUserInput> | UserRoleCreateWithoutUserInput[] | UserRoleUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserRoleCreateOrConnectWithoutUserInput | UserRoleCreateOrConnectWithoutUserInput[]
+    upsert?: UserRoleUpsertWithWhereUniqueWithoutUserInput | UserRoleUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserRoleCreateManyUserInputEnvelope
+    set?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    disconnect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    delete?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    update?: UserRoleUpdateWithWhereUniqueWithoutUserInput | UserRoleUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserRoleUpdateManyWithWhereWithoutUserInput | UserRoleUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserRoleScalarWhereInput | UserRoleScalarWhereInput[]
+  }
+
+  export type IncidentUpdateManyWithoutReporterNestedInput = {
+    create?: XOR<IncidentCreateWithoutReporterInput, IncidentUncheckedCreateWithoutReporterInput> | IncidentCreateWithoutReporterInput[] | IncidentUncheckedCreateWithoutReporterInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutReporterInput | IncidentCreateOrConnectWithoutReporterInput[]
+    upsert?: IncidentUpsertWithWhereUniqueWithoutReporterInput | IncidentUpsertWithWhereUniqueWithoutReporterInput[]
+    createMany?: IncidentCreateManyReporterInputEnvelope
+    set?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    disconnect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    delete?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    update?: IncidentUpdateWithWhereUniqueWithoutReporterInput | IncidentUpdateWithWhereUniqueWithoutReporterInput[]
+    updateMany?: IncidentUpdateManyWithWhereWithoutReporterInput | IncidentUpdateManyWithWhereWithoutReporterInput[]
+    deleteMany?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -12428,6 +21058,34 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
+  export type UserRoleUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserRoleCreateWithoutUserInput, UserRoleUncheckedCreateWithoutUserInput> | UserRoleCreateWithoutUserInput[] | UserRoleUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserRoleCreateOrConnectWithoutUserInput | UserRoleCreateOrConnectWithoutUserInput[]
+    upsert?: UserRoleUpsertWithWhereUniqueWithoutUserInput | UserRoleUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserRoleCreateManyUserInputEnvelope
+    set?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    disconnect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    delete?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    update?: UserRoleUpdateWithWhereUniqueWithoutUserInput | UserRoleUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserRoleUpdateManyWithWhereWithoutUserInput | UserRoleUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserRoleScalarWhereInput | UserRoleScalarWhereInput[]
+  }
+
+  export type IncidentUncheckedUpdateManyWithoutReporterNestedInput = {
+    create?: XOR<IncidentCreateWithoutReporterInput, IncidentUncheckedCreateWithoutReporterInput> | IncidentCreateWithoutReporterInput[] | IncidentUncheckedCreateWithoutReporterInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutReporterInput | IncidentCreateOrConnectWithoutReporterInput[]
+    upsert?: IncidentUpsertWithWhereUniqueWithoutReporterInput | IncidentUpsertWithWhereUniqueWithoutReporterInput[]
+    createMany?: IncidentCreateManyReporterInputEnvelope
+    set?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    disconnect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    delete?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    update?: IncidentUpdateWithWhereUniqueWithoutReporterInput | IncidentUpdateWithWhereUniqueWithoutReporterInput[]
+    updateMany?: IncidentUpdateManyWithWhereWithoutReporterInput | IncidentUpdateManyWithWhereWithoutReporterInput[]
+    deleteMany?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -12464,6 +21122,222 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
   }
 
+  export type UserCreateNestedOneWithoutUserRolesInput = {
+    create?: XOR<UserCreateWithoutUserRolesInput, UserUncheckedCreateWithoutUserRolesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserRolesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ParkingLocationCreateNestedOneWithoutUserRolesInput = {
+    create?: XOR<ParkingLocationCreateWithoutUserRolesInput, ParkingLocationUncheckedCreateWithoutUserRolesInput>
+    connectOrCreate?: ParkingLocationCreateOrConnectWithoutUserRolesInput
+    connect?: ParkingLocationWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type UserUpdateOneRequiredWithoutUserRolesNestedInput = {
+    create?: XOR<UserCreateWithoutUserRolesInput, UserUncheckedCreateWithoutUserRolesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserRolesInput
+    upsert?: UserUpsertWithoutUserRolesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserRolesInput, UserUpdateWithoutUserRolesInput>, UserUncheckedUpdateWithoutUserRolesInput>
+  }
+
+  export type ParkingLocationUpdateOneWithoutUserRolesNestedInput = {
+    create?: XOR<ParkingLocationCreateWithoutUserRolesInput, ParkingLocationUncheckedCreateWithoutUserRolesInput>
+    connectOrCreate?: ParkingLocationCreateOrConnectWithoutUserRolesInput
+    upsert?: ParkingLocationUpsertWithoutUserRolesInput
+    disconnect?: ParkingLocationWhereInput | boolean
+    delete?: ParkingLocationWhereInput | boolean
+    connect?: ParkingLocationWhereUniqueInput
+    update?: XOR<XOR<ParkingLocationUpdateToOneWithWhereWithoutUserRolesInput, ParkingLocationUpdateWithoutUserRolesInput>, ParkingLocationUncheckedUpdateWithoutUserRolesInput>
+  }
+
+  export type ParkingSlotCreateNestedManyWithoutLocationInput = {
+    create?: XOR<ParkingSlotCreateWithoutLocationInput, ParkingSlotUncheckedCreateWithoutLocationInput> | ParkingSlotCreateWithoutLocationInput[] | ParkingSlotUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ParkingSlotCreateOrConnectWithoutLocationInput | ParkingSlotCreateOrConnectWithoutLocationInput[]
+    createMany?: ParkingSlotCreateManyLocationInputEnvelope
+    connect?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+  }
+
+  export type UserRoleCreateNestedManyWithoutLocationInput = {
+    create?: XOR<UserRoleCreateWithoutLocationInput, UserRoleUncheckedCreateWithoutLocationInput> | UserRoleCreateWithoutLocationInput[] | UserRoleUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: UserRoleCreateOrConnectWithoutLocationInput | UserRoleCreateOrConnectWithoutLocationInput[]
+    createMany?: UserRoleCreateManyLocationInputEnvelope
+    connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+  }
+
+  export type IncidentCreateNestedManyWithoutLocationInput = {
+    create?: XOR<IncidentCreateWithoutLocationInput, IncidentUncheckedCreateWithoutLocationInput> | IncidentCreateWithoutLocationInput[] | IncidentUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutLocationInput | IncidentCreateOrConnectWithoutLocationInput[]
+    createMany?: IncidentCreateManyLocationInputEnvelope
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+  }
+
+  export type ParkingAnalyticsCreateNestedManyWithoutLocationInput = {
+    create?: XOR<ParkingAnalyticsCreateWithoutLocationInput, ParkingAnalyticsUncheckedCreateWithoutLocationInput> | ParkingAnalyticsCreateWithoutLocationInput[] | ParkingAnalyticsUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ParkingAnalyticsCreateOrConnectWithoutLocationInput | ParkingAnalyticsCreateOrConnectWithoutLocationInput[]
+    createMany?: ParkingAnalyticsCreateManyLocationInputEnvelope
+    connect?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+  }
+
+  export type ParkingSlotUncheckedCreateNestedManyWithoutLocationInput = {
+    create?: XOR<ParkingSlotCreateWithoutLocationInput, ParkingSlotUncheckedCreateWithoutLocationInput> | ParkingSlotCreateWithoutLocationInput[] | ParkingSlotUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ParkingSlotCreateOrConnectWithoutLocationInput | ParkingSlotCreateOrConnectWithoutLocationInput[]
+    createMany?: ParkingSlotCreateManyLocationInputEnvelope
+    connect?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+  }
+
+  export type UserRoleUncheckedCreateNestedManyWithoutLocationInput = {
+    create?: XOR<UserRoleCreateWithoutLocationInput, UserRoleUncheckedCreateWithoutLocationInput> | UserRoleCreateWithoutLocationInput[] | UserRoleUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: UserRoleCreateOrConnectWithoutLocationInput | UserRoleCreateOrConnectWithoutLocationInput[]
+    createMany?: UserRoleCreateManyLocationInputEnvelope
+    connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+  }
+
+  export type IncidentUncheckedCreateNestedManyWithoutLocationInput = {
+    create?: XOR<IncidentCreateWithoutLocationInput, IncidentUncheckedCreateWithoutLocationInput> | IncidentCreateWithoutLocationInput[] | IncidentUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutLocationInput | IncidentCreateOrConnectWithoutLocationInput[]
+    createMany?: IncidentCreateManyLocationInputEnvelope
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+  }
+
+  export type ParkingAnalyticsUncheckedCreateNestedManyWithoutLocationInput = {
+    create?: XOR<ParkingAnalyticsCreateWithoutLocationInput, ParkingAnalyticsUncheckedCreateWithoutLocationInput> | ParkingAnalyticsCreateWithoutLocationInput[] | ParkingAnalyticsUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ParkingAnalyticsCreateOrConnectWithoutLocationInput | ParkingAnalyticsCreateOrConnectWithoutLocationInput[]
+    createMany?: ParkingAnalyticsCreateManyLocationInputEnvelope
+    connect?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ParkingSlotUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<ParkingSlotCreateWithoutLocationInput, ParkingSlotUncheckedCreateWithoutLocationInput> | ParkingSlotCreateWithoutLocationInput[] | ParkingSlotUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ParkingSlotCreateOrConnectWithoutLocationInput | ParkingSlotCreateOrConnectWithoutLocationInput[]
+    upsert?: ParkingSlotUpsertWithWhereUniqueWithoutLocationInput | ParkingSlotUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: ParkingSlotCreateManyLocationInputEnvelope
+    set?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+    disconnect?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+    delete?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+    connect?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+    update?: ParkingSlotUpdateWithWhereUniqueWithoutLocationInput | ParkingSlotUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: ParkingSlotUpdateManyWithWhereWithoutLocationInput | ParkingSlotUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: ParkingSlotScalarWhereInput | ParkingSlotScalarWhereInput[]
+  }
+
+  export type UserRoleUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<UserRoleCreateWithoutLocationInput, UserRoleUncheckedCreateWithoutLocationInput> | UserRoleCreateWithoutLocationInput[] | UserRoleUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: UserRoleCreateOrConnectWithoutLocationInput | UserRoleCreateOrConnectWithoutLocationInput[]
+    upsert?: UserRoleUpsertWithWhereUniqueWithoutLocationInput | UserRoleUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: UserRoleCreateManyLocationInputEnvelope
+    set?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    disconnect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    delete?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    update?: UserRoleUpdateWithWhereUniqueWithoutLocationInput | UserRoleUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: UserRoleUpdateManyWithWhereWithoutLocationInput | UserRoleUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: UserRoleScalarWhereInput | UserRoleScalarWhereInput[]
+  }
+
+  export type IncidentUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<IncidentCreateWithoutLocationInput, IncidentUncheckedCreateWithoutLocationInput> | IncidentCreateWithoutLocationInput[] | IncidentUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutLocationInput | IncidentCreateOrConnectWithoutLocationInput[]
+    upsert?: IncidentUpsertWithWhereUniqueWithoutLocationInput | IncidentUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: IncidentCreateManyLocationInputEnvelope
+    set?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    disconnect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    delete?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    update?: IncidentUpdateWithWhereUniqueWithoutLocationInput | IncidentUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: IncidentUpdateManyWithWhereWithoutLocationInput | IncidentUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
+  }
+
+  export type ParkingAnalyticsUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<ParkingAnalyticsCreateWithoutLocationInput, ParkingAnalyticsUncheckedCreateWithoutLocationInput> | ParkingAnalyticsCreateWithoutLocationInput[] | ParkingAnalyticsUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ParkingAnalyticsCreateOrConnectWithoutLocationInput | ParkingAnalyticsCreateOrConnectWithoutLocationInput[]
+    upsert?: ParkingAnalyticsUpsertWithWhereUniqueWithoutLocationInput | ParkingAnalyticsUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: ParkingAnalyticsCreateManyLocationInputEnvelope
+    set?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+    disconnect?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+    delete?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+    connect?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+    update?: ParkingAnalyticsUpdateWithWhereUniqueWithoutLocationInput | ParkingAnalyticsUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: ParkingAnalyticsUpdateManyWithWhereWithoutLocationInput | ParkingAnalyticsUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: ParkingAnalyticsScalarWhereInput | ParkingAnalyticsScalarWhereInput[]
+  }
+
+  export type ParkingSlotUncheckedUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<ParkingSlotCreateWithoutLocationInput, ParkingSlotUncheckedCreateWithoutLocationInput> | ParkingSlotCreateWithoutLocationInput[] | ParkingSlotUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ParkingSlotCreateOrConnectWithoutLocationInput | ParkingSlotCreateOrConnectWithoutLocationInput[]
+    upsert?: ParkingSlotUpsertWithWhereUniqueWithoutLocationInput | ParkingSlotUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: ParkingSlotCreateManyLocationInputEnvelope
+    set?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+    disconnect?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+    delete?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+    connect?: ParkingSlotWhereUniqueInput | ParkingSlotWhereUniqueInput[]
+    update?: ParkingSlotUpdateWithWhereUniqueWithoutLocationInput | ParkingSlotUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: ParkingSlotUpdateManyWithWhereWithoutLocationInput | ParkingSlotUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: ParkingSlotScalarWhereInput | ParkingSlotScalarWhereInput[]
+  }
+
+  export type UserRoleUncheckedUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<UserRoleCreateWithoutLocationInput, UserRoleUncheckedCreateWithoutLocationInput> | UserRoleCreateWithoutLocationInput[] | UserRoleUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: UserRoleCreateOrConnectWithoutLocationInput | UserRoleCreateOrConnectWithoutLocationInput[]
+    upsert?: UserRoleUpsertWithWhereUniqueWithoutLocationInput | UserRoleUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: UserRoleCreateManyLocationInputEnvelope
+    set?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    disconnect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    delete?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
+    update?: UserRoleUpdateWithWhereUniqueWithoutLocationInput | UserRoleUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: UserRoleUpdateManyWithWhereWithoutLocationInput | UserRoleUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: UserRoleScalarWhereInput | UserRoleScalarWhereInput[]
+  }
+
+  export type IncidentUncheckedUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<IncidentCreateWithoutLocationInput, IncidentUncheckedCreateWithoutLocationInput> | IncidentCreateWithoutLocationInput[] | IncidentUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutLocationInput | IncidentCreateOrConnectWithoutLocationInput[]
+    upsert?: IncidentUpsertWithWhereUniqueWithoutLocationInput | IncidentUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: IncidentCreateManyLocationInputEnvelope
+    set?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    disconnect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    delete?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    update?: IncidentUpdateWithWhereUniqueWithoutLocationInput | IncidentUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: IncidentUpdateManyWithWhereWithoutLocationInput | IncidentUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
+  }
+
+  export type ParkingAnalyticsUncheckedUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<ParkingAnalyticsCreateWithoutLocationInput, ParkingAnalyticsUncheckedCreateWithoutLocationInput> | ParkingAnalyticsCreateWithoutLocationInput[] | ParkingAnalyticsUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ParkingAnalyticsCreateOrConnectWithoutLocationInput | ParkingAnalyticsCreateOrConnectWithoutLocationInput[]
+    upsert?: ParkingAnalyticsUpsertWithWhereUniqueWithoutLocationInput | ParkingAnalyticsUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: ParkingAnalyticsCreateManyLocationInputEnvelope
+    set?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+    disconnect?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+    delete?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+    connect?: ParkingAnalyticsWhereUniqueInput | ParkingAnalyticsWhereUniqueInput[]
+    update?: ParkingAnalyticsUpdateWithWhereUniqueWithoutLocationInput | ParkingAnalyticsUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: ParkingAnalyticsUpdateManyWithWhereWithoutLocationInput | ParkingAnalyticsUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: ParkingAnalyticsScalarWhereInput | ParkingAnalyticsScalarWhereInput[]
+  }
+
+  export type ParkingLocationCreateNestedOneWithoutSlotsInput = {
+    create?: XOR<ParkingLocationCreateWithoutSlotsInput, ParkingLocationUncheckedCreateWithoutSlotsInput>
+    connectOrCreate?: ParkingLocationCreateOrConnectWithoutSlotsInput
+    connect?: ParkingLocationWhereUniqueInput
+  }
+
   export type BookingCreateNestedManyWithoutSlotInput = {
     create?: XOR<BookingCreateWithoutSlotInput, BookingUncheckedCreateWithoutSlotInput> | BookingCreateWithoutSlotInput[] | BookingUncheckedCreateWithoutSlotInput[]
     connectOrCreate?: BookingCreateOrConnectWithoutSlotInput | BookingCreateOrConnectWithoutSlotInput[]
@@ -12486,8 +21360,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
+  export type ParkingLocationUpdateOneRequiredWithoutSlotsNestedInput = {
+    create?: XOR<ParkingLocationCreateWithoutSlotsInput, ParkingLocationUncheckedCreateWithoutSlotsInput>
+    connectOrCreate?: ParkingLocationCreateOrConnectWithoutSlotsInput
+    upsert?: ParkingLocationUpsertWithoutSlotsInput
+    connect?: ParkingLocationWhereUniqueInput
+    update?: XOR<XOR<ParkingLocationUpdateToOneWithWhereWithoutSlotsInput, ParkingLocationUpdateWithoutSlotsInput>, ParkingLocationUncheckedUpdateWithoutSlotsInput>
   }
 
   export type BookingUpdateManyWithoutSlotNestedInput = {
@@ -12536,10 +21414,32 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput
   }
 
+  export type IncidentCreateNestedManyWithoutBookingInput = {
+    create?: XOR<IncidentCreateWithoutBookingInput, IncidentUncheckedCreateWithoutBookingInput> | IncidentCreateWithoutBookingInput[] | IncidentUncheckedCreateWithoutBookingInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutBookingInput | IncidentCreateOrConnectWithoutBookingInput[]
+    createMany?: IncidentCreateManyBookingInputEnvelope
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+  }
+
   export type PaymentUncheckedCreateNestedOneWithoutBookingInput = {
     create?: XOR<PaymentCreateWithoutBookingInput, PaymentUncheckedCreateWithoutBookingInput>
     connectOrCreate?: PaymentCreateOrConnectWithoutBookingInput
     connect?: PaymentWhereUniqueInput
+  }
+
+  export type IncidentUncheckedCreateNestedManyWithoutBookingInput = {
+    create?: XOR<IncidentCreateWithoutBookingInput, IncidentUncheckedCreateWithoutBookingInput> | IncidentCreateWithoutBookingInput[] | IncidentUncheckedCreateWithoutBookingInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutBookingInput | IncidentCreateOrConnectWithoutBookingInput[]
+    createMany?: IncidentCreateManyBookingInputEnvelope
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type UserUpdateOneRequiredWithoutBookingsNestedInput = {
@@ -12568,6 +21468,20 @@ export namespace Prisma {
     update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutBookingInput, PaymentUpdateWithoutBookingInput>, PaymentUncheckedUpdateWithoutBookingInput>
   }
 
+  export type IncidentUpdateManyWithoutBookingNestedInput = {
+    create?: XOR<IncidentCreateWithoutBookingInput, IncidentUncheckedCreateWithoutBookingInput> | IncidentCreateWithoutBookingInput[] | IncidentUncheckedCreateWithoutBookingInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutBookingInput | IncidentCreateOrConnectWithoutBookingInput[]
+    upsert?: IncidentUpsertWithWhereUniqueWithoutBookingInput | IncidentUpsertWithWhereUniqueWithoutBookingInput[]
+    createMany?: IncidentCreateManyBookingInputEnvelope
+    set?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    disconnect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    delete?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    update?: IncidentUpdateWithWhereUniqueWithoutBookingInput | IncidentUpdateWithWhereUniqueWithoutBookingInput[]
+    updateMany?: IncidentUpdateManyWithWhereWithoutBookingInput | IncidentUpdateManyWithWhereWithoutBookingInput[]
+    deleteMany?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
+  }
+
   export type PaymentUncheckedUpdateOneWithoutBookingNestedInput = {
     create?: XOR<PaymentCreateWithoutBookingInput, PaymentUncheckedCreateWithoutBookingInput>
     connectOrCreate?: PaymentCreateOrConnectWithoutBookingInput
@@ -12576,6 +21490,20 @@ export namespace Prisma {
     delete?: PaymentWhereInput | boolean
     connect?: PaymentWhereUniqueInput
     update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutBookingInput, PaymentUpdateWithoutBookingInput>, PaymentUncheckedUpdateWithoutBookingInput>
+  }
+
+  export type IncidentUncheckedUpdateManyWithoutBookingNestedInput = {
+    create?: XOR<IncidentCreateWithoutBookingInput, IncidentUncheckedCreateWithoutBookingInput> | IncidentCreateWithoutBookingInput[] | IncidentUncheckedCreateWithoutBookingInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutBookingInput | IncidentCreateOrConnectWithoutBookingInput[]
+    upsert?: IncidentUpsertWithWhereUniqueWithoutBookingInput | IncidentUpsertWithWhereUniqueWithoutBookingInput[]
+    createMany?: IncidentCreateManyBookingInputEnvelope
+    set?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    disconnect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    delete?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
+    update?: IncidentUpdateWithWhereUniqueWithoutBookingInput | IncidentUpdateWithWhereUniqueWithoutBookingInput[]
+    updateMany?: IncidentUpdateManyWithWhereWithoutBookingInput | IncidentUpdateManyWithWhereWithoutBookingInput[]
+    deleteMany?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPaymentsInput = {
@@ -12618,6 +21546,64 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutNotificationsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type BookingCreateNestedOneWithoutIncidentsInput = {
+    create?: XOR<BookingCreateWithoutIncidentsInput, BookingUncheckedCreateWithoutIncidentsInput>
+    connectOrCreate?: BookingCreateOrConnectWithoutIncidentsInput
+    connect?: BookingWhereUniqueInput
+  }
+
+  export type ParkingLocationCreateNestedOneWithoutIncidentsInput = {
+    create?: XOR<ParkingLocationCreateWithoutIncidentsInput, ParkingLocationUncheckedCreateWithoutIncidentsInput>
+    connectOrCreate?: ParkingLocationCreateOrConnectWithoutIncidentsInput
+    connect?: ParkingLocationWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutIncidentsInput = {
+    create?: XOR<UserCreateWithoutIncidentsInput, UserUncheckedCreateWithoutIncidentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutIncidentsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type BookingUpdateOneWithoutIncidentsNestedInput = {
+    create?: XOR<BookingCreateWithoutIncidentsInput, BookingUncheckedCreateWithoutIncidentsInput>
+    connectOrCreate?: BookingCreateOrConnectWithoutIncidentsInput
+    upsert?: BookingUpsertWithoutIncidentsInput
+    disconnect?: BookingWhereInput | boolean
+    delete?: BookingWhereInput | boolean
+    connect?: BookingWhereUniqueInput
+    update?: XOR<XOR<BookingUpdateToOneWithWhereWithoutIncidentsInput, BookingUpdateWithoutIncidentsInput>, BookingUncheckedUpdateWithoutIncidentsInput>
+  }
+
+  export type ParkingLocationUpdateOneRequiredWithoutIncidentsNestedInput = {
+    create?: XOR<ParkingLocationCreateWithoutIncidentsInput, ParkingLocationUncheckedCreateWithoutIncidentsInput>
+    connectOrCreate?: ParkingLocationCreateOrConnectWithoutIncidentsInput
+    upsert?: ParkingLocationUpsertWithoutIncidentsInput
+    connect?: ParkingLocationWhereUniqueInput
+    update?: XOR<XOR<ParkingLocationUpdateToOneWithWhereWithoutIncidentsInput, ParkingLocationUpdateWithoutIncidentsInput>, ParkingLocationUncheckedUpdateWithoutIncidentsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutIncidentsNestedInput = {
+    create?: XOR<UserCreateWithoutIncidentsInput, UserUncheckedCreateWithoutIncidentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutIncidentsInput
+    upsert?: UserUpsertWithoutIncidentsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutIncidentsInput, UserUpdateWithoutIncidentsInput>, UserUncheckedUpdateWithoutIncidentsInput>
+  }
+
+  export type ParkingLocationCreateNestedOneWithoutAnalyticsInput = {
+    create?: XOR<ParkingLocationCreateWithoutAnalyticsInput, ParkingLocationUncheckedCreateWithoutAnalyticsInput>
+    connectOrCreate?: ParkingLocationCreateOrConnectWithoutAnalyticsInput
+    connect?: ParkingLocationWhereUniqueInput
+  }
+
+  export type ParkingLocationUpdateOneRequiredWithoutAnalyticsNestedInput = {
+    create?: XOR<ParkingLocationCreateWithoutAnalyticsInput, ParkingLocationUncheckedCreateWithoutAnalyticsInput>
+    connectOrCreate?: ParkingLocationCreateOrConnectWithoutAnalyticsInput
+    upsert?: ParkingLocationUpsertWithoutAnalyticsInput
+    connect?: ParkingLocationWhereUniqueInput
+    update?: XOR<XOR<ParkingLocationUpdateToOneWithWhereWithoutAnalyticsInput, ParkingLocationUpdateWithoutAnalyticsInput>, ParkingLocationUncheckedUpdateWithoutAnalyticsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -12781,6 +21767,35 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -12790,11 +21805,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -12813,12 +21823,20 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -12885,9 +21903,19 @@ export namespace Prisma {
     id?: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     slot: ParkingSlotCreateNestedOneWithoutBookingsInput
     payment?: PaymentCreateNestedOneWithoutBookingInput
+    incidents?: IncidentCreateNestedManyWithoutBookingInput
   }
 
   export type BookingUncheckedCreateWithoutUserInput = {
@@ -12895,8 +21923,18 @@ export namespace Prisma {
     slotId: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     payment?: PaymentUncheckedCreateNestedOneWithoutBookingInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutBookingInput
   }
 
   export type BookingCreateOrConnectWithoutUserInput = {
@@ -12911,17 +21949,25 @@ export namespace Prisma {
 
   export type NotificationCreateWithoutUserInput = {
     id?: string
+    title: string
     message: string
     type: string
+    priority?: string
     isRead?: boolean
+    readAt?: Date | string | null
+    data?: string | null
     createdAt?: Date | string
   }
 
   export type NotificationUncheckedCreateWithoutUserInput = {
     id?: string
+    title: string
     message: string
     type: string
+    priority?: string
     isRead?: boolean
+    readAt?: Date | string | null
+    data?: string | null
     createdAt?: Date | string
   }
 
@@ -12940,6 +21986,12 @@ export namespace Prisma {
     amount: number
     method: string
     status?: string
+    transactionId?: string | null
+    gatewayResponse?: string | null
+    paidAt?: Date | string | null
+    refundedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     booking: BookingCreateNestedOneWithoutPaymentInput
   }
 
@@ -12949,6 +22001,12 @@ export namespace Prisma {
     amount: number
     method: string
     status?: string
+    transactionId?: string | null
+    gatewayResponse?: string | null
+    paidAt?: Date | string | null
+    refundedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PaymentCreateOrConnectWithoutUserInput = {
@@ -12958,6 +22016,78 @@ export namespace Prisma {
 
   export type PaymentCreateManyUserInputEnvelope = {
     data: PaymentCreateManyUserInput | PaymentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserRoleCreateWithoutUserInput = {
+    id?: string
+    role: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    location?: ParkingLocationCreateNestedOneWithoutUserRolesInput
+  }
+
+  export type UserRoleUncheckedCreateWithoutUserInput = {
+    id?: string
+    role: string
+    locationId?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserRoleCreateOrConnectWithoutUserInput = {
+    where: UserRoleWhereUniqueInput
+    create: XOR<UserRoleCreateWithoutUserInput, UserRoleUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserRoleCreateManyUserInputEnvelope = {
+    data: UserRoleCreateManyUserInput | UserRoleCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type IncidentCreateWithoutReporterInput = {
+    id?: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    booking?: BookingCreateNestedOneWithoutIncidentsInput
+    location: ParkingLocationCreateNestedOneWithoutIncidentsInput
+  }
+
+  export type IncidentUncheckedCreateWithoutReporterInput = {
+    id?: string
+    bookingId?: string | null
+    locationId: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IncidentCreateOrConnectWithoutReporterInput = {
+    where: IncidentWhereUniqueInput
+    create: XOR<IncidentCreateWithoutReporterInput, IncidentUncheckedCreateWithoutReporterInput>
+  }
+
+  export type IncidentCreateManyReporterInputEnvelope = {
+    data: IncidentCreateManyReporterInput | IncidentCreateManyReporterInput[]
     skipDuplicates?: boolean
   }
 
@@ -13046,7 +22176,16 @@ export namespace Prisma {
     slotId?: StringFilter<"Booking"> | string
     startTime?: DateTimeFilter<"Booking"> | Date | string
     endTime?: DateTimeFilter<"Booking"> | Date | string
+    actualStartTime?: DateTimeNullableFilter<"Booking"> | Date | string | null
+    actualEndTime?: DateTimeNullableFilter<"Booking"> | Date | string | null
+    totalAmount?: FloatFilter<"Booking"> | number
     status?: StringFilter<"Booking"> | string
+    qrCode?: StringNullableFilter<"Booking"> | string | null
+    checkInCode?: StringNullableFilter<"Booking"> | string | null
+    extendedTimes?: IntFilter<"Booking"> | number
+    notes?: StringNullableFilter<"Booking"> | string | null
+    createdAt?: DateTimeFilter<"Booking"> | Date | string
+    updatedAt?: DateTimeFilter<"Booking"> | Date | string
   }
 
   export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
@@ -13071,9 +22210,13 @@ export namespace Prisma {
     NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
     id?: StringFilter<"Notification"> | string
     userId?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
     message?: StringFilter<"Notification"> | string
     type?: StringFilter<"Notification"> | string
+    priority?: StringFilter<"Notification"> | string
     isRead?: BoolFilter<"Notification"> | boolean
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    data?: StringNullableFilter<"Notification"> | string | null
     createdAt?: DateTimeFilter<"Notification"> | Date | string
   }
 
@@ -13103,6 +22246,78 @@ export namespace Prisma {
     amount?: FloatFilter<"Payment"> | number
     method?: StringFilter<"Payment"> | string
     status?: StringFilter<"Payment"> | string
+    transactionId?: StringNullableFilter<"Payment"> | string | null
+    gatewayResponse?: StringNullableFilter<"Payment"> | string | null
+    paidAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    refundedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    createdAt?: DateTimeFilter<"Payment"> | Date | string
+    updatedAt?: DateTimeFilter<"Payment"> | Date | string
+  }
+
+  export type UserRoleUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserRoleWhereUniqueInput
+    update: XOR<UserRoleUpdateWithoutUserInput, UserRoleUncheckedUpdateWithoutUserInput>
+    create: XOR<UserRoleCreateWithoutUserInput, UserRoleUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserRoleUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserRoleWhereUniqueInput
+    data: XOR<UserRoleUpdateWithoutUserInput, UserRoleUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserRoleUpdateManyWithWhereWithoutUserInput = {
+    where: UserRoleScalarWhereInput
+    data: XOR<UserRoleUpdateManyMutationInput, UserRoleUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UserRoleScalarWhereInput = {
+    AND?: UserRoleScalarWhereInput | UserRoleScalarWhereInput[]
+    OR?: UserRoleScalarWhereInput[]
+    NOT?: UserRoleScalarWhereInput | UserRoleScalarWhereInput[]
+    id?: StringFilter<"UserRole"> | string
+    userId?: StringFilter<"UserRole"> | string
+    role?: StringFilter<"UserRole"> | string
+    locationId?: StringNullableFilter<"UserRole"> | string | null
+    isActive?: BoolFilter<"UserRole"> | boolean
+    createdAt?: DateTimeFilter<"UserRole"> | Date | string
+    updatedAt?: DateTimeFilter<"UserRole"> | Date | string
+  }
+
+  export type IncidentUpsertWithWhereUniqueWithoutReporterInput = {
+    where: IncidentWhereUniqueInput
+    update: XOR<IncidentUpdateWithoutReporterInput, IncidentUncheckedUpdateWithoutReporterInput>
+    create: XOR<IncidentCreateWithoutReporterInput, IncidentUncheckedCreateWithoutReporterInput>
+  }
+
+  export type IncidentUpdateWithWhereUniqueWithoutReporterInput = {
+    where: IncidentWhereUniqueInput
+    data: XOR<IncidentUpdateWithoutReporterInput, IncidentUncheckedUpdateWithoutReporterInput>
+  }
+
+  export type IncidentUpdateManyWithWhereWithoutReporterInput = {
+    where: IncidentScalarWhereInput
+    data: XOR<IncidentUpdateManyMutationInput, IncidentUncheckedUpdateManyWithoutReporterInput>
+  }
+
+  export type IncidentScalarWhereInput = {
+    AND?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
+    OR?: IncidentScalarWhereInput[]
+    NOT?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
+    id?: StringFilter<"Incident"> | string
+    bookingId?: StringNullableFilter<"Incident"> | string | null
+    locationId?: StringFilter<"Incident"> | string
+    reporterId?: StringFilter<"Incident"> | string
+    type?: StringFilter<"Incident"> | string
+    severity?: StringFilter<"Incident"> | string
+    title?: StringFilter<"Incident"> | string
+    description?: StringFilter<"Incident"> | string
+    status?: StringFilter<"Incident"> | string
+    resolution?: StringNullableFilter<"Incident"> | string | null
+    resolvedBy?: StringNullableFilter<"Incident"> | string | null
+    resolvedAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    images?: StringNullableFilter<"Incident"> | string | null
+    createdAt?: DateTimeFilter<"Incident"> | Date | string
+    updatedAt?: DateTimeFilter<"Incident"> | Date | string
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -13111,12 +22326,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     bookings?: BookingCreateNestedManyWithoutUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleCreateNestedManyWithoutUserInput
+    incidents?: IncidentCreateNestedManyWithoutReporterInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -13125,12 +22343,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutReporterInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -13155,12 +22376,15 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     bookings?: BookingUpdateManyWithoutUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUpdateManyWithoutReporterNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -13169,12 +22393,15 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutReporterNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -13183,12 +22410,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     bookings?: BookingCreateNestedManyWithoutUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleCreateNestedManyWithoutUserInput
+    incidents?: IncidentCreateNestedManyWithoutReporterInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -13197,12 +22427,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutReporterInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -13227,12 +22460,15 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     bookings?: BookingUpdateManyWithoutUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUpdateManyWithoutReporterNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -13241,21 +22477,479 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutReporterNestedInput
+  }
+
+  export type UserCreateWithoutUserRolesInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    passwordHash?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    bookings?: BookingCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutUserInput
+    incidents?: IncidentCreateNestedManyWithoutReporterInput
+  }
+
+  export type UserUncheckedCreateWithoutUserRolesInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    passwordHash?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutReporterInput
+  }
+
+  export type UserCreateOrConnectWithoutUserRolesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserRolesInput, UserUncheckedCreateWithoutUserRolesInput>
+  }
+
+  export type ParkingLocationCreateWithoutUserRolesInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    slots?: ParkingSlotCreateNestedManyWithoutLocationInput
+    incidents?: IncidentCreateNestedManyWithoutLocationInput
+    analytics?: ParkingAnalyticsCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationUncheckedCreateWithoutUserRolesInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    slots?: ParkingSlotUncheckedCreateNestedManyWithoutLocationInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutLocationInput
+    analytics?: ParkingAnalyticsUncheckedCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationCreateOrConnectWithoutUserRolesInput = {
+    where: ParkingLocationWhereUniqueInput
+    create: XOR<ParkingLocationCreateWithoutUserRolesInput, ParkingLocationUncheckedCreateWithoutUserRolesInput>
+  }
+
+  export type UserUpsertWithoutUserRolesInput = {
+    update: XOR<UserUpdateWithoutUserRolesInput, UserUncheckedUpdateWithoutUserRolesInput>
+    create: XOR<UserCreateWithoutUserRolesInput, UserUncheckedCreateWithoutUserRolesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserRolesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserRolesInput, UserUncheckedUpdateWithoutUserRolesInput>
+  }
+
+  export type UserUpdateWithoutUserRolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    bookings?: BookingUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    payments?: PaymentUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUpdateManyWithoutReporterNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUserRolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutReporterNestedInput
+  }
+
+  export type ParkingLocationUpsertWithoutUserRolesInput = {
+    update: XOR<ParkingLocationUpdateWithoutUserRolesInput, ParkingLocationUncheckedUpdateWithoutUserRolesInput>
+    create: XOR<ParkingLocationCreateWithoutUserRolesInput, ParkingLocationUncheckedCreateWithoutUserRolesInput>
+    where?: ParkingLocationWhereInput
+  }
+
+  export type ParkingLocationUpdateToOneWithWhereWithoutUserRolesInput = {
+    where?: ParkingLocationWhereInput
+    data: XOR<ParkingLocationUpdateWithoutUserRolesInput, ParkingLocationUncheckedUpdateWithoutUserRolesInput>
+  }
+
+  export type ParkingLocationUpdateWithoutUserRolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slots?: ParkingSlotUpdateManyWithoutLocationNestedInput
+    incidents?: IncidentUpdateManyWithoutLocationNestedInput
+    analytics?: ParkingAnalyticsUpdateManyWithoutLocationNestedInput
+  }
+
+  export type ParkingLocationUncheckedUpdateWithoutUserRolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slots?: ParkingSlotUncheckedUpdateManyWithoutLocationNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutLocationNestedInput
+    analytics?: ParkingAnalyticsUncheckedUpdateManyWithoutLocationNestedInput
+  }
+
+  export type ParkingSlotCreateWithoutLocationInput = {
+    id?: string
+    slotNumber: string
+    type?: string
+    basePrice: number
+    status?: string
+    features?: string | null
+    rules?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bookings?: BookingCreateNestedManyWithoutSlotInput
+  }
+
+  export type ParkingSlotUncheckedCreateWithoutLocationInput = {
+    id?: string
+    slotNumber: string
+    type?: string
+    basePrice: number
+    status?: string
+    features?: string | null
+    rules?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bookings?: BookingUncheckedCreateNestedManyWithoutSlotInput
+  }
+
+  export type ParkingSlotCreateOrConnectWithoutLocationInput = {
+    where: ParkingSlotWhereUniqueInput
+    create: XOR<ParkingSlotCreateWithoutLocationInput, ParkingSlotUncheckedCreateWithoutLocationInput>
+  }
+
+  export type ParkingSlotCreateManyLocationInputEnvelope = {
+    data: ParkingSlotCreateManyLocationInput | ParkingSlotCreateManyLocationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserRoleCreateWithoutLocationInput = {
+    id?: string
+    role: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutUserRolesInput
+  }
+
+  export type UserRoleUncheckedCreateWithoutLocationInput = {
+    id?: string
+    userId: string
+    role: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserRoleCreateOrConnectWithoutLocationInput = {
+    where: UserRoleWhereUniqueInput
+    create: XOR<UserRoleCreateWithoutLocationInput, UserRoleUncheckedCreateWithoutLocationInput>
+  }
+
+  export type UserRoleCreateManyLocationInputEnvelope = {
+    data: UserRoleCreateManyLocationInput | UserRoleCreateManyLocationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type IncidentCreateWithoutLocationInput = {
+    id?: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    booking?: BookingCreateNestedOneWithoutIncidentsInput
+    reporter: UserCreateNestedOneWithoutIncidentsInput
+  }
+
+  export type IncidentUncheckedCreateWithoutLocationInput = {
+    id?: string
+    bookingId?: string | null
+    reporterId: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IncidentCreateOrConnectWithoutLocationInput = {
+    where: IncidentWhereUniqueInput
+    create: XOR<IncidentCreateWithoutLocationInput, IncidentUncheckedCreateWithoutLocationInput>
+  }
+
+  export type IncidentCreateManyLocationInputEnvelope = {
+    data: IncidentCreateManyLocationInput | IncidentCreateManyLocationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ParkingAnalyticsCreateWithoutLocationInput = {
+    id?: string
+    date: Date | string
+    totalSlots: number
+    occupiedSlots: number
+    totalBookings: number
+    totalRevenue: number
+    averageStayTime?: number | null
+    peakHours?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ParkingAnalyticsUncheckedCreateWithoutLocationInput = {
+    id?: string
+    date: Date | string
+    totalSlots: number
+    occupiedSlots: number
+    totalBookings: number
+    totalRevenue: number
+    averageStayTime?: number | null
+    peakHours?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ParkingAnalyticsCreateOrConnectWithoutLocationInput = {
+    where: ParkingAnalyticsWhereUniqueInput
+    create: XOR<ParkingAnalyticsCreateWithoutLocationInput, ParkingAnalyticsUncheckedCreateWithoutLocationInput>
+  }
+
+  export type ParkingAnalyticsCreateManyLocationInputEnvelope = {
+    data: ParkingAnalyticsCreateManyLocationInput | ParkingAnalyticsCreateManyLocationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ParkingSlotUpsertWithWhereUniqueWithoutLocationInput = {
+    where: ParkingSlotWhereUniqueInput
+    update: XOR<ParkingSlotUpdateWithoutLocationInput, ParkingSlotUncheckedUpdateWithoutLocationInput>
+    create: XOR<ParkingSlotCreateWithoutLocationInput, ParkingSlotUncheckedCreateWithoutLocationInput>
+  }
+
+  export type ParkingSlotUpdateWithWhereUniqueWithoutLocationInput = {
+    where: ParkingSlotWhereUniqueInput
+    data: XOR<ParkingSlotUpdateWithoutLocationInput, ParkingSlotUncheckedUpdateWithoutLocationInput>
+  }
+
+  export type ParkingSlotUpdateManyWithWhereWithoutLocationInput = {
+    where: ParkingSlotScalarWhereInput
+    data: XOR<ParkingSlotUpdateManyMutationInput, ParkingSlotUncheckedUpdateManyWithoutLocationInput>
+  }
+
+  export type ParkingSlotScalarWhereInput = {
+    AND?: ParkingSlotScalarWhereInput | ParkingSlotScalarWhereInput[]
+    OR?: ParkingSlotScalarWhereInput[]
+    NOT?: ParkingSlotScalarWhereInput | ParkingSlotScalarWhereInput[]
+    id?: StringFilter<"ParkingSlot"> | string
+    slotNumber?: StringFilter<"ParkingSlot"> | string
+    locationId?: StringFilter<"ParkingSlot"> | string
+    type?: StringFilter<"ParkingSlot"> | string
+    basePrice?: FloatFilter<"ParkingSlot"> | number
+    status?: StringFilter<"ParkingSlot"> | string
+    features?: StringNullableFilter<"ParkingSlot"> | string | null
+    rules?: StringNullableFilter<"ParkingSlot"> | string | null
+    createdAt?: DateTimeFilter<"ParkingSlot"> | Date | string
+    updatedAt?: DateTimeFilter<"ParkingSlot"> | Date | string
+  }
+
+  export type UserRoleUpsertWithWhereUniqueWithoutLocationInput = {
+    where: UserRoleWhereUniqueInput
+    update: XOR<UserRoleUpdateWithoutLocationInput, UserRoleUncheckedUpdateWithoutLocationInput>
+    create: XOR<UserRoleCreateWithoutLocationInput, UserRoleUncheckedCreateWithoutLocationInput>
+  }
+
+  export type UserRoleUpdateWithWhereUniqueWithoutLocationInput = {
+    where: UserRoleWhereUniqueInput
+    data: XOR<UserRoleUpdateWithoutLocationInput, UserRoleUncheckedUpdateWithoutLocationInput>
+  }
+
+  export type UserRoleUpdateManyWithWhereWithoutLocationInput = {
+    where: UserRoleScalarWhereInput
+    data: XOR<UserRoleUpdateManyMutationInput, UserRoleUncheckedUpdateManyWithoutLocationInput>
+  }
+
+  export type IncidentUpsertWithWhereUniqueWithoutLocationInput = {
+    where: IncidentWhereUniqueInput
+    update: XOR<IncidentUpdateWithoutLocationInput, IncidentUncheckedUpdateWithoutLocationInput>
+    create: XOR<IncidentCreateWithoutLocationInput, IncidentUncheckedCreateWithoutLocationInput>
+  }
+
+  export type IncidentUpdateWithWhereUniqueWithoutLocationInput = {
+    where: IncidentWhereUniqueInput
+    data: XOR<IncidentUpdateWithoutLocationInput, IncidentUncheckedUpdateWithoutLocationInput>
+  }
+
+  export type IncidentUpdateManyWithWhereWithoutLocationInput = {
+    where: IncidentScalarWhereInput
+    data: XOR<IncidentUpdateManyMutationInput, IncidentUncheckedUpdateManyWithoutLocationInput>
+  }
+
+  export type ParkingAnalyticsUpsertWithWhereUniqueWithoutLocationInput = {
+    where: ParkingAnalyticsWhereUniqueInput
+    update: XOR<ParkingAnalyticsUpdateWithoutLocationInput, ParkingAnalyticsUncheckedUpdateWithoutLocationInput>
+    create: XOR<ParkingAnalyticsCreateWithoutLocationInput, ParkingAnalyticsUncheckedCreateWithoutLocationInput>
+  }
+
+  export type ParkingAnalyticsUpdateWithWhereUniqueWithoutLocationInput = {
+    where: ParkingAnalyticsWhereUniqueInput
+    data: XOR<ParkingAnalyticsUpdateWithoutLocationInput, ParkingAnalyticsUncheckedUpdateWithoutLocationInput>
+  }
+
+  export type ParkingAnalyticsUpdateManyWithWhereWithoutLocationInput = {
+    where: ParkingAnalyticsScalarWhereInput
+    data: XOR<ParkingAnalyticsUpdateManyMutationInput, ParkingAnalyticsUncheckedUpdateManyWithoutLocationInput>
+  }
+
+  export type ParkingAnalyticsScalarWhereInput = {
+    AND?: ParkingAnalyticsScalarWhereInput | ParkingAnalyticsScalarWhereInput[]
+    OR?: ParkingAnalyticsScalarWhereInput[]
+    NOT?: ParkingAnalyticsScalarWhereInput | ParkingAnalyticsScalarWhereInput[]
+    id?: StringFilter<"ParkingAnalytics"> | string
+    locationId?: StringFilter<"ParkingAnalytics"> | string
+    date?: DateTimeFilter<"ParkingAnalytics"> | Date | string
+    totalSlots?: IntFilter<"ParkingAnalytics"> | number
+    occupiedSlots?: IntFilter<"ParkingAnalytics"> | number
+    totalBookings?: IntFilter<"ParkingAnalytics"> | number
+    totalRevenue?: FloatFilter<"ParkingAnalytics"> | number
+    averageStayTime?: FloatNullableFilter<"ParkingAnalytics"> | number | null
+    peakHours?: StringNullableFilter<"ParkingAnalytics"> | string | null
+    createdAt?: DateTimeFilter<"ParkingAnalytics"> | Date | string
+  }
+
+  export type ParkingLocationCreateWithoutSlotsInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userRoles?: UserRoleCreateNestedManyWithoutLocationInput
+    incidents?: IncidentCreateNestedManyWithoutLocationInput
+    analytics?: ParkingAnalyticsCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationUncheckedCreateWithoutSlotsInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutLocationInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutLocationInput
+    analytics?: ParkingAnalyticsUncheckedCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationCreateOrConnectWithoutSlotsInput = {
+    where: ParkingLocationWhereUniqueInput
+    create: XOR<ParkingLocationCreateWithoutSlotsInput, ParkingLocationUncheckedCreateWithoutSlotsInput>
   }
 
   export type BookingCreateWithoutSlotInput = {
     id?: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutBookingsInput
     payment?: PaymentCreateNestedOneWithoutBookingInput
+    incidents?: IncidentCreateNestedManyWithoutBookingInput
   }
 
   export type BookingUncheckedCreateWithoutSlotInput = {
@@ -13263,8 +22957,18 @@ export namespace Prisma {
     userId: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     payment?: PaymentUncheckedCreateNestedOneWithoutBookingInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutBookingInput
   }
 
   export type BookingCreateOrConnectWithoutSlotInput = {
@@ -13275,6 +22979,51 @@ export namespace Prisma {
   export type BookingCreateManySlotInputEnvelope = {
     data: BookingCreateManySlotInput | BookingCreateManySlotInput[]
     skipDuplicates?: boolean
+  }
+
+  export type ParkingLocationUpsertWithoutSlotsInput = {
+    update: XOR<ParkingLocationUpdateWithoutSlotsInput, ParkingLocationUncheckedUpdateWithoutSlotsInput>
+    create: XOR<ParkingLocationCreateWithoutSlotsInput, ParkingLocationUncheckedCreateWithoutSlotsInput>
+    where?: ParkingLocationWhereInput
+  }
+
+  export type ParkingLocationUpdateToOneWithWhereWithoutSlotsInput = {
+    where?: ParkingLocationWhereInput
+    data: XOR<ParkingLocationUpdateWithoutSlotsInput, ParkingLocationUncheckedUpdateWithoutSlotsInput>
+  }
+
+  export type ParkingLocationUpdateWithoutSlotsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userRoles?: UserRoleUpdateManyWithoutLocationNestedInput
+    incidents?: IncidentUpdateManyWithoutLocationNestedInput
+    analytics?: ParkingAnalyticsUpdateManyWithoutLocationNestedInput
+  }
+
+  export type ParkingLocationUncheckedUpdateWithoutSlotsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userRoles?: UserRoleUncheckedUpdateManyWithoutLocationNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutLocationNestedInput
+    analytics?: ParkingAnalyticsUncheckedUpdateManyWithoutLocationNestedInput
   }
 
   export type BookingUpsertWithWhereUniqueWithoutSlotInput = {
@@ -13299,12 +23048,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleCreateNestedManyWithoutUserInput
+    incidents?: IncidentCreateNestedManyWithoutReporterInput
   }
 
   export type UserUncheckedCreateWithoutBookingsInput = {
@@ -13313,12 +23065,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutReporterInput
   }
 
   export type UserCreateOrConnectWithoutBookingsInput = {
@@ -13328,20 +23083,28 @@ export namespace Prisma {
 
   export type ParkingSlotCreateWithoutBookingsInput = {
     id?: string
-    name: string
-    location: string
-    price: number
+    slotNumber: string
+    type?: string
+    basePrice: number
+    status?: string
+    features?: string | null
     rules?: string | null
-    isAvailable?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    location: ParkingLocationCreateNestedOneWithoutSlotsInput
   }
 
   export type ParkingSlotUncheckedCreateWithoutBookingsInput = {
     id?: string
-    name: string
-    location: string
-    price: number
+    slotNumber: string
+    locationId: string
+    type?: string
+    basePrice: number
+    status?: string
+    features?: string | null
     rules?: string | null
-    isAvailable?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ParkingSlotCreateOrConnectWithoutBookingsInput = {
@@ -13354,6 +23117,12 @@ export namespace Prisma {
     amount: number
     method: string
     status?: string
+    transactionId?: string | null
+    gatewayResponse?: string | null
+    paidAt?: Date | string | null
+    refundedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPaymentsInput
   }
 
@@ -13363,11 +23132,61 @@ export namespace Prisma {
     amount: number
     method: string
     status?: string
+    transactionId?: string | null
+    gatewayResponse?: string | null
+    paidAt?: Date | string | null
+    refundedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PaymentCreateOrConnectWithoutBookingInput = {
     where: PaymentWhereUniqueInput
     create: XOR<PaymentCreateWithoutBookingInput, PaymentUncheckedCreateWithoutBookingInput>
+  }
+
+  export type IncidentCreateWithoutBookingInput = {
+    id?: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    location: ParkingLocationCreateNestedOneWithoutIncidentsInput
+    reporter: UserCreateNestedOneWithoutIncidentsInput
+  }
+
+  export type IncidentUncheckedCreateWithoutBookingInput = {
+    id?: string
+    locationId: string
+    reporterId: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IncidentCreateOrConnectWithoutBookingInput = {
+    where: IncidentWhereUniqueInput
+    create: XOR<IncidentCreateWithoutBookingInput, IncidentUncheckedCreateWithoutBookingInput>
+  }
+
+  export type IncidentCreateManyBookingInputEnvelope = {
+    data: IncidentCreateManyBookingInput | IncidentCreateManyBookingInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutBookingsInput = {
@@ -13387,12 +23206,15 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUpdateManyWithoutReporterNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBookingsInput = {
@@ -13401,12 +23223,15 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutReporterNestedInput
   }
 
   export type ParkingSlotUpsertWithoutBookingsInput = {
@@ -13422,20 +23247,28 @@ export namespace Prisma {
 
   export type ParkingSlotUpdateWithoutBookingsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
     rules?: NullableStringFieldUpdateOperationsInput | string | null
-    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: ParkingLocationUpdateOneRequiredWithoutSlotsNestedInput
   }
 
   export type ParkingSlotUncheckedUpdateWithoutBookingsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
     rules?: NullableStringFieldUpdateOperationsInput | string | null
-    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentUpsertWithoutBookingInput = {
@@ -13454,6 +23287,12 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPaymentsNestedInput
   }
 
@@ -13463,6 +23302,28 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentUpsertWithWhereUniqueWithoutBookingInput = {
+    where: IncidentWhereUniqueInput
+    update: XOR<IncidentUpdateWithoutBookingInput, IncidentUncheckedUpdateWithoutBookingInput>
+    create: XOR<IncidentCreateWithoutBookingInput, IncidentUncheckedCreateWithoutBookingInput>
+  }
+
+  export type IncidentUpdateWithWhereUniqueWithoutBookingInput = {
+    where: IncidentWhereUniqueInput
+    data: XOR<IncidentUpdateWithoutBookingInput, IncidentUncheckedUpdateWithoutBookingInput>
+  }
+
+  export type IncidentUpdateManyWithWhereWithoutBookingInput = {
+    where: IncidentScalarWhereInput
+    data: XOR<IncidentUpdateManyMutationInput, IncidentUncheckedUpdateManyWithoutBookingInput>
   }
 
   export type UserCreateWithoutPaymentsInput = {
@@ -13471,12 +23332,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     bookings?: BookingCreateNestedManyWithoutUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleCreateNestedManyWithoutUserInput
+    incidents?: IncidentCreateNestedManyWithoutReporterInput
   }
 
   export type UserUncheckedCreateWithoutPaymentsInput = {
@@ -13485,12 +23349,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutReporterInput
   }
 
   export type UserCreateOrConnectWithoutPaymentsInput = {
@@ -13502,9 +23369,19 @@ export namespace Prisma {
     id?: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutBookingsInput
     slot: ParkingSlotCreateNestedOneWithoutBookingsInput
+    incidents?: IncidentCreateNestedManyWithoutBookingInput
   }
 
   export type BookingUncheckedCreateWithoutPaymentInput = {
@@ -13513,7 +23390,17 @@ export namespace Prisma {
     slotId: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    incidents?: IncidentUncheckedCreateNestedManyWithoutBookingInput
   }
 
   export type BookingCreateOrConnectWithoutPaymentInput = {
@@ -13538,12 +23425,15 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     bookings?: BookingUpdateManyWithoutUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUpdateManyWithoutReporterNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPaymentsInput = {
@@ -13552,12 +23442,15 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutReporterNestedInput
   }
 
   export type BookingUpsertWithoutPaymentInput = {
@@ -13575,9 +23468,19 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBookingsNestedInput
     slot?: ParkingSlotUpdateOneRequiredWithoutBookingsNestedInput
+    incidents?: IncidentUpdateManyWithoutBookingNestedInput
   }
 
   export type BookingUncheckedUpdateWithoutPaymentInput = {
@@ -13586,7 +23489,17 @@ export namespace Prisma {
     slotId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    incidents?: IncidentUncheckedUpdateManyWithoutBookingNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -13595,12 +23508,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     bookings?: BookingCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleCreateNestedManyWithoutUserInput
+    incidents?: IncidentCreateNestedManyWithoutReporterInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -13609,12 +23525,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     image?: string | null
+    passwordHash?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutReporterInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -13639,12 +23558,15 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     bookings?: BookingUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUpdateManyWithoutReporterNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -13653,12 +23575,359 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutReporterNestedInput
+  }
+
+  export type BookingCreateWithoutIncidentsInput = {
+    id?: string
+    startTime: Date | string
+    endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
+    status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutBookingsInput
+    slot: ParkingSlotCreateNestedOneWithoutBookingsInput
+    payment?: PaymentCreateNestedOneWithoutBookingInput
+  }
+
+  export type BookingUncheckedCreateWithoutIncidentsInput = {
+    id?: string
+    userId: string
+    slotId: string
+    startTime: Date | string
+    endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
+    status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    payment?: PaymentUncheckedCreateNestedOneWithoutBookingInput
+  }
+
+  export type BookingCreateOrConnectWithoutIncidentsInput = {
+    where: BookingWhereUniqueInput
+    create: XOR<BookingCreateWithoutIncidentsInput, BookingUncheckedCreateWithoutIncidentsInput>
+  }
+
+  export type ParkingLocationCreateWithoutIncidentsInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    slots?: ParkingSlotCreateNestedManyWithoutLocationInput
+    userRoles?: UserRoleCreateNestedManyWithoutLocationInput
+    analytics?: ParkingAnalyticsCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationUncheckedCreateWithoutIncidentsInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    slots?: ParkingSlotUncheckedCreateNestedManyWithoutLocationInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutLocationInput
+    analytics?: ParkingAnalyticsUncheckedCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationCreateOrConnectWithoutIncidentsInput = {
+    where: ParkingLocationWhereUniqueInput
+    create: XOR<ParkingLocationCreateWithoutIncidentsInput, ParkingLocationUncheckedCreateWithoutIncidentsInput>
+  }
+
+  export type UserCreateWithoutIncidentsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    passwordHash?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    bookings?: BookingCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutIncidentsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    passwordHash?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutUserInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutIncidentsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutIncidentsInput, UserUncheckedCreateWithoutIncidentsInput>
+  }
+
+  export type BookingUpsertWithoutIncidentsInput = {
+    update: XOR<BookingUpdateWithoutIncidentsInput, BookingUncheckedUpdateWithoutIncidentsInput>
+    create: XOR<BookingCreateWithoutIncidentsInput, BookingUncheckedCreateWithoutIncidentsInput>
+    where?: BookingWhereInput
+  }
+
+  export type BookingUpdateToOneWithWhereWithoutIncidentsInput = {
+    where?: BookingWhereInput
+    data: XOR<BookingUpdateWithoutIncidentsInput, BookingUncheckedUpdateWithoutIncidentsInput>
+  }
+
+  export type BookingUpdateWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutBookingsNestedInput
+    slot?: ParkingSlotUpdateOneRequiredWithoutBookingsNestedInput
+    payment?: PaymentUpdateOneWithoutBookingNestedInput
+  }
+
+  export type BookingUncheckedUpdateWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    slotId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    payment?: PaymentUncheckedUpdateOneWithoutBookingNestedInput
+  }
+
+  export type ParkingLocationUpsertWithoutIncidentsInput = {
+    update: XOR<ParkingLocationUpdateWithoutIncidentsInput, ParkingLocationUncheckedUpdateWithoutIncidentsInput>
+    create: XOR<ParkingLocationCreateWithoutIncidentsInput, ParkingLocationUncheckedCreateWithoutIncidentsInput>
+    where?: ParkingLocationWhereInput
+  }
+
+  export type ParkingLocationUpdateToOneWithWhereWithoutIncidentsInput = {
+    where?: ParkingLocationWhereInput
+    data: XOR<ParkingLocationUpdateWithoutIncidentsInput, ParkingLocationUncheckedUpdateWithoutIncidentsInput>
+  }
+
+  export type ParkingLocationUpdateWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slots?: ParkingSlotUpdateManyWithoutLocationNestedInput
+    userRoles?: UserRoleUpdateManyWithoutLocationNestedInput
+    analytics?: ParkingAnalyticsUpdateManyWithoutLocationNestedInput
+  }
+
+  export type ParkingLocationUncheckedUpdateWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slots?: ParkingSlotUncheckedUpdateManyWithoutLocationNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutLocationNestedInput
+    analytics?: ParkingAnalyticsUncheckedUpdateManyWithoutLocationNestedInput
+  }
+
+  export type UserUpsertWithoutIncidentsInput = {
+    update: XOR<UserUpdateWithoutIncidentsInput, UserUncheckedUpdateWithoutIncidentsInput>
+    create: XOR<UserCreateWithoutIncidentsInput, UserUncheckedCreateWithoutIncidentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutIncidentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutIncidentsInput, UserUncheckedUpdateWithoutIncidentsInput>
+  }
+
+  export type UserUpdateWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    bookings?: BookingUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    payments?: PaymentUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutUserNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ParkingLocationCreateWithoutAnalyticsInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    slots?: ParkingSlotCreateNestedManyWithoutLocationInput
+    userRoles?: UserRoleCreateNestedManyWithoutLocationInput
+    incidents?: IncidentCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationUncheckedCreateWithoutAnalyticsInput = {
+    id?: string
+    name: string
+    address: string
+    latitude?: number | null
+    longitude?: number | null
+    description?: string | null
+    features?: string | null
+    operatingHours?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    slots?: ParkingSlotUncheckedCreateNestedManyWithoutLocationInput
+    userRoles?: UserRoleUncheckedCreateNestedManyWithoutLocationInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutLocationInput
+  }
+
+  export type ParkingLocationCreateOrConnectWithoutAnalyticsInput = {
+    where: ParkingLocationWhereUniqueInput
+    create: XOR<ParkingLocationCreateWithoutAnalyticsInput, ParkingLocationUncheckedCreateWithoutAnalyticsInput>
+  }
+
+  export type ParkingLocationUpsertWithoutAnalyticsInput = {
+    update: XOR<ParkingLocationUpdateWithoutAnalyticsInput, ParkingLocationUncheckedUpdateWithoutAnalyticsInput>
+    create: XOR<ParkingLocationCreateWithoutAnalyticsInput, ParkingLocationUncheckedCreateWithoutAnalyticsInput>
+    where?: ParkingLocationWhereInput
+  }
+
+  export type ParkingLocationUpdateToOneWithWhereWithoutAnalyticsInput = {
+    where?: ParkingLocationWhereInput
+    data: XOR<ParkingLocationUpdateWithoutAnalyticsInput, ParkingLocationUncheckedUpdateWithoutAnalyticsInput>
+  }
+
+  export type ParkingLocationUpdateWithoutAnalyticsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slots?: ParkingSlotUpdateManyWithoutLocationNestedInput
+    userRoles?: UserRoleUpdateManyWithoutLocationNestedInput
+    incidents?: IncidentUpdateManyWithoutLocationNestedInput
+  }
+
+  export type ParkingLocationUncheckedUpdateWithoutAnalyticsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    operatingHours?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slots?: ParkingSlotUncheckedUpdateManyWithoutLocationNestedInput
+    userRoles?: UserRoleUncheckedUpdateManyWithoutLocationNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutLocationNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -13686,14 +23955,27 @@ export namespace Prisma {
     slotId: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type NotificationCreateManyUserInput = {
     id?: string
+    title: string
     message: string
     type: string
+    priority?: string
     isRead?: boolean
+    readAt?: Date | string | null
+    data?: string | null
     createdAt?: Date | string
   }
 
@@ -13703,6 +23985,38 @@ export namespace Prisma {
     amount: number
     method: string
     status?: string
+    transactionId?: string | null
+    gatewayResponse?: string | null
+    paidAt?: Date | string | null
+    refundedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserRoleCreateManyUserInput = {
+    id?: string
+    role: string
+    locationId?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IncidentCreateManyReporterInput = {
+    id?: string
+    bookingId?: string | null
+    locationId: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -13769,9 +24083,19 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     slot?: ParkingSlotUpdateOneRequiredWithoutBookingsNestedInput
     payment?: PaymentUpdateOneWithoutBookingNestedInput
+    incidents?: IncidentUpdateManyWithoutBookingNestedInput
   }
 
   export type BookingUncheckedUpdateWithoutUserInput = {
@@ -13779,8 +24103,18 @@ export namespace Prisma {
     slotId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     payment?: PaymentUncheckedUpdateOneWithoutBookingNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutBookingNestedInput
   }
 
   export type BookingUncheckedUpdateManyWithoutUserInput = {
@@ -13788,30 +24122,51 @@ export namespace Prisma {
     slotId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NotificationUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NotificationUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NotificationUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13820,6 +24175,12 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     booking?: BookingUpdateOneRequiredWithoutPaymentNestedInput
   }
 
@@ -13829,6 +24190,12 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentUncheckedUpdateManyWithoutUserInput = {
@@ -13837,6 +24204,292 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     method?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    gatewayResponse?: NullableStringFieldUpdateOperationsInput | string | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserRoleUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: ParkingLocationUpdateOneWithoutUserRolesNestedInput
+  }
+
+  export type UserRoleUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserRoleUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentUpdateWithoutReporterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    booking?: BookingUpdateOneWithoutIncidentsNestedInput
+    location?: ParkingLocationUpdateOneRequiredWithoutIncidentsNestedInput
+  }
+
+  export type IncidentUncheckedUpdateWithoutReporterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookingId?: NullableStringFieldUpdateOperationsInput | string | null
+    locationId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentUncheckedUpdateManyWithoutReporterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookingId?: NullableStringFieldUpdateOperationsInput | string | null
+    locationId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingSlotCreateManyLocationInput = {
+    id?: string
+    slotNumber: string
+    type?: string
+    basePrice: number
+    status?: string
+    features?: string | null
+    rules?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserRoleCreateManyLocationInput = {
+    id?: string
+    userId: string
+    role: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IncidentCreateManyLocationInput = {
+    id?: string
+    bookingId?: string | null
+    reporterId: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ParkingAnalyticsCreateManyLocationInput = {
+    id?: string
+    date: Date | string
+    totalSlots: number
+    occupiedSlots: number
+    totalBookings: number
+    totalRevenue: number
+    averageStayTime?: number | null
+    peakHours?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ParkingSlotUpdateWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUpdateManyWithoutSlotNestedInput
+  }
+
+  export type ParkingSlotUncheckedUpdateWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUncheckedUpdateManyWithoutSlotNestedInput
+  }
+
+  export type ParkingSlotUncheckedUpdateManyWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slotNumber?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    basePrice?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    features?: NullableStringFieldUpdateOperationsInput | string | null
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserRoleUpdateWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserRolesNestedInput
+  }
+
+  export type UserRoleUncheckedUpdateWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserRoleUncheckedUpdateManyWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentUpdateWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    booking?: BookingUpdateOneWithoutIncidentsNestedInput
+    reporter?: UserUpdateOneRequiredWithoutIncidentsNestedInput
+  }
+
+  export type IncidentUncheckedUpdateWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookingId?: NullableStringFieldUpdateOperationsInput | string | null
+    reporterId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentUncheckedUpdateManyWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookingId?: NullableStringFieldUpdateOperationsInput | string | null
+    reporterId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingAnalyticsUpdateWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalSlots?: IntFieldUpdateOperationsInput | number
+    occupiedSlots?: IntFieldUpdateOperationsInput | number
+    totalBookings?: IntFieldUpdateOperationsInput | number
+    totalRevenue?: FloatFieldUpdateOperationsInput | number
+    averageStayTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    peakHours?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingAnalyticsUncheckedUpdateWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalSlots?: IntFieldUpdateOperationsInput | number
+    occupiedSlots?: IntFieldUpdateOperationsInput | number
+    totalBookings?: IntFieldUpdateOperationsInput | number
+    totalRevenue?: FloatFieldUpdateOperationsInput | number
+    averageStayTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    peakHours?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingAnalyticsUncheckedUpdateManyWithoutLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalSlots?: IntFieldUpdateOperationsInput | number
+    occupiedSlots?: IntFieldUpdateOperationsInput | number
+    totalBookings?: IntFieldUpdateOperationsInput | number
+    totalRevenue?: FloatFieldUpdateOperationsInput | number
+    averageStayTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    peakHours?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookingCreateManySlotInput = {
@@ -13844,16 +24497,35 @@ export namespace Prisma {
     userId: string
     startTime: Date | string
     endTime: Date | string
+    actualStartTime?: Date | string | null
+    actualEndTime?: Date | string | null
+    totalAmount: number
     status?: string
+    qrCode?: string | null
+    checkInCode?: string | null
+    extendedTimes?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type BookingUpdateWithoutSlotInput = {
     id?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBookingsNestedInput
     payment?: PaymentUpdateOneWithoutBookingNestedInput
+    incidents?: IncidentUpdateManyWithoutBookingNestedInput
   }
 
   export type BookingUncheckedUpdateWithoutSlotInput = {
@@ -13861,8 +24533,18 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     payment?: PaymentUncheckedUpdateOneWithoutBookingNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutBookingNestedInput
   }
 
   export type BookingUncheckedUpdateManyWithoutSlotInput = {
@@ -13870,7 +24552,84 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalAmount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
+    checkInCode?: NullableStringFieldUpdateOperationsInput | string | null
+    extendedTimes?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentCreateManyBookingInput = {
+    id?: string
+    locationId: string
+    reporterId: string
+    type: string
+    severity?: string
+    title: string
+    description: string
+    status?: string
+    resolution?: string | null
+    resolvedBy?: string | null
+    resolvedAt?: Date | string | null
+    images?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IncidentUpdateWithoutBookingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: ParkingLocationUpdateOneRequiredWithoutIncidentsNestedInput
+    reporter?: UserUpdateOneRequiredWithoutIncidentsNestedInput
+  }
+
+  export type IncidentUncheckedUpdateWithoutBookingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    reporterId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IncidentUncheckedUpdateManyWithoutBookingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    reporterId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    severity?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    resolution?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    images?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -158,13 +158,41 @@ exports.Prisma.VerificationTokenScalarFieldEnum = {
   expires: 'expires'
 };
 
-exports.Prisma.ParkingSlotScalarFieldEnum = {
+exports.Prisma.UserRoleScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  role: 'role',
+  locationId: 'locationId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ParkingLocationScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  location: 'location',
-  price: 'price',
+  address: 'address',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  description: 'description',
+  features: 'features',
+  operatingHours: 'operatingHours',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ParkingSlotScalarFieldEnum = {
+  id: 'id',
+  slotNumber: 'slotNumber',
+  locationId: 'locationId',
+  type: 'type',
+  basePrice: 'basePrice',
+  status: 'status',
+  features: 'features',
   rules: 'rules',
-  isAvailable: 'isAvailable'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.BookingScalarFieldEnum = {
@@ -173,7 +201,16 @@ exports.Prisma.BookingScalarFieldEnum = {
   slotId: 'slotId',
   startTime: 'startTime',
   endTime: 'endTime',
-  status: 'status'
+  actualStartTime: 'actualStartTime',
+  actualEndTime: 'actualEndTime',
+  totalAmount: 'totalAmount',
+  status: 'status',
+  qrCode: 'qrCode',
+  checkInCode: 'checkInCode',
+  extendedTimes: 'extendedTimes',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PaymentScalarFieldEnum = {
@@ -182,15 +219,67 @@ exports.Prisma.PaymentScalarFieldEnum = {
   bookingId: 'bookingId',
   amount: 'amount',
   method: 'method',
-  status: 'status'
+  status: 'status',
+  transactionId: 'transactionId',
+  gatewayResponse: 'gatewayResponse',
+  paidAt: 'paidAt',
+  refundedAt: 'refundedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.NotificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  title: 'title',
   message: 'message',
   type: 'type',
+  priority: 'priority',
   isRead: 'isRead',
+  readAt: 'readAt',
+  data: 'data',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.IncidentScalarFieldEnum = {
+  id: 'id',
+  bookingId: 'bookingId',
+  locationId: 'locationId',
+  reporterId: 'reporterId',
+  type: 'type',
+  severity: 'severity',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  resolution: 'resolution',
+  resolvedBy: 'resolvedBy',
+  resolvedAt: 'resolvedAt',
+  images: 'images',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ParkingAnalyticsScalarFieldEnum = {
+  id: 'id',
+  locationId: 'locationId',
+  date: 'date',
+  totalSlots: 'totalSlots',
+  occupiedSlots: 'occupiedSlots',
+  totalBookings: 'totalBookings',
+  totalRevenue: 'totalRevenue',
+  averageStayTime: 'averageStayTime',
+  peakHours: 'peakHours',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SystemSettingsScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  value: 'value',
+  description: 'description',
+  isActive: 'isActive',
+  updatedBy: 'updatedBy',
+  updatedAt: 'updatedAt',
   createdAt: 'createdAt'
 };
 
@@ -215,10 +304,15 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
+  UserRole: 'UserRole',
+  ParkingLocation: 'ParkingLocation',
   ParkingSlot: 'ParkingSlot',
   Booking: 'Booking',
   Payment: 'Payment',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  Incident: 'Incident',
+  ParkingAnalytics: 'ParkingAnalytics',
+  SystemSettings: 'SystemSettings'
 };
 
 /**

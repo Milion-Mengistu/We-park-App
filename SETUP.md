@@ -5,6 +5,7 @@
 The application is now running with demo authentication for development purposes.
 
 ### Current Status ✅
+
 - ✅ NextAuth.js configured
 - ✅ Dashboard working with demo data
 - ✅ Beautiful UI components functional
@@ -77,7 +78,7 @@ npx prisma db seed
 ### 🔗 Navigation
 
 - `/` - Landing page
-- `/login` - Sign in page  
+- `/login` - Sign in page
 - `/register` - Sign up page
 - `/dashboard` - User dashboard (demo mode)
 

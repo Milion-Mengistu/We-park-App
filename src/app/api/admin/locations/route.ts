@@ -5,7 +5,7 @@ import { prisma } from '@/src/lib/prisma';
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -35,10 +35,14 @@ export async function GET(request: NextRequest) {
 
     // Transform data to include availability and pricing info
     const transformedLocations = locations.map((location) => {
-      const availableSlots = location.slots.filter(slot => slot.status === 'AVAILABLE');
-      const averagePrice = location.slots.length > 0 
-        ? location.slots.reduce((sum, slot) => sum + slot.basePrice, 0) / location.slots.length
-        : 0;
+      const availableSlots = location.slots.filter(
+        (slot) => slot.status === 'AVAILABLE'
+      );
+      const averagePrice =
+        location.slots.length > 0
+          ? location.slots.reduce((sum, slot) => sum + slot.basePrice, 0) /
+            location.slots.length
+          : 0;
 
       // Parse features JSON
       let features = [];
@@ -63,11 +67,11 @@ export async function GET(request: NextRequest) {
           occupied: location._count.slots - availableSlots.length,
         },
         pricing: {
-          min: Math.min(...location.slots.map(s => s.basePrice)),
-          max: Math.max(...location.slots.map(s => s.basePrice)),
+          min: Math.min(...location.slots.map((s) => s.basePrice)),
+          max: Math.max(...location.slots.map((s) => s.basePrice)),
           average: Math.round(averagePrice * 100) / 100,
         },
-        slots: location.slots.map(slot => ({
+        slots: location.slots.map((slot) => ({
           ...slot,
           features: slot.features ? JSON.parse(slot.features) : [],
         })),
@@ -89,7 +93,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

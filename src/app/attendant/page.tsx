@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { generateQRCodeDataURL } from "@/src/lib/qr-service";
-import { RoleGuard } from "@/src/components/RoleGuard";
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { generateQRCodeDataURL } from '@/src/lib/qr-service';
+import { RoleGuard } from '@/src/components/RoleGuard';
 
 interface CheckInResult {
   booking: any;
@@ -20,7 +20,9 @@ function AttendantPanelContent() {
   const [qrInput, setQrInput] = useState('');
   const [checkInCode, setCheckInCode] = useState('');
   const [scanning, setScanning] = useState(false);
-  const [checkInResult, setCheckInResult] = useState<CheckInResult | null>(null);
+  const [checkInResult, setCheckInResult] = useState<CheckInResult | null>(
+    null
+  );
   const [error, setError] = useState('');
   const [recentCheckins, setRecentCheckins] = useState([]);
 
@@ -130,9 +132,11 @@ function AttendantPanelContent() {
               <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                 Attendant Panel
               </h1>
-              <p className="text-gray-600">Scan QR codes and manage parking check-ins</p>
+              <p className="text-gray-600">
+                Scan QR codes and manage parking check-ins
+              </p>
             </div>
-            
+
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-3 py-1 text-sm font-medium text-green-700">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -142,8 +146,18 @@ function AttendantPanelContent() {
                 href="/dashboard"
                 className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors duration-200"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
                 Dashboard
               </Link>
@@ -164,8 +178,18 @@ function AttendantPanelContent() {
             }`}
           >
             <div className="flex items-center justify-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
+                />
               </svg>
               QR Scanner
             </div>
@@ -179,8 +203,18 @@ function AttendantPanelContent() {
             }`}
           >
             <div className="flex items-center justify-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                />
               </svg>
               Manual Entry
             </div>
@@ -194,8 +228,18 @@ function AttendantPanelContent() {
             }`}
           >
             <div className="flex items-center justify-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
               Recent Activity
             </div>
@@ -208,12 +252,26 @@ function AttendantPanelContent() {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg">
               <div className="text-center mb-6">
                 <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                  <svg
+                    className="w-10 h-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
+                    />
                   </svg>
                 </div>
-                <h2 className="text-xl font-bold text-gray-900 mb-2">Scan QR Code</h2>
-                <p className="text-gray-600">Scan the customer's booking QR code to check them in</p>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">
+                  Scan QR Code
+                </h2>
+                <p className="text-gray-600">
+                  Scan the customer's booking QR code to check them in
+                </p>
               </div>
 
               <div className="space-y-4">
@@ -236,8 +294,18 @@ function AttendantPanelContent() {
                 {error && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
                     <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
                       </svg>
                       {error}
                     </div>
@@ -270,12 +338,31 @@ function AttendantPanelContent() {
               <h3 className="font-bold text-gray-900 mb-4">Camera Scanner</h3>
               <div className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-300">
                 <div className="text-center">
-                  <svg className="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <svg
+                    className="w-12 h-12 text-gray-400 mx-auto mb-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
                   </svg>
-                  <p className="text-gray-500">Camera access not available in demo</p>
-                  <p className="text-sm text-gray-400">Use the input field above to enter QR codes</p>
+                  <p className="text-gray-500">
+                    Camera access not available in demo
+                  </p>
+                  <p className="text-sm text-gray-400">
+                    Use the input field above to enter QR codes
+                  </p>
                 </div>
               </div>
             </div>
@@ -287,12 +374,26 @@ function AttendantPanelContent() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg">
             <div className="text-center mb-6">
               <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                <svg
+                  className="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                  />
                 </svg>
               </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Manual Check-in</h2>
-              <p className="text-gray-600">Enter the 6-digit check-in code for manual verification</p>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">
+                Manual Check-in
+              </h2>
+              <p className="text-gray-600">
+                Enter the 6-digit check-in code for manual verification
+              </p>
             </div>
 
             <div className="space-y-4">
@@ -301,7 +402,11 @@ function AttendantPanelContent() {
                   type="text"
                   placeholder="Enter 6-digit check-in code..."
                   value={checkInCode}
-                  onChange={(e) => setCheckInCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  onChange={(e) =>
+                    setCheckInCode(
+                      e.target.value.replace(/\D/g, '').slice(0, 6)
+                    )
+                  }
                   className="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300 text-center text-2xl font-mono tracking-widest"
                   maxLength={6}
                 />
@@ -310,8 +415,18 @@ function AttendantPanelContent() {
               {error && (
                 <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
                   <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                     {error}
                   </div>
@@ -343,28 +458,57 @@ function AttendantPanelContent() {
         {/* Recent Activity Tab */}
         {activeTab === 'history' && (
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Recent Check-ins</h2>
-            
+            <h2 className="text-xl font-bold text-gray-900 mb-6">
+              Recent Check-ins
+            </h2>
+
             {recentCheckins.length === 0 ? (
               <div className="text-center py-8">
-                <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                <svg
+                  className="w-12 h-12 text-gray-400 mx-auto mb-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                  />
                 </svg>
                 <p className="text-gray-500">No recent check-ins</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {recentCheckins.map((checkin: any, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-4 bg-gray-50 rounded-xl"
+                  >
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
                         </svg>
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">{checkin.slotNumber}</p>
-                        <p className="text-sm text-gray-600">{checkin.location}</p>
+                        <p className="font-medium text-gray-900">
+                          {checkin.slotNumber}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          {checkin.location}
+                        </p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -384,11 +528,23 @@ function AttendantPanelContent() {
             <div className="bg-white rounded-2xl p-6 w-full max-w-md transform transition-all duration-300 scale-100">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Check-in Successful!</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Check-in Successful!
+                </h3>
                 <p className="text-gray-600">{checkInResult.message}</p>
               </div>
 
@@ -396,16 +552,22 @@ function AttendantPanelContent() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Location:</span>
-                    <span className="font-medium">{checkInResult.parkingDetails.location}</span>
+                    <span className="font-medium">
+                      {checkInResult.parkingDetails.location}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Slot:</span>
-                    <span className="font-medium">{checkInResult.parkingDetails.slotNumber}</span>
+                    <span className="font-medium">
+                      {checkInResult.parkingDetails.slotNumber}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Valid Until:</span>
                     <span className="font-medium">
-                      {new Date(checkInResult.parkingDetails.endTime).toLocaleTimeString()}
+                      {new Date(
+                        checkInResult.parkingDetails.endTime
+                      ).toLocaleTimeString()}
                     </span>
                   </div>
                 </div>
@@ -427,15 +589,19 @@ function AttendantPanelContent() {
 
 export default function AttendantPanel() {
   return (
-    <RoleGuard 
+    <RoleGuard
       requiredRoles={['ATTENDANT', 'ADMIN', 'SUPER_ADMIN']}
       fallback={
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
-            <p className="text-gray-600 mb-6">You need attendant privileges to access this page.</p>
-            <Link 
-              href="/dashboard" 
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+              Access Denied
+            </h1>
+            <p className="text-gray-600 mb-6">
+              You need attendant privileges to access this page.
+            </p>
+            <Link
+              href="/dashboard"
               className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium transition-colors"
             >
               Return to Dashboard

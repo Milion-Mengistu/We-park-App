@@ -5,7 +5,7 @@ import { prisma } from '@/src/lib/prisma';
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -54,7 +54,8 @@ export async function GET(request: NextRequest) {
       where: { status: 'OCCUPIED' },
     });
 
-    const occupancyRate = totalSlots > 0 ? (occupiedSlots / totalSlots) * 100 : 0;
+    const occupancyRate =
+      totalSlots > 0 ? (occupiedSlots / totalSlots) * 100 : 0;
 
     // Get additional analytics
     const weeklyBookings = await prisma.booking.count({

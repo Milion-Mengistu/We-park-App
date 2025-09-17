@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const longitude = searchParams.get('lng');
     const radius = searchParams.get('radius') || '10'; // km
 
-    let where: any = {
+    const where: any = {
       isActive: true,
     };
 
@@ -44,10 +44,14 @@ export async function GET(request: NextRequest) {
 
     // Transform data to include availability and pricing info
     const transformedLocations = locations.map((location) => {
-      const availableSlots = location.slots.filter(slot => slot.status === 'AVAILABLE');
-      const averagePrice = location.slots.length > 0 
-        ? location.slots.reduce((sum, slot) => sum + slot.basePrice, 0) / location.slots.length
-        : 0;
+      const availableSlots = location.slots.filter(
+        (slot) => slot.status === 'AVAILABLE'
+      );
+      const averagePrice =
+        location.slots.length > 0
+          ? location.slots.reduce((sum, slot) => sum + slot.basePrice, 0) /
+            location.slots.length
+          : 0;
 
       // Parse features JSON
       let features = [];
@@ -83,12 +87,12 @@ export async function GET(request: NextRequest) {
           occupied: location._count.slots - availableSlots.length,
         },
         pricing: {
-          min: Math.min(...location.slots.map(s => s.basePrice)),
-          max: Math.max(...location.slots.map(s => s.basePrice)),
+          min: Math.min(...location.slots.map((s) => s.basePrice)),
+          max: Math.max(...location.slots.map((s) => s.basePrice)),
           average: Math.round(averagePrice * 100) / 100,
         },
         distance: distance ? Math.round(distance * 100) / 100 : null,
-        slots: location.slots.map(slot => ({
+        slots: location.slots.map((slot) => ({
           ...slot,
           features: slot.features ? JSON.parse(slot.features) : [],
         })),
@@ -97,7 +101,9 @@ export async function GET(request: NextRequest) {
 
     // Sort by distance if coordinates provided
     if (latitude && longitude) {
-      transformedLocations.sort((a, b) => (a.distance || 0) - (b.distance || 0));
+      transformedLocations.sort(
+        (a, b) => (a.distance || 0) - (b.distance || 0)
+      );
     }
 
     return NextResponse.json(transformedLocations);
@@ -111,14 +117,21 @@ export async function GET(request: NextRequest) {
 }
 
 // Haversine formula to calculate distance between two coordinates
-function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+function calculateDistance(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+): number {
   const R = 6371; // Earth's radius in kilometers
   const dLat = toRadians(lat2 - lat1);
   const dLon = toRadians(lon2 - lon1);
-  const a = 
+  const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    Math.cos(toRadians(lat1)) *
+      Math.cos(toRadians(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }

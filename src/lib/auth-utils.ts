@@ -31,7 +31,7 @@ export async function getUserRoles(userId: string): Promise<UserRole[]> {
       },
     });
 
-    return userRoles.map(ur => ur.role as UserRole);
+    return userRoles.map((ur) => ur.role as UserRole);
   } catch (error) {
     console.error('Error fetching user roles:', error);
     return [];
@@ -41,7 +41,9 @@ export async function getUserRoles(userId: string): Promise<UserRole[]> {
 /**
  * Get user with roles from database
  */
-export async function getUserWithRoles(userId: string): Promise<UserWithRoles | null> {
+export async function getUserWithRoles(
+  userId: string
+): Promise<UserWithRoles | null> {
   try {
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -64,7 +66,7 @@ export async function getUserWithRoles(userId: string): Promise<UserWithRoles | 
       name: user.name,
       email: user.email,
       image: user.image,
-      roles: user.userRoles.map(ur => ({
+      roles: user.userRoles.map((ur) => ({
         role: ur.role as UserRole,
         locationId: ur.locationId,
         isActive: ur.isActive,
@@ -79,15 +81,21 @@ export async function getUserWithRoles(userId: string): Promise<UserWithRoles | 
 /**
  * Check if user has specific role
  */
-export function hasRole(userRoles: UserRole[], requiredRole: UserRole): boolean {
+export function hasRole(
+  userRoles: UserRole[],
+  requiredRole: UserRole
+): boolean {
   return userRoles.includes(requiredRole);
 }
 
 /**
  * Check if user has any of the required roles
  */
-export function hasAnyRole(userRoles: UserRole[], requiredRoles: UserRole[]): boolean {
-  return requiredRoles.some(role => userRoles.includes(role));
+export function hasAnyRole(
+  userRoles: UserRole[],
+  requiredRoles: UserRole[]
+): boolean {
+  return requiredRoles.some((role) => userRoles.includes(role));
 }
 
 /**
@@ -124,23 +132,27 @@ export function getPrimaryRole(userRoles: UserRole[]): UserRole {
 /**
  * Server-side role authorization
  */
-export async function requireRole(requiredRoles: UserRole[]): Promise<UserWithRoles> {
+export async function requireRole(
+  requiredRoles: UserRole[]
+): Promise<UserWithRoles> {
   const session = await getServerSession(authOptions);
-  
+
   if (!session?.user?.id) {
     throw new Error('Unauthorized: No valid session');
   }
 
   const userWithRoles = await getUserWithRoles(session.user.id);
-  
+
   if (!userWithRoles) {
     throw new Error('Unauthorized: User not found');
   }
 
-  const userRoles = userWithRoles.roles.map(r => r.role);
-  
+  const userRoles = userWithRoles.roles.map((r) => r.role);
+
   if (!hasAnyRole(userRoles, requiredRoles)) {
-    throw new Error(`Unauthorized: Requires one of: ${requiredRoles.join(', ')}`);
+    throw new Error(
+      `Unauthorized: Requires one of: ${requiredRoles.join(', ')}`
+    );
   }
 
   return userWithRoles;
@@ -194,8 +206,8 @@ export async function assignRole(
  * Remove role from user
  */
 export async function removeRole(
-  userId: string, 
-  role: UserRole, 
+  userId: string,
+  role: UserRole,
   locationId?: string
 ): Promise<void> {
   try {

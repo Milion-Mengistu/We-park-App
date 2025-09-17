@@ -4,7 +4,13 @@ export interface NotificationRequest {
   userId: string;
   title: string;
   message: string;
-  type: 'BOOKING' | 'PAYMENT' | 'EXPIRY' | 'INCIDENT' | 'SYSTEM' | 'PROMOTIONAL';
+  type:
+    | 'BOOKING'
+    | 'PAYMENT'
+    | 'EXPIRY'
+    | 'INCIDENT'
+    | 'SYSTEM'
+    | 'PROMOTIONAL';
   priority?: 'LOW' | 'NORMAL' | 'HIGH' | 'URGENT';
   data?: any;
   scheduledFor?: Date;
@@ -52,7 +58,10 @@ export class NotificationService {
     });
   }
 
-  static async markAsRead(notificationId: string, userId: string): Promise<void> {
+  static async markAsRead(
+    notificationId: string,
+    userId: string
+  ): Promise<void> {
     await prisma.notification.updateMany({
       where: {
         id: notificationId,
@@ -78,7 +87,10 @@ export class NotificationService {
     });
   }
 
-  static async deleteNotification(notificationId: string, userId: string): Promise<void> {
+  static async deleteNotification(
+    notificationId: string,
+    userId: string
+  ): Promise<void> {
     await prisma.notification.deleteMany({
       where: {
         id: notificationId,
@@ -289,7 +301,9 @@ export class NotificationService {
   }
 
   // Real-time notification delivery (mock implementation)
-  private static async sendRealTimeNotification(notification: any): Promise<void> {
+  private static async sendRealTimeNotification(
+    notification: any
+  ): Promise<void> {
     // In production, this would integrate with:
     // - WebSocket connections for real-time browser notifications
     // - Push notification services for mobile apps
@@ -377,9 +391,11 @@ export class NotificationService {
       },
     };
 
-    return templates[type]?.[action] || {
-      title: 'Notification',
-      message: 'You have a new notification',
-    };
+    return (
+      templates[type]?.[action] || {
+        title: 'Notification',
+        message: 'You have a new notification',
+      }
+    );
   }
 }

@@ -58,7 +58,7 @@ export function useRoles(): UseRolesReturn {
   };
 
   const hasAnyRole = (requiredRoles: UserRole[]): boolean => {
-    return requiredRoles.some(role => roles.includes(role));
+    return requiredRoles.some((role) => roles.includes(role));
   };
 
   const isAdmin = hasAnyRole(['ADMIN', 'SUPER_ADMIN']);

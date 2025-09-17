@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface SystemSettings {
   id: string;
@@ -28,9 +28,9 @@ export default function AdminSettings() {
   const [activeTab, setActiveTab] = useState('general');
 
   useEffect(() => {
-    if (status === "loading") return;
-    if (status === "unauthenticated") {
-      router.push("/login");
+    if (status === 'loading') return;
+    if (status === 'unauthenticated') {
+      router.push('/login');
       return;
     }
     fetchSettings();
@@ -47,171 +47,173 @@ export default function AdminSettings() {
         // Mock data for demo
         setCategories([
           {
-            name: "General",
-            description: "Basic system configuration",
+            name: 'General',
+            description: 'Basic system configuration',
             settings: [
               {
-                id: "1",
-                key: "SYSTEM_NAME",
-                value: "We Park - Smart Parking System",
-                description: "The name of the parking system",
+                id: '1',
+                key: 'SYSTEM_NAME',
+                value: 'We Park - Smart Parking System',
+                description: 'The name of the parking system',
                 isActive: true,
               },
               {
-                id: "2",
-                key: "SYSTEM_EMAIL",
-                value: "admin@wepark.com",
-                description: "System administrator email",
+                id: '2',
+                key: 'SYSTEM_EMAIL',
+                value: 'admin@wepark.com',
+                description: 'System administrator email',
                 isActive: true,
               },
               {
-                id: "3",
-                key: "SUPPORT_PHONE",
-                value: "+251-911-123456",
-                description: "Customer support phone number",
+                id: '3',
+                key: 'SUPPORT_PHONE',
+                value: '+251-911-123456',
+                description: 'Customer support phone number',
                 isActive: true,
               },
               {
-                id: "4",
-                key: "MAINTENANCE_MODE",
-                value: "false",
-                description: "Enable maintenance mode to disable public access",
+                id: '4',
+                key: 'MAINTENANCE_MODE',
+                value: 'false',
+                description: 'Enable maintenance mode to disable public access',
                 isActive: true,
               },
             ],
           },
           {
-            name: "Booking",
-            description: "Booking and reservation settings",
+            name: 'Booking',
+            description: 'Booking and reservation settings',
             settings: [
               {
-                id: "5",
-                key: "MAX_BOOKING_HOURS",
-                value: "24",
-                description: "Maximum hours a user can book in advance",
+                id: '5',
+                key: 'MAX_BOOKING_HOURS',
+                value: '24',
+                description: 'Maximum hours a user can book in advance',
                 isActive: true,
               },
               {
-                id: "6",
-                key: "BOOKING_GRACE_PERIOD",
-                value: "15",
-                description: "Grace period in minutes for late arrivals",
+                id: '6',
+                key: 'BOOKING_GRACE_PERIOD',
+                value: '15',
+                description: 'Grace period in minutes for late arrivals',
                 isActive: true,
               },
               {
-                id: "7",
-                key: "AUTO_CANCEL_HOURS",
-                value: "2",
-                description: "Hours after which unpaid bookings are automatically cancelled",
+                id: '7',
+                key: 'AUTO_CANCEL_HOURS',
+                value: '2',
+                description:
+                  'Hours after which unpaid bookings are automatically cancelled',
                 isActive: true,
               },
               {
-                id: "8",
-                key: "EXTEND_BOOKING_LIMIT",
-                value: "3",
-                description: "Maximum number of times a booking can be extended",
+                id: '8',
+                key: 'EXTEND_BOOKING_LIMIT',
+                value: '3',
+                description:
+                  'Maximum number of times a booking can be extended',
                 isActive: true,
               },
             ],
           },
           {
-            name: "Payment",
-            description: "Payment and pricing configuration",
+            name: 'Payment',
+            description: 'Payment and pricing configuration',
             settings: [
               {
-                id: "9",
-                key: "CURRENCY",
-                value: "ETB",
-                description: "System currency (Ethiopian Birr)",
+                id: '9',
+                key: 'CURRENCY',
+                value: 'ETB',
+                description: 'System currency (Ethiopian Birr)',
                 isActive: true,
               },
               {
-                id: "10",
-                key: "PAYMENT_TIMEOUT",
-                value: "30",
-                description: "Payment timeout in minutes",
+                id: '10',
+                key: 'PAYMENT_TIMEOUT',
+                value: '30',
+                description: 'Payment timeout in minutes',
                 isActive: true,
               },
               {
-                id: "11",
-                key: "REFUND_POLICY",
-                value: "FREE_UNTIL_1HR",
-                description: "Cancellation and refund policy",
+                id: '11',
+                key: 'REFUND_POLICY',
+                value: 'FREE_UNTIL_1HR',
+                description: 'Cancellation and refund policy',
                 isActive: true,
               },
               {
-                id: "12",
-                key: "DYNAMIC_PRICING",
-                value: "true",
-                description: "Enable dynamic pricing based on demand",
+                id: '12',
+                key: 'DYNAMIC_PRICING',
+                value: 'true',
+                description: 'Enable dynamic pricing based on demand',
                 isActive: true,
               },
             ],
           },
           {
-            name: "Notifications",
-            description: "Notification and communication settings",
+            name: 'Notifications',
+            description: 'Notification and communication settings',
             settings: [
               {
-                id: "13",
-                key: "EMAIL_NOTIFICATIONS",
-                value: "true",
-                description: "Send email notifications to users",
+                id: '13',
+                key: 'EMAIL_NOTIFICATIONS',
+                value: 'true',
+                description: 'Send email notifications to users',
                 isActive: true,
               },
               {
-                id: "14",
-                key: "SMS_NOTIFICATIONS",
-                value: "true",
-                description: "Send SMS notifications for urgent alerts",
+                id: '14',
+                key: 'SMS_NOTIFICATIONS',
+                value: 'true',
+                description: 'Send SMS notifications for urgent alerts',
                 isActive: true,
               },
               {
-                id: "15",
-                key: "PUSH_NOTIFICATIONS",
-                value: "true",
-                description: "Send push notifications to mobile apps",
+                id: '15',
+                key: 'PUSH_NOTIFICATIONS',
+                value: 'true',
+                description: 'Send push notifications to mobile apps',
                 isActive: true,
               },
               {
-                id: "16",
-                key: "REMINDER_BEFORE_EXPIRY",
-                value: "30",
-                description: "Minutes before expiry to send reminder",
+                id: '16',
+                key: 'REMINDER_BEFORE_EXPIRY',
+                value: '30',
+                description: 'Minutes before expiry to send reminder',
                 isActive: true,
               },
             ],
           },
           {
-            name: "Security",
-            description: "Security and access control settings",
+            name: 'Security',
+            description: 'Security and access control settings',
             settings: [
               {
-                id: "17",
-                key: "SESSION_TIMEOUT",
-                value: "480",
-                description: "User session timeout in minutes",
+                id: '17',
+                key: 'SESSION_TIMEOUT',
+                value: '480',
+                description: 'User session timeout in minutes',
                 isActive: true,
               },
               {
-                id: "18",
-                key: "MAX_LOGIN_ATTEMPTS",
-                value: "5",
-                description: "Maximum failed login attempts before lockout",
+                id: '18',
+                key: 'MAX_LOGIN_ATTEMPTS',
+                value: '5',
+                description: 'Maximum failed login attempts before lockout',
                 isActive: true,
               },
               {
-                id: "19",
-                key: "QR_CODE_EXPIRY",
-                value: "24",
-                description: "QR code validity in hours",
+                id: '19',
+                key: 'QR_CODE_EXPIRY',
+                value: '24',
+                description: 'QR code validity in hours',
                 isActive: true,
               },
               {
-                id: "20",
-                key: "API_RATE_LIMIT",
-                value: "100",
-                description: "API requests per minute per user",
+                id: '20',
+                key: 'API_RATE_LIMIT',
+                value: '100',
+                description: 'API requests per minute per user',
                 isActive: true,
               },
             ],
@@ -239,11 +241,13 @@ export default function AdminSettings() {
       });
 
       if (response.ok) {
-        setCategories(prev =>
-          prev.map(category => ({
+        setCategories((prev) =>
+          prev.map((category) => ({
             ...category,
-            settings: category.settings.map(setting =>
-              setting.id === settingId ? { ...setting, value: newValue } : setting
+            settings: category.settings.map((setting) =>
+              setting.id === settingId
+                ? { ...setting, value: newValue }
+                : setting
             ),
           }))
         );
@@ -255,18 +259,23 @@ export default function AdminSettings() {
     }
   };
 
-  const handleToggleSetting = async (settingId: string, currentActive: boolean) => {
+  const handleToggleSetting = async (
+    settingId: string,
+    currentActive: boolean
+  ) => {
     try {
       const response = await fetch(`/api/admin/settings/${settingId}/toggle`, {
         method: 'POST',
       });
 
       if (response.ok) {
-        setCategories(prev =>
-          prev.map(category => ({
+        setCategories((prev) =>
+          prev.map((category) => ({
             ...category,
-            settings: category.settings.map(setting =>
-              setting.id === settingId ? { ...setting, isActive: !currentActive } : setting
+            settings: category.settings.map((setting) =>
+              setting.id === settingId
+                ? { ...setting, isActive: !currentActive }
+                : setting
             ),
           }))
         );
@@ -280,7 +289,7 @@ export default function AdminSettings() {
     return categoryName.toLowerCase().replace(/\s+/g, '-');
   };
 
-  if (status === "loading" || loading) {
+  if (status === 'loading' || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <div className="text-center">
@@ -304,22 +313,44 @@ export default function AdminSettings() {
                 href="/admin"
                 className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors duration-200"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
                 Admin Dashboard
               </Link>
               <div className="text-gray-400">/</div>
-              <h1 className="text-xl font-bold text-gray-900">System Settings</h1>
+              <h1 className="text-xl font-bold text-gray-900">
+                System Settings
+              </h1>
             </div>
-            
+
             <div className="flex items-center gap-4">
               <button
                 onClick={() => window.location.reload()}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors duration-200"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
                 </svg>
                 Refresh
               </button>
@@ -358,7 +389,9 @@ export default function AdminSettings() {
             <div key={tabKey} className="space-y-6">
               {/* Category Header */}
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">{category.name} Settings</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  {category.name} Settings
+                </h2>
                 <p className="text-gray-600">{category.description}</p>
               </div>
 
@@ -383,16 +416,16 @@ export default function AdminSettings() {
 }
 
 // Setting Item Component
-function SettingItem({ 
-  setting, 
-  onUpdate, 
-  onToggle, 
-  saving 
-}: { 
-  setting: SystemSettings; 
-  onUpdate: (id: string, value: string) => void; 
-  onToggle: (id: string, currentActive: boolean) => void; 
-  saving: boolean; 
+function SettingItem({
+  setting,
+  onUpdate,
+  onToggle,
+  saving,
+}: {
+  setting: SystemSettings;
+  onUpdate: (id: string, value: string) => void;
+  onToggle: (id: string, currentActive: boolean) => void;
+  saving: boolean;
 }) {
   const [localValue, setLocalValue] = useState(setting.value);
   const [hasChanges, setHasChanges] = useState(false);
@@ -410,7 +443,11 @@ function SettingItem({
   };
 
   const renderInput = () => {
-    if (setting.key.includes('MODE') || setting.key.includes('NOTIFICATIONS') || setting.key.includes('PRICING')) {
+    if (
+      setting.key.includes('MODE') ||
+      setting.key.includes('NOTIFICATIONS') ||
+      setting.key.includes('PRICING')
+    ) {
       return (
         <select
           value={localValue}
@@ -433,7 +470,9 @@ function SettingItem({
           className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 disabled:opacity-50"
         >
           <option value="FREE_UNTIL_1HR">Free cancellation until 1 hour</option>
-          <option value="FREE_UNTIL_30MIN">Free cancellation until 30 minutes</option>
+          <option value="FREE_UNTIL_30MIN">
+            Free cancellation until 30 minutes
+          </option>
           <option value="NO_REFUND">No refund policy</option>
           <option value="PARTIAL_REFUND">Partial refund (50%)</option>
         </select>
@@ -452,7 +491,13 @@ function SettingItem({
       );
     }
 
-    if (setting.key.includes('HOURS') || setting.key.includes('MINUTES') || setting.key.includes('LIMIT') || setting.key.includes('TIMEOUT') || setting.key.includes('ATTEMPTS')) {
+    if (
+      setting.key.includes('HOURS') ||
+      setting.key.includes('MINUTES') ||
+      setting.key.includes('LIMIT') ||
+      setting.key.includes('TIMEOUT') ||
+      setting.key.includes('ATTEMPTS')
+    ) {
       return (
         <input
           type="number"
@@ -477,13 +522,17 @@ function SettingItem({
   };
 
   return (
-    <div className={`bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg transition-all duration-300 ${
-      !setting.isActive ? 'opacity-60' : ''
-    }`}>
+    <div
+      className={`bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg transition-all duration-300 ${
+        !setting.isActive ? 'opacity-60' : ''
+      }`}
+    >
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
-            <h3 className="font-semibold text-gray-900">{setting.key.replace(/_/g, ' ')}</h3>
+            <h3 className="font-semibold text-gray-900">
+              {setting.key.replace(/_/g, ' ')}
+            </h3>
             <button
               onClick={() => onToggle(setting.id, setting.isActive)}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
@@ -503,7 +552,7 @@ function SettingItem({
 
       <div className="flex items-center gap-3">
         {renderInput()}
-        
+
         {hasChanges && (
           <div className="flex gap-2">
             <button

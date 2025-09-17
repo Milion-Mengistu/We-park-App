@@ -21,7 +21,11 @@ export function verifyPassword(password: string, stored: string): boolean {
     const pp = parseInt(pStr, 10);
     const salt = Buffer.from(saltHex, 'hex');
     const hash = Buffer.from(hashHex, 'hex');
-    const derived = scryptSync(password, salt, hash.length, { N: n, r: rr, p: pp });
+    const derived = scryptSync(password, salt, hash.length, {
+      N: n,
+      r: rr,
+      p: pp,
+    });
     return timingSafeEqual(hash, Buffer.from(derived));
   } catch {
     return false;

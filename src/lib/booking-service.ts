@@ -25,7 +25,9 @@ export interface BookingResponse {
 }
 
 export class BookingService {
-  static async createBooking(request: CreateBookingRequest): Promise<BookingResponse> {
+  static async createBooking(
+    request: CreateBookingRequest
+  ): Promise<BookingResponse> {
     // Check slot availability
     const slot = await prisma.parkingSlot.findUnique({
       where: { id: request.slotId },
@@ -90,7 +92,11 @@ export class BookingService {
     });
 
     // Create notification
-    await this.createBookingNotification(request.userId, booking.id, 'BOOKING_CREATED');
+    await this.createBookingNotification(
+      request.userId,
+      booking.id,
+      'BOOKING_CREATED'
+    );
 
     return {
       id: booking.id,
@@ -108,7 +114,10 @@ export class BookingService {
     };
   }
 
-  static async confirmBooking(bookingId: string, paymentId: string): Promise<void> {
+  static async confirmBooking(
+    bookingId: string,
+    paymentId: string
+  ): Promise<void> {
     const booking = await prisma.booking.findUnique({
       where: { id: bookingId },
       include: { payment: true, slot: true },
@@ -129,7 +138,11 @@ export class BookingService {
     });
 
     // Create confirmation notification
-    await this.createBookingNotification(booking.userId, bookingId, 'BOOKING_CONFIRMED');
+    await this.createBookingNotification(
+      booking.userId,
+      bookingId,
+      'BOOKING_CONFIRMED'
+    );
   }
 
   static async checkIn(qrCode: string, attendantId?: string): Promise<any> {
@@ -175,7 +188,11 @@ export class BookingService {
     });
 
     // Create check-in notification
-    await this.createBookingNotification(booking.userId, booking.id, 'CHECK_IN_SUCCESS');
+    await this.createBookingNotification(
+      booking.userId,
+      booking.id,
+      'CHECK_IN_SUCCESS'
+    );
 
     return {
       booking: updatedBooking,
@@ -203,12 +220,17 @@ export class BookingService {
     }
 
     const now = new Date();
-    const actualDuration = now.getTime() - (booking.actualStartTime?.getTime() || booking.startTime.getTime());
-    const plannedDuration = booking.endTime.getTime() - booking.startTime.getTime();
+    const actualDuration =
+      now.getTime() -
+      (booking.actualStartTime?.getTime() || booking.startTime.getTime());
+    const plannedDuration =
+      booking.endTime.getTime() - booking.startTime.getTime();
 
     let additionalCharges = 0;
     if (actualDuration > plannedDuration) {
-      const overtimeHours = Math.ceil((actualDuration - plannedDuration) / (1000 * 60 * 60));
+      const overtimeHours = Math.ceil(
+        (actualDuration - plannedDuration) / (1000 * 60 * 60)
+      );
       additionalCharges = overtimeHours * booking.slot.basePrice;
     }
 
@@ -230,9 +252,17 @@ export class BookingService {
 
     // Handle additional payment if needed
     if (additionalCharges > 0) {
-      await this.createBookingNotification(booking.userId, booking.id, 'ADDITIONAL_PAYMENT_REQUIRED');
+      await this.createBookingNotification(
+        booking.userId,
+        booking.id,
+        'ADDITIONAL_PAYMENT_REQUIRED'
+      );
     } else {
-      await this.createBookingNotification(booking.userId, booking.id, 'CHECK_OUT_SUCCESS');
+      await this.createBookingNotification(
+        booking.userId,
+        booking.id,
+        'CHECK_OUT_SUCCESS'
+      );
     }
 
     return {
@@ -243,7 +273,10 @@ export class BookingService {
     };
   }
 
-  static async extendBooking(bookingId: string, additionalHours: number): Promise<any> {
+  static async extendBooking(
+    bookingId: string,
+    additionalHours: number
+  ): Promise<any> {
     const booking = await prisma.booking.findUnique({
       where: { id: bookingId },
       include: { slot: true },
@@ -257,7 +290,9 @@ export class BookingService {
       throw new Error('Cannot extend this booking');
     }
 
-    const newEndTime = new Date(booking.endTime.getTime() + additionalHours * 60 * 60 * 1000);
+    const newEndTime = new Date(
+      booking.endTime.getTime() + additionalHours * 60 * 60 * 1000
+    );
     const additionalAmount = additionalHours * booking.slot.basePrice;
 
     // Check for conflicts
@@ -285,7 +320,11 @@ export class BookingService {
       },
     });
 
-    await this.createBookingNotification(booking.userId, booking.id, 'BOOKING_EXTENDED');
+    await this.createBookingNotification(
+      booking.userId,
+      booking.id,
+      'BOOKING_EXTENDED'
+    );
 
     return {
       booking: updatedBooking,
@@ -340,10 +379,17 @@ export class BookingService {
       await this.processRefund(bookingId, refundAmount);
     }
 
-    await this.createBookingNotification(userId, bookingId, 'BOOKING_CANCELLED');
+    await this.createBookingNotification(
+      userId,
+      bookingId,
+      'BOOKING_CANCELLED'
+    );
   }
 
-  static async getUserBookings(userId: string, status?: string): Promise<any[]> {
+  static async getUserBookings(
+    userId: string,
+    status?: string
+  ): Promise<any[]> {
     const where: any = { userId };
     if (status) {
       where.status = status;
@@ -388,7 +434,10 @@ export class BookingService {
     });
   }
 
-  private static async processRefund(bookingId: string, amount: number): Promise<void> {
+  private static async processRefund(
+    bookingId: string,
+    amount: number
+  ): Promise<void> {
     const booking = await prisma.booking.findUnique({
       where: { id: bookingId },
       include: { payment: true },

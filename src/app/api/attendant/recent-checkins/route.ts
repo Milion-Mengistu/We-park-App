@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     // Get recent check-ins from today
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     const recentCheckins = await prisma.booking.findMany({
       where: {
         status: 'ACTIVE',
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       take: 20,
     });
 
-    const formattedCheckins = recentCheckins.map(booking => ({
+    const formattedCheckins = recentCheckins.map((booking) => ({
       id: booking.id,
       slotNumber: booking.slot.slotNumber,
       location: booking.slot.location.name,
@@ -54,11 +54,12 @@ export async function GET(request: NextRequest) {
       customerEmail: booking.user.email,
       checkInTime: booking.actualStartTime,
       endTime: booking.endTime,
-      time: booking.actualStartTime ? 
-        new Date(booking.actualStartTime).toLocaleTimeString('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-        }) : 'Unknown',
+      time: booking.actualStartTime
+        ? new Date(booking.actualStartTime).toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+          })
+        : 'Unknown',
     }));
 
     return NextResponse.json(formattedCheckins);

@@ -19,10 +19,12 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Allow access to auth pages
-  if (pathname.startsWith('/login') || 
-      pathname.startsWith('/register') || 
-      pathname.startsWith('/api/auth/') ||
-      pathname === '/') {
+  if (
+    pathname.startsWith('/login') ||
+    pathname.startsWith('/register') ||
+    pathname.startsWith('/api/auth/') ||
+    pathname === '/'
+  ) {
     return NextResponse.next();
   }
 
@@ -37,19 +39,21 @@ export async function middleware(request: NextRequest) {
   for (const [routePattern, allowedRoles] of Object.entries(roleBasedRoutes)) {
     if (pathname.startsWith(routePattern)) {
       const userRoles = (token.roles as string[]) || [];
-      const hasRequiredRole = allowedRoles.some(role => userRoles.includes(role));
-      
+      const hasRequiredRole = allowedRoles.some((role) =>
+        userRoles.includes(role)
+      );
+
       if (!hasRequiredRole) {
         // Redirect to appropriate page based on user's role
         const primaryRole = userRoles[0];
         let redirectPath = '/dashboard';
-        
+
         if (primaryRole === 'ADMIN' || primaryRole === 'SUPER_ADMIN') {
           redirectPath = '/admin';
         } else if (primaryRole === 'ATTENDANT') {
           redirectPath = '/attendant';
         }
-        
+
         return NextResponse.redirect(new URL(redirectPath, request.url));
       }
       break;

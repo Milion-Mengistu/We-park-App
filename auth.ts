@@ -1,11 +1,11 @@
-import { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "@/src/lib/prisma";
-import { getUserRoles, UserRole } from "@/src/lib/auth-utils";
+import { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { prisma } from '@/src/lib/prisma';
+import { getUserRoles, UserRole } from '@/src/lib/auth-utils';
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface Session {
     user: {
       id: string;
@@ -17,7 +17,7 @@ declare module "next-auth" {
   }
 }
 
-declare module "next-auth/jwt" {
+declare module 'next-auth/jwt' {
   interface JWT {
     roles?: UserRole[];
   }
@@ -27,30 +27,38 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
-      id: "credentials",
-      name: "Email & Password",
+      id: 'credentials',
+      name: 'Email & Password',
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
         const email = String(credentials.email).toLowerCase();
         const user = await prisma.user.findUnique({ where: { email } });
         if (!user || !user.passwordHash) return null;
-        const { verifyPassword } = await import("@/src/lib/passwords");
-        const valid = verifyPassword(String(credentials.password), user.passwordHash);
+        const { verifyPassword } = await import('@/src/lib/passwords');
+        const valid = verifyPassword(
+          String(credentials.password),
+          user.passwordHash
+        );
         if (!valid) return null;
-        return { id: user.id, name: user.name ?? null, email: user.email ?? null, image: user.image ?? null };
+        return {
+          id: user.id,
+          name: user.name ?? null,
+          email: user.email ?? null,
+          image: user.image ?? null,
+        };
       },
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "demo-client-id",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "demo-client-secret",
+      clientId: process.env.GOOGLE_CLIENT_ID || 'demo-client-id',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'demo-client-secret',
     }),
   ],
 
-  session: { strategy: "jwt" },
+  session: { strategy: 'jwt' },
   callbacks: {
     async session({ session, token }) {
       if (session.user) {

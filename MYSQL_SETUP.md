@@ -3,11 +3,13 @@
 ## 🗄️ **Step 1: Install MySQL Server**
 
 ### Option A: Install MySQL Server locally
+
 1. Download and install MySQL Server from [mysql.com](https://dev.mysql.com/downloads/mysql/)
 2. During installation, remember your root password
 3. Start MySQL service
 
 ### Option B: Use Docker (Recommended)
+
 ```bash
 # Pull and run MySQL container
 docker run --name wepark-mysql \
@@ -21,6 +23,7 @@ docker ps
 ```
 
 ### Option C: Use XAMPP/WAMP/MAMP
+
 - Install XAMPP, WAMP, or MAMP
 - Start Apache and MySQL services
 - Use phpMyAdmin to create database
@@ -85,34 +88,38 @@ npx prisma db seed
 ## 🔍 **Verify Setup**
 
 1. Check if database tables were created:
+
 ```sql
 SHOW TABLES;
 ```
 
 2. Check if demo users exist:
+
 ```sql
-SELECT u.email, ur.role FROM User u 
+SELECT u.email, ur.role FROM User u
 LEFT JOIN UserRole ur ON u.id = ur.userId;
 ```
 
 ## 📋 **Common Database URLs**
 
-| Setup | Database URL |
-|-------|-------------|
-| Local MySQL | `mysql://root:password@localhost:3306/wepark_db` |
+| Setup        | Database URL                                     |
+| ------------ | ------------------------------------------------ |
+| Local MySQL  | `mysql://root:password@localhost:3306/wepark_db` |
 | Docker MySQL | `mysql://root:password@localhost:3306/wepark_db` |
-| XAMPP | `mysql://root:@localhost:3306/wepark_db` |
-| Remote MySQL | `mysql://user:pass@hostname:3306/wepark_db` |
+| XAMPP        | `mysql://root:@localhost:3306/wepark_db`         |
+| Remote MySQL | `mysql://user:pass@hostname:3306/wepark_db`      |
 
 ## 🛠️ **Troubleshooting**
 
 ### Connection Issues:
+
 - Ensure MySQL server is running
 - Check port 3306 is not blocked
 - Verify username/password are correct
 - Make sure database `wepark_db` exists
 
 ### Permission Issues:
+
 ```sql
 CREATE USER 'wepark_user'@'localhost' IDENTIFIED BY 'wepark_pass';
 GRANT ALL PRIVILEGES ON wepark_db.* TO 'wepark_user'@'localhost';
@@ -120,6 +127,7 @@ FLUSH PRIVILEGES;
 ```
 
 ### Reset Database:
+
 ```bash
 npx prisma migrate reset
 ```

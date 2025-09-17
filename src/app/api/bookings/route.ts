@@ -5,7 +5,7 @@ import { BookingService } from '@/src/lib/booking-service';
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -54,7 +54,10 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
 
     const userId = session.user.email;
-    const bookings = await BookingService.getUserBookings(userId, status || undefined);
+    const bookings = await BookingService.getUserBookings(
+      userId,
+      status || undefined
+    );
 
     return NextResponse.json(bookings);
   } catch (error) {

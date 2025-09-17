@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireRole, assignRole, removeRole, getUserWithRoles, UserRole } from '@/src/lib/auth-utils';
+import {
+  requireRole,
+  assignRole,
+  removeRole,
+  getUserWithRoles,
+  UserRole,
+} from '@/src/lib/auth-utils';
 
 export async function GET(
   request: NextRequest,
@@ -7,14 +13,11 @@ export async function GET(
 ) {
   try {
     await requireRole(['ADMIN', 'SUPER_ADMIN']);
-    
+
     const userWithRoles = await getUserWithRoles(params.id);
-    
+
     if (!userWithRoles) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
     return NextResponse.json(userWithRoles);
@@ -33,20 +36,20 @@ export async function POST(
 ) {
   try {
     await requireRole(['ADMIN', 'SUPER_ADMIN']);
-    
+
     const { role, locationId } = await request.json();
-    
-    if (!role || !['USER', 'ADMIN', 'ATTENDANT', 'SUPER_ADMIN'].includes(role)) {
-      return NextResponse.json(
-        { error: 'Invalid role' },
-        { status: 400 }
-      );
+
+    if (
+      !role ||
+      !['USER', 'ADMIN', 'ATTENDANT', 'SUPER_ADMIN'].includes(role)
+    ) {
+      return NextResponse.json({ error: 'Invalid role' }, { status: 400 });
     }
 
     await assignRole(params.id, role as UserRole, locationId);
 
-    return NextResponse.json({ 
-      message: 'Role assigned successfully' 
+    return NextResponse.json({
+      message: 'Role assigned successfully',
     });
   } catch (error: any) {
     console.error('Error assigning role:', error);
@@ -63,22 +66,22 @@ export async function DELETE(
 ) {
   try {
     await requireRole(['ADMIN', 'SUPER_ADMIN']);
-    
+
     const { searchParams } = new URL(request.url);
     const role = searchParams.get('role');
     const locationId = searchParams.get('locationId');
-    
-    if (!role || !['USER', 'ADMIN', 'ATTENDANT', 'SUPER_ADMIN'].includes(role)) {
-      return NextResponse.json(
-        { error: 'Invalid role' },
-        { status: 400 }
-      );
+
+    if (
+      !role ||
+      !['USER', 'ADMIN', 'ATTENDANT', 'SUPER_ADMIN'].includes(role)
+    ) {
+      return NextResponse.json({ error: 'Invalid role' }, { status: 400 });
     }
 
     await removeRole(params.id, role as UserRole, locationId || undefined);
 
-    return NextResponse.json({ 
-      message: 'Role removed successfully' 
+    return NextResponse.json({
+      message: 'Role removed successfully',
     });
   } catch (error: any) {
     console.error('Error removing role:', error);

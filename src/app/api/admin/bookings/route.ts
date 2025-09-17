@@ -5,7 +5,7 @@ import { prisma } from '@/src/lib/prisma';
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
     const skip = (page - 1) * limit;
 
-    let where: any = {};
+    const where: any = {};
 
     if (status) {
       where.status = status;

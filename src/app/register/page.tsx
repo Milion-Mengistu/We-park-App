@@ -1,41 +1,45 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { signIn } from "next-auth/react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function RegisterPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const handleRegister = async () => {
     try {
       setLoading(true);
-      setError("");
+      setError('');
       if (password !== confirm) {
-        setError("Passwords do not match");
+        setError('Passwords do not match');
         setLoading(false);
         return;
       }
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error || "Failed to register");
+        setError(data.error || 'Failed to register');
         setLoading(false);
         return;
       }
-      await signIn("credentials", { email, password, callbackUrl: "/dashboard" });
+      await signIn('credentials', {
+        email,
+        password,
+        callbackUrl: '/dashboard',
+      });
     } catch (e) {
-      setError("Registration failed");
+      setError('Registration failed');
     } finally {
       setLoading(false);
     }
@@ -44,8 +48,8 @@ export default function RegisterPage() {
   const handleGoogleSignUp = async () => {
     try {
       setLoading(true);
-      setError("");
-      await signIn("google", { callbackUrl: "/dashboard" });
+      setError('');
+      await signIn('google', { callbackUrl: '/dashboard' });
     } finally {
       setLoading(false);
     }
@@ -64,7 +68,13 @@ export default function RegisterPage() {
           <div className="relative">
             <div className="absolute inset-0 bg-emerald-500 rounded-full blur-lg opacity-30 animate-pulse"></div>
             <div className="relative bg-gradient-to-r from-emerald-600 to-teal-600 p-4 rounded-2xl shadow-lg">
-              <Image src="/logo.png" alt="We Park" width={32} height={32} className="filter brightness-0 invert" />
+              <Image
+                src="/logo.png"
+                alt="We Park"
+                width={32}
+                height={32}
+                className="filter brightness-0 invert"
+              />
             </div>
           </div>
         </div>
@@ -88,7 +98,13 @@ export default function RegisterPage() {
         >
           <div className="flex items-center justify-center gap-3">
             <div className="relative">
-              <Image src="/icons8-google-50.svg" alt="Google" width={24} height={24} className="transition-transform duration-300 group-hover:scale-110" />
+              <Image
+                src="/icons8-google-50.svg"
+                alt="Google"
+                width={24}
+                height={24}
+                className="transition-transform duration-300 group-hover:scale-110"
+              />
             </div>
             <span className="text-lg">Create account with Google</span>
           </div>
@@ -97,8 +113,18 @@ export default function RegisterPage() {
         {error && (
           <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-left">
             <div className="flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
               {error}
             </div>
@@ -111,12 +137,16 @@ export default function RegisterPage() {
               <div className="w-full border-t border-emerald-100"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-gray-500 font-medium">or</span>
+              <span className="px-4 bg-white text-gray-500 font-medium">
+                or
+              </span>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Full name</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Full name
+            </label>
             <input
               type="text"
               value={name}
@@ -126,7 +156,9 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email
+            </label>
             <input
               type="email"
               value={email}
@@ -136,7 +168,9 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Password
+            </label>
             <input
               type="password"
               value={password}
@@ -146,7 +180,9 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Confirm Password
+            </label>
             <input
               type="password"
               value={confirm}
@@ -177,8 +213,11 @@ export default function RegisterPage() {
 
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
-            Already have an account?{" "}
-            <Link href="/login" className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors duration-200 hover:underline">
+            Already have an account?{' '}
+            <Link
+              href="/login"
+              className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors duration-200 hover:underline"
+            >
               Sign in here
             </Link>
           </p>

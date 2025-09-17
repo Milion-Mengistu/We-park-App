@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
-import { useState, useEffect } from "react";
-import NotificationBell from "@/src/components/NotificationBell";
-import { useRoles } from "@/src/hooks/useRoles";
-import { RoleDisplay } from "@/src/components/RoleGuard";
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
+import { useState, useEffect } from 'react';
+import NotificationBell from '@/src/components/NotificationBell';
+import { useRoles } from '@/src/hooks/useRoles';
+import { RoleDisplay } from '@/src/components/RoleGuard';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -22,18 +22,30 @@ export default function Navbar() {
   return (
     <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
         {/* Enhanced Logo */}
-        <Link href="/" className="group flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]">
+        <Link
+          href="/"
+          className="group flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]"
+        >
           <div className="relative">
             <div className="absolute inset-0 bg-blue-500 rounded-xl blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
             <div className="relative bg-gradient-to-r from-blue-600 to-indigo-600 p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-              <Image src="/logo.png" alt="We Park Logo" width={24} height={24} className="filter brightness-0 invert" />
+              <Image
+                src="/logo.png"
+                alt="We Park Logo"
+                width={24}
+                height={24}
+                className="filter brightness-0 invert"
+              />
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">We Park</span>
-            <span className="text-xs text-gray-500 font-medium">Smart Parking</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              We Park
+            </span>
+            <span className="text-xs text-gray-500 font-medium">
+              Smart Parking
+            </span>
           </div>
         </Link>
 
@@ -111,7 +123,7 @@ export default function Navbar() {
 
         {/* Enhanced Action Buttons */}
         <div className="flex items-center gap-3">
-          {!mounted || status === "loading" ? (
+          {!mounted || status === 'loading' ? (
             <>
               {/* Loading state during hydration */}
               <div className="hidden sm:flex items-center px-4 py-2 rounded-xl font-medium border-2 border-gray-200 text-gray-400 animate-pulse">
@@ -138,16 +150,21 @@ export default function Navbar() {
               <div className="flex items-center gap-3">
                 <NotificationBell />
 
-                <Link href="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200">
+                <Link
+                  href="/dashboard"
+                  className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200"
+                >
                   <Image
-                    src={session.user?.image || "/logo.png"}
-                    alt={session.user?.name || "User"}
+                    src={session.user?.image || '/logo.png'}
+                    alt={session.user?.name || 'User'}
                     width={32}
                     height={32}
                     className="rounded-full border-2 border-blue-200"
                   />
                   <div className="hidden md:block">
-                    <div className="font-medium text-gray-700">{session.user?.name}</div>
+                    <div className="font-medium text-gray-700">
+                      {session.user?.name}
+                    </div>
                     <div className="text-xs">
                       <RoleDisplay />
                     </div>
@@ -155,12 +172,22 @@ export default function Navbar() {
                 </Link>
 
                 <button
-                  onClick={() => signOut({ callbackUrl: "/" })}
+                  onClick={() => signOut({ callbackUrl: '/' })}
                   className="flex items-center px-3 py-2 text-red-600 hover:bg-red-50 rounded-xl font-medium transition-colors duration-200"
                   title="Sign Out"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
                   </svg>
                 </button>
               </div>
@@ -188,8 +215,18 @@ export default function Navbar() {
                 }`}
               >
                 <span>Get Started</span>
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <svg
+                  className="ml-2 w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
                 </svg>
               </Link>
             </>
@@ -197,8 +234,18 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              className="w-6 h-6 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
         </div>

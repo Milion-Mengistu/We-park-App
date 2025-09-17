@@ -7,6 +7,7 @@ A modern, beautiful web application for finding and booking parking spots with r
 ## ✨ Features
 
 ### 🎯 **Core Functionality**
+
 - **Real-time Parking Search** - Find available spots instantly
 - **Interactive Map View** - Visual parking spot locations
 - **Smart Booking System** - Reserve spots with flexible duration
@@ -14,17 +15,20 @@ A modern, beautiful web application for finding and booking parking spots with r
 - **Beautiful UI/UX** - Modern, responsive design
 
 ### 🔐 **Authentication**
+
 - **Google OAuth Integration** - Secure, seamless sign-in
 - **Session Management** - Persistent user sessions
 - **Protected Routes** - Secure user areas
 
 ### 🎨 **Design System**
+
 - **Glass-morphism Effects** - Modern backdrop blur styling
 - **Gradient Animations** - Smooth color transitions
 - **Responsive Design** - Mobile-first approach
 - **Dark/Light Themes** - Coming soon
 
 ### 📱 **User Experience**
+
 - **Progressive Enhancement** - Works without JavaScript
 - **Loading States** - Smooth interaction feedback
 - **Error Handling** - Graceful error management
@@ -33,7 +37,8 @@ A modern, beautiful web application for finding and booking parking spots with r
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 - Git
 
@@ -75,21 +80,25 @@ DATABASE_URL=your-database-url
 ## 🛠️ Tech Stack
 
 ### **Frontend**
+
 - **Next.js 15** - React framework with App Router
 - **React 19** - UI library
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Utility-first styling
 
 ### **Authentication**
+
 - **NextAuth.js** - Authentication library
 - **Google OAuth** - Social login
 - **JWT Sessions** - Stateless authentication
 
 ### **Database** (Optional)
+
 - **Prisma** - Database ORM
 - **PostgreSQL/SQLite** - Database options
 
 ### **Development**
+
 - **ESLint** - Code linting
 - **Prettier** - Code formatting
 - **Turbopack** - Fast bundling
@@ -117,16 +126,19 @@ we-park-app/
 ## 🎨 Design Features
 
 ### **Color Palette**
+
 - Primary: Blue (#3B82F6) to Indigo (#6366F1)
 - Secondary: Emerald (#10B981) to Teal (#14B8A6)
 - Accent: Purple (#8B5CF6) to Pink (#EC4899)
 
 ### **Typography**
+
 - Headings: Inter/System fonts
 - Body: Optimized for readability
 - Gradients: Text gradients for emphasis
 
 ### **Animations**
+
 - Micro-interactions on hover/focus
 - Loading states with skeleton screens
 - Smooth page transitions
@@ -158,6 +170,7 @@ npx prisma studio    # Open database browser
 ```
 
 ### **Code Quality**
+
 - TypeScript strict mode enabled
 - ESLint with Next.js recommended rules
 - Consistent code formatting
@@ -166,6 +179,7 @@ npx prisma studio    # Open database browser
 ## 🚀 Deployment
 
 ### **Vercel (Recommended)**
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -175,7 +189,9 @@ vercel --prod
 ```
 
 ### **Environment Variables**
+
 Set the following in your deployment platform:
+
 - `NEXTAUTH_URL` - Your domain URL
 - `NEXTAUTH_SECRET` - Random secret string
 - `GOOGLE_CLIENT_ID` - Google OAuth client ID
@@ -216,4 +232,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Built with ❤️ for modern parking solutions
+
 # We-park-App

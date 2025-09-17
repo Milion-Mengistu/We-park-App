@@ -8,7 +8,7 @@ export async function GET(
 ) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -32,7 +32,7 @@ export async function PATCH(
 ) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -48,10 +48,7 @@ export async function PATCH(
       return NextResponse.json({ message: 'Cash payment confirmed' });
     }
 
-    return NextResponse.json(
-      { error: 'Invalid action' },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
   } catch (error) {
     console.error('Payment update error:', error);
     return NextResponse.json(

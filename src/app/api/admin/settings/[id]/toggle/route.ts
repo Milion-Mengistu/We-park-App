@@ -10,7 +10,7 @@ export async function POST(
 ) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -22,10 +22,7 @@ export async function POST(
     });
 
     if (!currentSetting) {
-      return NextResponse.json(
-        { error: 'Setting not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Setting not found' }, { status: 404 });
     }
 
     const setting = await prisma.systemSettings.update({

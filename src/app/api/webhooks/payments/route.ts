@@ -16,10 +16,10 @@ export async function POST(request: NextRequest) {
 
     // Verify webhook signature (implement based on provider requirements)
     const signature = request.headers.get('x-webhook-signature');
-    
+
     // For demo purposes, we'll skip signature verification
     // In production, verify the webhook signature here
-    
+
     await PaymentService.handlePaymentWebhook(provider, body);
 
     return NextResponse.json({ message: 'Webhook processed successfully' });

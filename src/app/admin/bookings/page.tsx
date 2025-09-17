@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface Booking {
   id: string;
@@ -48,9 +48,9 @@ export default function AdminBookings() {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
 
   useEffect(() => {
-    if (status === "loading") return;
-    if (status === "unauthenticated") {
-      router.push("/login");
+    if (status === 'loading') return;
+    if (status === 'unauthenticated') {
+      router.push('/login');
       return;
     }
     fetchBookings();
@@ -154,14 +154,17 @@ export default function AdminBookings() {
     }
   };
 
-  const filteredBookings = bookings.filter(booking =>
-    booking.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    booking.user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    booking.slot.location.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    booking.slot.slotNumber.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredBookings = bookings.filter(
+    (booking) =>
+      booking.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      booking.user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      booking.slot.location.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      booking.slot.slotNumber.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (status === "loading" || loading) {
+  if (status === 'loading' || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <div className="text-center">
@@ -185,15 +188,25 @@ export default function AdminBookings() {
                 href="/admin"
                 className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors duration-200"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
                 Admin Dashboard
               </Link>
               <div className="text-gray-400">/</div>
               <h1 className="text-xl font-bold text-gray-900">All Bookings</h1>
             </div>
-            
+
             <div className="flex items-center gap-4">
               <div className="text-sm text-gray-600">
                 Total: {bookings.length} bookings
@@ -210,8 +223,18 @@ export default function AdminBookings() {
             {/* Search */}
             <div className="flex-1">
               <div className="relative">
-                <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <svg
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
                 </svg>
                 <input
                   type="text"
@@ -251,28 +274,53 @@ export default function AdminBookings() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location & Slot</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    User
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Location & Slot
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Time
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Payment
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Amount
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredBookings.map((booking) => (
-                  <tr key={booking.id} className="hover:bg-gray-50 transition-colors duration-200">
+                  <tr
+                    key={booking.id}
+                    className="hover:bg-gray-50 transition-colors duration-200"
+                  >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
-                        <div className="text-sm font-medium text-gray-900">{booking.user.name}</div>
-                        <div className="text-sm text-gray-500">{booking.user.email}</div>
+                        <div className="text-sm font-medium text-gray-900">
+                          {booking.user.name}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          {booking.user.email}
+                        </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
-                        <div className="text-sm font-medium text-gray-900">{booking.slot.location.name}</div>
-                        <div className="text-sm text-gray-500">Slot {booking.slot.slotNumber}</div>
+                        <div className="text-sm font-medium text-gray-900">
+                          {booking.slot.location.name}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          Slot {booking.slot.slotNumber}
+                        </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -281,23 +329,36 @@ export default function AdminBookings() {
                           {new Date(booking.startTime).toLocaleDateString()}
                         </div>
                         <div className="text-sm text-gray-500">
-                          {new Date(booking.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - 
-                          {new Date(booking.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          {new Date(booking.startTime).toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}{' '}
+                          -
+                          {new Date(booking.endTime).toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(booking.status)}`}>
+                      <span
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(booking.status)}`}
+                      >
                         {booking.status}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {booking.payment ? (
                         <div>
-                          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getPaymentStatusColor(booking.payment.status)}`}>
+                          <span
+                            className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getPaymentStatusColor(booking.payment.status)}`}
+                          >
                             {booking.payment.status}
                           </span>
-                          <div className="text-xs text-gray-500 mt-1">{booking.payment.method}</div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {booking.payment.method}
+                          </div>
                         </div>
                       ) : (
                         <span className="text-gray-400">No payment</span>
@@ -342,14 +403,18 @@ export default function AdminBookings() {
                 </div>
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(1, prev - 1))
+                    }
                     disabled={currentPage === 1}
                     className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Previous
                   </button>
                   <button
-                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                    }
                     disabled={currentPage === totalPages}
                     className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
@@ -382,14 +447,14 @@ export default function AdminBookings() {
 }
 
 // Booking Details Modal Component
-function BookingDetailsModal({ 
-  booking, 
-  onClose, 
-  onStatusUpdate 
-}: { 
-  booking: Booking; 
-  onClose: () => void; 
-  onStatusUpdate: (status: string) => void; 
+function BookingDetailsModal({
+  booking,
+  onClose,
+  onStatusUpdate,
+}: {
+  booking: Booking;
+  onClose: () => void;
+  onStatusUpdate: (status: string) => void;
 }) {
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -400,8 +465,18 @@ function BookingDetailsModal({
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -409,7 +484,9 @@ function BookingDetailsModal({
         <div className="space-y-6">
           {/* User Info */}
           <div className="bg-gray-50 rounded-lg p-4">
-            <h4 className="font-medium text-gray-900 mb-2">Customer Information</h4>
+            <h4 className="font-medium text-gray-900 mb-2">
+              Customer Information
+            </h4>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="text-sm text-gray-600">Name</label>
@@ -424,7 +501,9 @@ function BookingDetailsModal({
 
           {/* Parking Info */}
           <div className="bg-gray-50 rounded-lg p-4">
-            <h4 className="font-medium text-gray-900 mb-2">Parking Information</h4>
+            <h4 className="font-medium text-gray-900 mb-2">
+              Parking Information
+            </h4>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="text-sm text-gray-600">Location</label>
@@ -436,11 +515,15 @@ function BookingDetailsModal({
               </div>
               <div>
                 <label className="text-sm text-gray-600">Start Time</label>
-                <p className="font-medium">{new Date(booking.startTime).toLocaleString()}</p>
+                <p className="font-medium">
+                  {new Date(booking.startTime).toLocaleString()}
+                </p>
               </div>
               <div>
                 <label className="text-sm text-gray-600">End Time</label>
-                <p className="font-medium">{new Date(booking.endTime).toLocaleString()}</p>
+                <p className="font-medium">
+                  {new Date(booking.endTime).toLocaleString()}
+                </p>
               </div>
             </div>
           </div>
@@ -448,7 +531,9 @@ function BookingDetailsModal({
           {/* QR Code Info */}
           {booking.qrCode && (
             <div className="bg-gray-50 rounded-lg p-4">
-              <h4 className="font-medium text-gray-900 mb-2">Check-in Information</h4>
+              <h4 className="font-medium text-gray-900 mb-2">
+                Check-in Information
+              </h4>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm text-gray-600">QR Code</label>
@@ -456,7 +541,9 @@ function BookingDetailsModal({
                 </div>
                 <div>
                   <label className="text-sm text-gray-600">Check-in Code</label>
-                  <p className="font-mono text-lg font-bold">{booking.checkInCode}</p>
+                  <p className="font-mono text-lg font-bold">
+                    {booking.checkInCode}
+                  </p>
                 </div>
               </div>
             </div>
@@ -465,11 +552,15 @@ function BookingDetailsModal({
           {/* Payment Info */}
           {booking.payment && (
             <div className="bg-gray-50 rounded-lg p-4">
-              <h4 className="font-medium text-gray-900 mb-2">Payment Information</h4>
+              <h4 className="font-medium text-gray-900 mb-2">
+                Payment Information
+              </h4>
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <label className="text-sm text-gray-600">Amount</label>
-                  <p className="font-medium">${booking.payment.amount.toFixed(2)}</p>
+                  <p className="font-medium">
+                    ${booking.payment.amount.toFixed(2)}
+                  </p>
                 </div>
                 <div>
                   <label className="text-sm text-gray-600">Method</label>
@@ -487,10 +578,12 @@ function BookingDetailsModal({
           <div className="bg-blue-50 rounded-lg p-4">
             <h4 className="font-medium text-gray-900 mb-2">Current Status</h4>
             <div className="flex items-center justify-between">
-              <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(booking.status)}`}>
+              <span
+                className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(booking.status)}`}
+              >
                 {booking.status}
               </span>
-              
+
               {['PENDING', 'CONFIRMED'].includes(booking.status) && (
                 <div className="flex gap-2">
                   {booking.status === 'PENDING' && (

@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -18,8 +18,8 @@ export async function POST(request: NextRequest) {
 
     // Calculate date range
     const endDate = new Date();
-    let startDate = new Date();
-    
+    const startDate = new Date();
+
     switch (period) {
       case '7d':
         startDate.setDate(endDate.getDate() - 7);
@@ -93,20 +93,22 @@ export async function POST(request: NextRequest) {
 
       const csvRows = [
         headers.join(','),
-        ...bookings.map(booking => [
-          booking.id,
-          `"${booking.user.name || 'N/A'}"`,
-          `"${booking.user.email || 'N/A'}"`,
-          `"${booking.slot.location.name}"`,
-          booking.slot.slotNumber,
-          new Date(booking.startTime).toISOString(),
-          new Date(booking.endTime).toISOString(),
-          booking.status,
-          booking.totalAmount,
-          booking.payment?.method || 'N/A',
-          booking.payment?.status || 'N/A',
-          new Date(booking.createdAt).toISOString(),
-        ].join(','))
+        ...bookings.map((booking) =>
+          [
+            booking.id,
+            `"${booking.user.name || 'N/A'}"`,
+            `"${booking.user.email || 'N/A'}"`,
+            `"${booking.slot.location.name}"`,
+            booking.slot.slotNumber,
+            new Date(booking.startTime).toISOString(),
+            new Date(booking.endTime).toISOString(),
+            booking.status,
+            booking.totalAmount,
+            booking.payment?.method || 'N/A',
+            booking.payment?.status || 'N/A',
+            new Date(booking.createdAt).toISOString(),
+          ].join(',')
+        ),
       ];
 
       const csvContent = csvRows.join('\n');
@@ -132,7 +134,9 @@ Total Bookings: ${bookings.length}
 Total Revenue: $${bookings.reduce((sum, b) => sum + (b.payment?.amount || 0), 0).toFixed(2)}
 
 BOOKINGS
-${bookings.map(booking => `
+${bookings
+  .map(
+    (booking) => `
 ID: ${booking.id}
 Customer: ${booking.user.name} (${booking.user.email})
 Location: ${booking.slot.location.name} - ${booking.slot.slotNumber}
@@ -142,7 +146,9 @@ Amount: $${booking.totalAmount}
 Payment: ${booking.payment?.method || 'N/A'} (${booking.payment?.status || 'N/A'})
 Created: ${new Date(booking.createdAt).toLocaleString()}
 ---
-`).join('')}
+`
+  )
+  .join('')}
       `.trim();
 
       return new NextResponse(pdfContent, {
@@ -153,10 +159,7 @@ Created: ${new Date(booking.createdAt).toLocaleString()}
       });
     }
 
-    return NextResponse.json(
-      { error: 'Unsupported format' },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'Unsupported format' }, { status: 400 });
   } catch (error) {
     console.error('Export reports error:', error);
     return NextResponse.json(

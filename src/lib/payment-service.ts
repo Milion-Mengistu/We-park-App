@@ -17,7 +17,9 @@ export interface PaymentResponse {
 }
 
 export class PaymentService {
-  static async initiatePayment(request: PaymentRequest): Promise<PaymentResponse> {
+  static async initiatePayment(
+    request: PaymentRequest
+  ): Promise<PaymentResponse> {
     // Create payment record
     const payment = await prisma.payment.create({
       data: {
@@ -43,7 +45,10 @@ export class PaymentService {
     }
   }
 
-  static async processTelebirrPayment(paymentId: string, request: PaymentRequest): Promise<PaymentResponse> {
+  static async processTelebirrPayment(
+    paymentId: string,
+    request: PaymentRequest
+  ): Promise<PaymentResponse> {
     try {
       // Update payment status
       await prisma.payment.update({
@@ -104,7 +109,10 @@ export class PaymentService {
     }
   }
 
-  static async processCBEBirrPayment(paymentId: string, request: PaymentRequest): Promise<PaymentResponse> {
+  static async processCBEBirrPayment(
+    paymentId: string,
+    request: PaymentRequest
+  ): Promise<PaymentResponse> {
     try {
       await prisma.payment.update({
         where: { id: paymentId },
@@ -163,7 +171,10 @@ export class PaymentService {
     }
   }
 
-  static async processChapaPayment(paymentId: string, request: PaymentRequest): Promise<PaymentResponse> {
+  static async processChapaPayment(
+    paymentId: string,
+    request: PaymentRequest
+  ): Promise<PaymentResponse> {
     try {
       await prisma.payment.update({
         where: { id: paymentId },
@@ -210,13 +221,19 @@ export class PaymentService {
     }
   }
 
-  static async processCashPayment(paymentId: string, request: PaymentRequest): Promise<PaymentResponse> {
+  static async processCashPayment(
+    paymentId: string,
+    request: PaymentRequest
+  ): Promise<PaymentResponse> {
     // Cash payments are handled manually by attendants
     await prisma.payment.update({
       where: { id: paymentId },
       data: {
         status: 'PENDING',
-        gatewayResponse: JSON.stringify({ method: 'CASH', note: 'Awaiting cash payment confirmation' }),
+        gatewayResponse: JSON.stringify({
+          method: 'CASH',
+          note: 'Awaiting cash payment confirmation',
+        }),
       },
     });
 
@@ -227,7 +244,10 @@ export class PaymentService {
     };
   }
 
-  static async confirmCashPayment(paymentId: string, attendantId: string): Promise<void> {
+  static async confirmCashPayment(
+    paymentId: string,
+    attendantId: string
+  ): Promise<void> {
     await prisma.payment.update({
       where: { id: paymentId },
       data: {
@@ -250,7 +270,10 @@ export class PaymentService {
     }
   }
 
-  static async handlePaymentWebhook(provider: string, payload: any): Promise<void> {
+  static async handlePaymentWebhook(
+    provider: string,
+    payload: any
+  ): Promise<void> {
     switch (provider) {
       case 'telebirr':
         await this.handleTelebirrWebhook(payload);
@@ -298,8 +321,8 @@ export class PaymentService {
   // Mock API implementations (replace with actual API calls)
   private static async callTelebirrAPI(params: any): Promise<any> {
     // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     // Mock successful response (85% success rate)
     if (Math.random() > 0.15) {
       return {
@@ -317,9 +340,9 @@ export class PaymentService {
   }
 
   private static async callCBEBirrAPI(params: any): Promise<any> {
-    await new Promise(resolve => setTimeout(resolve, 1200));
-    
-    if (Math.random() > 0.10) {
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    if (Math.random() > 0.1) {
       return {
         success: true,
         transactionId: `CBE-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
@@ -335,8 +358,8 @@ export class PaymentService {
   }
 
   private static async callChapaAPI(params: any): Promise<any> {
-    await new Promise(resolve => setTimeout(resolve, 800));
-    
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
     return {
       success: true,
       paymentUrl: `https://checkout.chapa.co/pay/${Math.random().toString(36).substr(2, 16)}`,
@@ -357,7 +380,7 @@ export class PaymentService {
   private static async handleChapaWebhook(payload: any): Promise<void> {
     // Handle Chapa webhook notifications
     const { reference, status, transaction_id } = payload;
-    
+
     if (status === 'success') {
       await prisma.payment.update({
         where: { id: reference },
@@ -379,7 +402,9 @@ export class PaymentService {
     }
   }
 
-  private static async getUserIdFromBooking(bookingId: string): Promise<string> {
+  private static async getUserIdFromBooking(
+    bookingId: string
+  ): Promise<string> {
     const booking = await prisma.booking.findUnique({
       where: { id: bookingId },
       select: { userId: true },

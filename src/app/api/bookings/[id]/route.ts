@@ -8,7 +8,7 @@ export async function PATCH(
 ) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -42,10 +42,7 @@ export async function PATCH(
         return NextResponse.json(checkoutResult);
 
       default:
-        return NextResponse.json(
-          { error: 'Invalid action' },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
     }
   } catch (error) {
     console.error('Booking update error:', error);

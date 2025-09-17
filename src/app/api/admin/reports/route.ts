@@ -5,7 +5,7 @@ import { prisma } from '@/src/lib/prisma';
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -15,8 +15,8 @@ export async function GET(request: NextRequest) {
 
     // Calculate date range based on period
     const endDate = new Date();
-    let startDate = new Date();
-    
+    const startDate = new Date();
+
     switch (period) {
       case '7d':
         startDate.setDate(endDate.getDate() - 7);
@@ -63,7 +63,8 @@ export async function GET(request: NextRequest) {
     const occupiedSlots = await prisma.parkingSlot.count({
       where: { status: 'OCCUPIED' },
     });
-    const averageOccupancy = totalSlots > 0 ? (occupiedSlots / totalSlots) * 100 : 0;
+    const averageOccupancy =
+      totalSlots > 0 ? (occupiedSlots / totalSlots) * 100 : 0;
 
     // Get top locations
     const topLocations = await prisma.parkingLocation.findMany({
@@ -91,12 +92,13 @@ export async function GET(request: NextRequest) {
     });
 
     const topLocationsData = topLocations
-      .map(location => {
-        const bookings = location.slots.flatMap(slot => slot.bookings);
-        const revenue = bookings.reduce((sum, booking) => 
-          sum + (booking.payment?.amount || 0), 0
+      .map((location) => {
+        const bookings = location.slots.flatMap((slot) => slot.bookings);
+        const revenue = bookings.reduce(
+          (sum, booking) => sum + (booking.payment?.amount || 0),
+          0
         );
-        
+
         return {
           name: location.name,
           revenue,
@@ -124,7 +126,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const paymentMethodsData = paymentMethods.map(pm => ({
+    const paymentMethodsData = paymentMethods.map((pm) => ({
       method: pm.method,
       count: pm._count.id,
       amount: pm._sum.amount || 0,
@@ -132,7 +134,11 @@ export async function GET(request: NextRequest) {
 
     // Get daily stats for the period
     const dailyStats = [];
-    for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    for (
+      let d = new Date(startDate);
+      d <= endDate;
+      d.setDate(d.getDate() + 1)
+    ) {
       const dayStart = new Date(d);
       dayStart.setHours(0, 0, 0, 0);
       const dayEnd = new Date(d);
@@ -176,7 +182,7 @@ export async function GET(request: NextRequest) {
       const monthStart = new Date();
       monthStart.setMonth(monthStart.getMonth() - i, 1);
       monthStart.setHours(0, 0, 0, 0);
-      
+
       const monthEnd = new Date(monthStart);
       monthEnd.setMonth(monthEnd.getMonth() + 1);
       monthEnd.setDate(0);
@@ -207,7 +213,10 @@ export async function GET(request: NextRequest) {
       const monthRevenue = monthRevenueResult._sum.amount || 0;
 
       monthlyTrends.push({
-        month: monthStart.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+        month: monthStart.toLocaleDateString('en-US', {
+          month: 'short',
+          year: 'numeric',
+        }),
         revenue: monthRevenue,
         bookings: monthBookings,
       });

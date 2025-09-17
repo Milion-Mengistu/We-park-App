@@ -12,9 +12,14 @@ async function main() {
         name: 'Downtown Plaza',
         address: '123 Main Street, City Center',
         latitude: 40.7128,
-        longitude: -74.0060,
+        longitude: -74.006,
         description: 'Premium parking in the heart of downtown',
-        features: JSON.stringify(['Covered', '24/7', 'Security', 'EV Charging']),
+        features: JSON.stringify([
+          'Covered',
+          '24/7',
+          'Security',
+          'EV Charging',
+        ]),
         operatingHours: JSON.stringify({
           monday: '06:00-23:00',
           tuesday: '06:00-23:00',
@@ -22,7 +27,7 @@ async function main() {
           thursday: '06:00-23:00',
           friday: '06:00-23:00',
           saturday: '08:00-22:00',
-          sunday: '08:00-20:00'
+          sunday: '08:00-20:00',
         }),
         isActive: true,
       },
@@ -34,7 +39,11 @@ async function main() {
         latitude: 40.7589,
         longitude: -73.9851,
         description: 'Multi-level parking garage with electric charging',
-        features: JSON.stringify(['Electric Charging', 'Covered', 'Camera Surveillance']),
+        features: JSON.stringify([
+          'Electric Charging',
+          'Covered',
+          'Camera Surveillance',
+        ]),
         operatingHours: JSON.stringify({
           monday: '24/7',
           tuesday: '24/7',
@@ -42,7 +51,7 @@ async function main() {
           thursday: '24/7',
           friday: '24/7',
           saturday: '24/7',
-          sunday: '24/7'
+          sunday: '24/7',
         }),
         isActive: true,
       },
@@ -62,7 +71,7 @@ async function main() {
           thursday: '08:00-22:00',
           friday: '08:00-23:00',
           saturday: '08:00-23:00',
-          sunday: '10:00-20:00'
+          sunday: '10:00-20:00',
         }),
         isActive: true,
       },
@@ -82,7 +91,7 @@ async function main() {
           thursday: '06:00-20:00',
           friday: '06:00-20:00',
           saturday: '08:00-18:00',
-          sunday: 'Closed'
+          sunday: 'Closed',
         }),
         isActive: true,
       },
@@ -94,7 +103,12 @@ async function main() {
         latitude: 40.6892,
         longitude: -74.1745,
         description: 'Long-term airport parking with shuttle service',
-        features: JSON.stringify(['Long-term', 'Shuttle', 'Security', 'Covered']),
+        features: JSON.stringify([
+          'Long-term',
+          'Shuttle',
+          'Security',
+          'Covered',
+        ]),
         operatingHours: JSON.stringify({
           monday: '24/7',
           tuesday: '24/7',
@@ -102,7 +116,7 @@ async function main() {
           thursday: '24/7',
           friday: '24/7',
           saturday: '24/7',
-          sunday: '24/7'
+          sunday: '24/7',
         }),
         isActive: true,
       },
@@ -111,20 +125,32 @@ async function main() {
 
   // Create parking slots for each location
   const slotsData = [
-    { locationIdx: 0, count: 50, basePrice: 8.50, types: ['STANDARD', 'PREMIUM', 'EV'] },
+    {
+      locationIdx: 0,
+      count: 50,
+      basePrice: 8.5,
+      types: ['STANDARD', 'PREMIUM', 'EV'],
+    },
     { locationIdx: 1, count: 75, basePrice: 6.75, types: ['STANDARD', 'EV'] },
     { locationIdx: 2, count: 120, basePrice: 5.25, types: ['STANDARD'] },
-    { locationIdx: 3, count: 30, basePrice: 12.00, types: ['PREMIUM', 'VALET'] },
-    { locationIdx: 4, count: 200, basePrice: 15.00, types: ['STANDARD', 'LONG_TERM'] },
+    { locationIdx: 3, count: 30, basePrice: 12.0, types: ['PREMIUM', 'VALET'] },
+    {
+      locationIdx: 4,
+      count: 200,
+      basePrice: 15.0,
+      types: ['STANDARD', 'LONG_TERM'],
+    },
   ];
 
   for (const slotConfig of slotsData) {
     const location = locations[slotConfig.locationIdx];
-    
+
     for (let i = 1; i <= slotConfig.count; i++) {
-      const slotType = slotConfig.types[Math.floor(Math.random() * slotConfig.types.length)];
-      const priceMultiplier = slotType === 'PREMIUM' ? 1.5 : slotType === 'EV' ? 1.2 : 1;
-      
+      const slotType =
+        slotConfig.types[Math.floor(Math.random() * slotConfig.types.length)];
+      const priceMultiplier =
+        slotType === 'PREMIUM' ? 1.5 : slotType === 'EV' ? 1.2 : 1;
+
       await prisma.parkingSlot.create({
         data: {
           slotNumber: `${String.fromCharCode(65 + Math.floor((i - 1) / 10))}-${String(i).padStart(2, '0')}`,
@@ -133,7 +159,12 @@ async function main() {
           basePrice: slotConfig.basePrice * priceMultiplier,
           status: Math.random() > 0.3 ? 'AVAILABLE' : 'OCCUPIED',
           features: JSON.stringify(getSlotFeatures(slotType)),
-          rules: slotType === 'EV' ? 'Electric vehicles only' : slotType === 'PREMIUM' ? 'Premium parking with additional services' : null,
+          rules:
+            slotType === 'EV'
+              ? 'Electric vehicles only'
+              : slotType === 'PREMIUM'
+                ? 'Premium parking with additional services'
+                : null,
         },
       });
     }
@@ -168,7 +199,7 @@ async function main() {
           booking_confirmation: true,
           payment_reminders: true,
           expiry_warnings: true,
-          promotional: false
+          promotional: false,
         }),
         description: 'Default notification settings',
       },
@@ -183,7 +214,7 @@ async function main() {
 
 function getSlotFeatures(type: string): string[] {
   const baseFeatures = ['Camera', 'Sensor'];
-  
+
   switch (type) {
     case 'PREMIUM':
       return [...baseFeatures, 'Valet', 'Covered', 'Premium'];

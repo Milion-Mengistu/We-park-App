@@ -1,70 +1,70 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import ParkingMap from "@/src/components/ParkingMap";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import ParkingMap from '@/src/components/ParkingMap';
 
 // Mock parking data
 const mockParkingSpots = [
   {
     id: 1,
-    name: "Downtown Plaza",
-    address: "123 Main Street",
+    name: 'Downtown Plaza',
+    address: '123 Main Street',
     price: 8.5,
     available: 12,
     total: 50,
     distance: 0.2,
     rating: 4.8,
-    features: ["Covered", "24/7", "Security"],
+    features: ['Covered', '24/7', 'Security'],
     coordinates: { x: 35, y: 25 },
   },
   {
     id: 2,
-    name: "City Center Garage",
-    address: "456 Oak Avenue",
+    name: 'City Center Garage',
+    address: '456 Oak Avenue',
     price: 6.75,
     available: 8,
     total: 75,
     distance: 0.4,
     rating: 4.6,
-    features: ["Electric Charging", "Covered"],
+    features: ['Electric Charging', 'Covered'],
     coordinates: { x: 60, y: 40 },
   },
   {
     id: 3,
-    name: "Mall Parking",
-    address: "789 Shopping Blvd",
+    name: 'Mall Parking',
+    address: '789 Shopping Blvd',
     price: 5.25,
     available: 25,
     total: 120,
     distance: 0.8,
     rating: 4.3,
-    features: ["Free 2hrs", "Shopping"],
+    features: ['Free 2hrs', 'Shopping'],
     coordinates: { x: 20, y: 60 },
   },
   {
     id: 4,
-    name: "Business District",
-    address: "321 Corporate Way",
+    name: 'Business District',
+    address: '321 Corporate Way',
     price: 12.0,
     available: 3,
     total: 30,
     distance: 0.3,
     rating: 4.9,
-    features: ["Valet", "Premium", "Covered"],
+    features: ['Valet', 'Premium', 'Covered'],
     coordinates: { x: 75, y: 20 },
   },
   {
     id: 5,
-    name: "Airport Parking",
-    address: "555 Terminal Drive",
+    name: 'Airport Parking',
+    address: '555 Terminal Drive',
     price: 15.0,
     available: 45,
     total: 200,
     distance: 2.1,
     rating: 4.4,
-    features: ["Long-term", "Shuttle", "Security"],
+    features: ['Long-term', 'Shuttle', 'Security'],
     coordinates: { x: 85, y: 75 },
   },
 ];
@@ -73,8 +73,8 @@ export default function FindParkingPage() {
   const [selectedSpot, setSelectedSpot] = useState<
     (typeof mockParkingSpots)[0] | null
   >(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("distance");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('distance');
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [filteredSpots, setFilteredSpots] = useState(mockParkingSpots);
   const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +85,7 @@ export default function FindParkingPage() {
   }, []);
 
   useEffect(() => {
-    let filtered = mockParkingSpots.filter(
+    const filtered = mockParkingSpots.filter(
       (spot) =>
         spot.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         spot.address.toLowerCase().includes(searchQuery.toLowerCase())
@@ -94,13 +94,13 @@ export default function FindParkingPage() {
     // Sort spots
     filtered.sort((a, b) => {
       switch (sortBy) {
-        case "price":
+        case 'price':
           return a.price - b.price;
-        case "distance":
+        case 'distance':
           return a.distance - b.distance;
-        case "availability":
+        case 'availability':
           return b.available - a.available;
-        case "rating":
+        case 'rating':
           return b.rating - a.rating;
         default:
           return 0;
@@ -112,17 +112,17 @@ export default function FindParkingPage() {
 
   const getAvailabilityColor = (available: number, total: number) => {
     const percentage = (available / total) * 100;
-    if (percentage > 50) return "text-green-600 bg-green-50 border-green-200";
+    if (percentage > 50) return 'text-green-600 bg-green-50 border-green-200';
     if (percentage > 20)
-      return "text-orange-600 bg-orange-50 border-orange-200";
-    return "text-red-600 bg-red-50 border-red-200";
+      return 'text-orange-600 bg-orange-50 border-orange-200';
+    return 'text-red-600 bg-red-50 border-red-200';
   };
 
   const getAvailabilityDot = (available: number, total: number) => {
     const percentage = (available / total) * 100;
-    if (percentage > 50) return "bg-green-500";
-    if (percentage > 20) return "bg-orange-500";
-    return "bg-red-500";
+    if (percentage > 50) return 'bg-green-500';
+    if (percentage > 20) return 'bg-orange-500';
+    return 'bg-red-500';
   };
 
   return (
@@ -257,8 +257,8 @@ export default function FindParkingPage() {
                   key={spot.id}
                   className={`bg-white/80 backdrop-blur-sm rounded-xl p-4 border transition-all duration-300 cursor-pointer ${
                     selectedSpot?.id === spot.id
-                      ? "border-blue-300 shadow-lg shadow-blue-100 bg-blue-50/50"
-                      : "border-white/50 shadow-md hover:shadow-lg hover:border-blue-200"
+                      ? 'border-blue-300 shadow-lg shadow-blue-100 bg-blue-50/50'
+                      : 'border-white/50 shadow-md hover:shadow-lg hover:border-blue-200'
                   }`}
                   onClick={() => setSelectedSpot(spot)}
                 >
@@ -412,10 +412,10 @@ export default function FindParkingPage() {
                   <span
                     className={`font-semibold ${
                       selectedSpot.available > 10
-                        ? "text-green-600"
+                        ? 'text-green-600'
                         : selectedSpot.available > 5
-                        ? "text-orange-600"
-                        : "text-red-600"
+                          ? 'text-orange-600'
+                          : 'text-red-600'
                     }`}
                   >
                     {selectedSpot.available} spots
@@ -454,7 +454,7 @@ export default function FindParkingPage() {
                   type="datetime-local"
                   className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300"
                   defaultValue={
-                    mounted ? new Date().toISOString().slice(0, 16) : ""
+                    mounted ? new Date().toISOString().slice(0, 16) : ''
                   }
                 />
               </div>
@@ -476,12 +476,12 @@ export default function FindParkingPage() {
                   setShowBookingModal(false);
                   // Show success message
                   alert(
-                    "🎉 Booking confirmed! You will receive a confirmation shortly."
+                    '🎉 Booking confirmed! You will receive a confirmation shortly.'
                   );
                 }}
                 disabled={isLoading}
                 className={`flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-medium transition-all duration-300 ${
-                  isLoading ? "opacity-75 cursor-not-allowed" : ""
+                  isLoading ? 'opacity-75 cursor-not-allowed' : ''
                 }`}
               >
                 {isLoading ? (
@@ -490,7 +490,7 @@ export default function FindParkingPage() {
                     Processing...
                   </div>
                 ) : (
-                  "Confirm Booking"
+                  'Confirm Booking'
                 )}
               </button>
             </div>

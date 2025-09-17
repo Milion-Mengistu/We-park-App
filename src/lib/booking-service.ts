@@ -380,7 +380,7 @@ export class BookingService {
       data: {
         userId,
         title: 'Booking Update',
-        message: messages[type] || 'Booking status updated',
+        message: messages[type as keyof typeof messages] || 'Booking status updated',
         type: 'BOOKING',
         priority: type.includes('REQUIRED') ? 'HIGH' : 'NORMAL',
         data: JSON.stringify({ bookingId, type }),

@@ -4,7 +4,7 @@ import { PaymentService } from '@/src/lib/payment-service';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession();
@@ -13,11 +13,11 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const paymentId = params.id;
+    const { id: paymentId } = await params;
     const paymentStatus = await PaymentService.getPaymentStatus(paymentId);
 
     return NextResponse.json(paymentStatus);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Get payment status error:', error);
     return NextResponse.json(
       { error: error.message || 'Failed to get payment status' },
@@ -28,7 +28,7 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession();
@@ -37,7 +37,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const paymentId = params.id;
+    const { id: paymentId } = await params;
     const body = await request.json();
     const { action } = body;
 
@@ -52,7 +52,7 @@ export async function PATCH(
       { error: 'Invalid action' },
       { status: 400 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('Payment update error:', error);
     return NextResponse.json(
       { error: error.message || 'Failed to update payment' },

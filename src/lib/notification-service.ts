@@ -377,7 +377,7 @@ export class NotificationService {
       },
     };
 
-    return templates[type]?.[action] || {
+    return (templates as any)[type]?.[action] || {
       title: 'Notification',
       message: 'You have a new notification',
     };

@@ -3,12 +3,13 @@ import { requireRole, assignRole, removeRole, getUserWithRoles, UserRole } from 
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireRole(['ADMIN', 'SUPER_ADMIN']);
     
-    const userWithRoles = await getUserWithRoles(params.id);
+    const { id } = await params;
+    const userWithRoles = await getUserWithRoles(id);
     
     if (!userWithRoles) {
       return NextResponse.json(
@@ -29,7 +30,7 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireRole(['ADMIN', 'SUPER_ADMIN']);
@@ -43,7 +44,8 @@ export async function POST(
       );
     }
 
-    await assignRole(params.id, role as UserRole, locationId);
+    const { id } = await params;
+    await assignRole(id, role as UserRole, locationId);
 
     return NextResponse.json({ 
       message: 'Role assigned successfully' 
@@ -59,7 +61,7 @@ export async function POST(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireRole(['ADMIN', 'SUPER_ADMIN']);
@@ -75,7 +77,8 @@ export async function DELETE(
       );
     }
 
-    await removeRole(params.id, role as UserRole, locationId || undefined);
+    const { id } = await params;
+    await removeRole(id, role as UserRole, locationId || undefined);
 
     return NextResponse.json({ 
       message: 'Role removed successfully' 

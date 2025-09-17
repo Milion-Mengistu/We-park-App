@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(paymentResponse);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Payment initiation error:', error);
     return NextResponse.json(
       { error: error.message || 'Failed to initiate payment' },

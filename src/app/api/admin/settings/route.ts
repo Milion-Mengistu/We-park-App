@@ -23,35 +23,35 @@ export async function GET(request: NextRequest) {
       {
         name: "General",
         description: "Basic system configuration",
-        settings: settings.filter(s => 
+        settings: settings.filter((s: any) => 
           ['SYSTEM_NAME', 'SYSTEM_EMAIL', 'SUPPORT_PHONE', 'MAINTENANCE_MODE'].includes(s.key)
         ),
       },
       {
         name: "Booking",
         description: "Booking and reservation settings",
-        settings: settings.filter(s => 
+        settings: settings.filter((s: any) => 
           ['MAX_BOOKING_HOURS', 'BOOKING_GRACE_PERIOD', 'AUTO_CANCEL_HOURS', 'EXTEND_BOOKING_LIMIT'].includes(s.key)
         ),
       },
       {
         name: "Payment",
         description: "Payment and pricing configuration",
-        settings: settings.filter(s => 
+        settings: settings.filter((s: any) => 
           ['CURRENCY', 'PAYMENT_TIMEOUT', 'REFUND_POLICY', 'DYNAMIC_PRICING'].includes(s.key)
         ),
       },
       {
         name: "Notifications",
         description: "Notification and communication settings",
-        settings: settings.filter(s => 
+        settings: settings.filter((s: any) => 
           ['EMAIL_NOTIFICATIONS', 'SMS_NOTIFICATIONS', 'PUSH_NOTIFICATIONS', 'REMINDER_BEFORE_EXPIRY'].includes(s.key)
         ),
       },
       {
         name: "Security",
         description: "Security and access control settings",
-        settings: settings.filter(s => 
+        settings: settings.filter((s: any) => 
           ['SESSION_TIMEOUT', 'MAX_LOGIN_ATTEMPTS', 'QR_CODE_EXPIRY', 'API_RATE_LIMIT'].includes(s.key)
         ),
       },

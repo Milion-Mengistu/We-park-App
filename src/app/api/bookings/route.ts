@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(booking);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Booking creation error:', error);
     return NextResponse.json(
       { error: error.message || 'Failed to create booking' },

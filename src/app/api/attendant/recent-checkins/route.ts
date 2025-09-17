@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       take: 20,
     });
 
-    const formattedCheckins = recentCheckins.map(booking => ({
+    const formattedCheckins = recentCheckins.map((booking: any) => ({
       id: booking.id,
       slotNumber: booking.slot.slotNumber,
       location: booking.slot.location.name,

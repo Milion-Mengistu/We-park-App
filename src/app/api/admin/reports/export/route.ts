@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
 
       const csvRows = [
         headers.join(','),
-        ...bookings.map(booking => [
+        ...bookings.map((booking: any) => [
           booking.id,
           `"${booking.user.name || 'N/A'}"`,
           `"${booking.user.email || 'N/A'}"`,
@@ -129,10 +129,10 @@ Generated: ${new Date().toISOString()}
 
 SUMMARY
 Total Bookings: ${bookings.length}
-Total Revenue: $${bookings.reduce((sum, b) => sum + (b.payment?.amount || 0), 0).toFixed(2)}
+Total Revenue: $${bookings.reduce((sum: number, b: any) => sum + (b.payment?.amount || 0), 0).toFixed(2)}
 
 BOOKINGS
-${bookings.map(booking => `
+${bookings.map((booking: any) => `
 ID: ${booking.id}
 Customer: ${booking.user.name} (${booking.user.email})
 Location: ${booking.slot.location.name} - ${booking.slot.slotNumber}

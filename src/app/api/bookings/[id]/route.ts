@@ -4,7 +4,7 @@ import { BookingService } from '@/src/lib/booking-service';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession();
@@ -13,7 +13,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const bookingId = params.id;
+    const { id: bookingId } = await params;
     const body = await request.json();
     const { action, additionalHours } = body;
 
@@ -47,7 +47,7 @@ export async function PATCH(
           { status: 400 }
         );
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Booking update error:', error);
     return NextResponse.json(
       { error: error.message || 'Failed to update booking' },

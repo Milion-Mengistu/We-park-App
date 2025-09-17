@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     );
 
     return NextResponse.json(checkInResult);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Check-in error:', error);
     return NextResponse.json(
       { error: error.message || 'Check-in failed' },

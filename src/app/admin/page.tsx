@@ -163,7 +163,7 @@ function AdminDashboardContent() {
               </div>
             </div>
             <p className="text-2xl font-bold text-gray-900">${currentStats.todayRevenue.toFixed(2)}</p>
-            <p className="text-sm text-gray-600">Today's Revenue</p>
+            <p className="text-sm text-gray-600">Today&apos;s Revenue</p>
           </div>
 
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">

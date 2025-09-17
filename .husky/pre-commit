@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run linting before commit
+npm run lint
+
+# Run type checking
+npx tsc --noEmit
+
+echo "✅ Pre-commit checks passed!"

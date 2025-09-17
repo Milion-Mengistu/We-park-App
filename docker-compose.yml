@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: wepark-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wepark
+      POSTGRES_PASSWORD: wepark
+      POSTGRES_DB: wepark
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: wepark-app
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://wepark:wepark@db:5432/wepark?schema=public
+      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_SECRET: change-me-in-prod
+      TELEBIRR_DUMMY_MODE: "true"
+    ports:
+      - "3000:3000"
+    # If you want live reload in dev, use a separate dev compose file mounting volumes.
+
+volumes:
+  db_data:

@@ -1,0 +1,113 @@
+import { NextAuthOptions } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { prisma } from "@/src/lib/prisma";
+import { getUserRoles, UserRole } from "@/src/lib/auth-utils";
+import { credentialsProvider } from "@/src/lib/credentials-provider";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+      roles?: UserRole[];
+    };
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    roles?: UserRole[];
+  }
+}
+
+const providers = [credentialsProvider] as NextAuthOptions['providers'];
+
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+  providers.push(
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    })
+  );
+} else {
+  console.warn('Google OAuth disabled: missing GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET');
+}
+
+export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
+  providers,
+
+  session: { strategy: "jwt" },
+  callbacks: {
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.sub!;
+        session.user.roles = token.roles;
+      }
+      return session;
+    },
+    async jwt({ token, user, account }) {
+      // On first sign in, assign default USER role if no roles exist
+      if (account && user?.id) {
+        try {
+          const existingRoles = await getUserRoles(user.id);
+          if (existingRoles.length === 0) {
+            // Assign default USER role to new users
+            await prisma.userRole.create({
+              data: {
+                userId: user.id,
+                role: 'USER',
+                isActive: true,
+              },
+            });
+            token.roles = ['USER'];
+          } else {
+            token.roles = existingRoles;
+          }
+        } catch (error) {
+          console.error('Error handling user roles in JWT callback:', error);
+          token.roles = ['USER'];
+        }
+      }
+
+      // Refresh roles on each token refresh
+      if (token.sub) {
+        try {
+          const roles = await getUserRoles(token.sub);
+          token.roles = roles;
+        } catch (error) {
+          console.error('Error refreshing user roles:', error);
+        }
+      }
+
+      return token;
+    },
+  },
+  pages: {
+    signIn: '/login',
+    error: '/login',
+  },
+  debug: process.env.NODE_ENV !== 'production',
+  events: {
+    async signIn(message) {
+      console.info('NextAuth signIn event:', message?.user?.email || message);
+    },
+    async signOut(message) {
+      console.info('NextAuth signOut event:', message?.session || message);
+    },
+  },
+  logger: {
+    error(code, metadata) {
+      console.error('NextAuth logger error:', code, metadata);
+    },
+    warn(code) {
+      console.warn('NextAuth logger warn:', code);
+    },
+    debug(code, metadata) {
+      console.debug('NextAuth logger debug:', code, metadata);
+    },
+  },
+};

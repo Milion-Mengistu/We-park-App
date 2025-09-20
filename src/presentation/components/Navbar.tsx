@@ -54,6 +54,28 @@ export default function Navbar() {
             )}
           </Link>
 
+          <Link
+            href="/how-it-works"
+            className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+              mounted && pathname === '/how-it-works'
+                ? 'text-blue-600 bg-blue-50'
+                : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+            }`}
+          >
+            How It Works
+          </Link>
+
+          <Link
+            href="/about"
+            className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+              mounted && pathname === '/about'
+                ? 'text-blue-600 bg-blue-50'
+                : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+            }`}
+          >
+            About
+          </Link>
+
           {session && (
             <>
               <Link
@@ -66,6 +88,20 @@ export default function Navbar() {
               >
                 Find Parking
                 {mounted && pathname === '/find-parking' && (
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 rounded-full"></div>
+                )}
+              </Link>
+
+              <Link
+                href="/booking-history"
+                className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                  mounted && pathname === '/booking-history'
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                }`}
+              >
+                History
+                {mounted && pathname === '/booking-history' && (
                   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 rounded-full"></div>
                 )}
               </Link>
@@ -217,9 +253,12 @@ export default function Navbar() {
       >
         <div className="px-6 py-4 space-y-2">
           <Link href="/" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Home</Link>
+          <Link href="/how-it-works" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">How It Works</Link>
+          <Link href="/about" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">About</Link>
           {session && (
             <>
               <Link href="/find-parking" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Find Parking</Link>
+              <Link href="/booking-history" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">History</Link>
               {!isLoading && isAttendant && (
                 <Link href="/attendant" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Attendant</Link>
               )}

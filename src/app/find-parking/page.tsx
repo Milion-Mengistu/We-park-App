@@ -66,6 +66,9 @@ export default function FindParkingPage() {
   const [mounted, setMounted] = useState(false);
   const [durationHours, setDurationHours] = useState<number>(1);
   const [startTime, setStartTime] = useState<string>("");
+  // Newly added state for displaying booking confirmation with QR / code
+  const [confirmedBooking, setConfirmedBooking] = useState<any | null>(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -621,8 +624,21 @@ export default function FindParkingPage() {
                     setShowBookingModal(false);
 
                     if (payment.status === 'COMPLETED') {
-                      alert('Payment successful. Your booking is confirmed.');
-                      router.push('/dashboard');
+                      // Try to refetch confirmed booking to get updated status (codes already exist from initial create)
+                      try {
+                        const refreshed = await fetch('/api/bookings?status=CONFIRMED', { cache: 'no-store' });
+                        if (refreshed.ok) {
+                          const list = await refreshed.json();
+                          // Pick the first confirmed booking (or fallback to original)
+                          const latest = Array.isArray(list) ? list.find((b:any)=> b.id === booking.id) || list[0] : null;
+                          setConfirmedBooking(latest || booking);
+                        } else {
+                          setConfirmedBooking(booking);
+                        }
+                      } catch {
+                        setConfirmedBooking(booking);
+                      }
+                      setShowConfirmation(true);
                     } else if (payment.paymentUrl) {
                       window.location.href = payment.paymentUrl;
                     } else {
@@ -641,6 +657,94 @@ export default function FindParkingPage() {
               >
                 Confirm Booking
               </ActionButton>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Confirmation Modal */}
+      {showConfirmation && confirmedBooking && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl relative">
+            <button
+              onClick={() => setShowConfirmation(false)}
+              className="absolute top-3 right-3 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center"
+            >
+              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Booking Confirmed</h3>
+            <p className="text-sm text-gray-600 mb-4">Show this QR code or provide the 6-digit code at the entrance.</p>
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex flex-col items-center mb-4 w-full">
+              {confirmedBooking.qrCode ? (
+                <>
+                  <img
+                    src={confirmedBooking.qrCodeImage || `/api/qr/${confirmedBooking.qrCode}?size=240&ec=H`}
+                    alt="Booking QR Code"
+                    className="w-44 h-44 mb-3 border rounded-lg bg-white object-contain"
+                  />
+                  <div className="flex gap-2 mb-2">
+                    <button
+                      onClick={async () => {
+                        try {
+                          const url = confirmedBooking.qrCodeImage || `/api/qr/${confirmedBooking.qrCode}?format=png&size=600&ec=H`;
+                          if (url.startsWith('data:')) {
+                            // Direct download from data URL
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `wepark-${confirmedBooking.qrCode}.png`;
+                            a.click();
+                            return;
+                          }
+                          const res = await fetch(url);
+                          const blob = await res.blob();
+                          const objectUrl = URL.createObjectURL(blob);
+                          const a = document.createElement('a');
+                          a.href = objectUrl;
+                          a.download = `wepark-${confirmedBooking.qrCode}.png`;
+                          a.click();
+                          setTimeout(() => URL.revokeObjectURL(objectUrl), 4000);
+                        } catch (err) {
+                          alert('Failed to download QR.');
+                        }
+                      }}
+                      className="px-3 py-1 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium"
+                    >Download</button>
+                    <button
+                      onClick={async () => {
+                        try {
+                          await navigator.clipboard.writeText(confirmedBooking.qrCode);
+                          alert('QR code value copied.');
+                        } catch {}
+                      }}
+                      className="px-3 py-1 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-medium"
+                    >Copy Code</button>
+                  </div>
+                </>
+              ) : (
+                <div className="w-44 h-44 flex items-center justify-center bg-white border rounded-lg mb-3 text-gray-400 text-xs text-center px-2">
+                  QR code unavailable
+                </div>
+              )}
+              <div className="text-center">
+                <p className="text-xs text-gray-500 uppercase tracking-wide">Check-In Code</p>
+                <p className="text-2xl font-mono font-bold text-blue-600 mt-1">{confirmedBooking.checkInCode || '------'}</p>
+              </div>
+            </div>
+            <div className="space-y-2 text-sm w-full">
+              <div className="flex justify-between"><span className="text-gray-500">Slot</span><span className="font-medium">{confirmedBooking.slot?.slotNumber || 'N/A'}</span></div>
+              <div className="flex justify-between"><span className="text-gray-500">Location</span><span className="font-medium truncate max-w-[180px]">{confirmedBooking.slot?.location?.name || 'N/A'}</span></div>
+              <div className="flex justify-between"><span className="text-gray-500">Status</span><span className="font-medium">{confirmedBooking.status}</span></div>
+            </div>
+            <div className="mt-6 flex gap-3">
+              <button
+                onClick={() => { setShowConfirmation(false); setConfirmedBooking(null); }}
+                className="flex-1 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-medium transition-colors"
+              >Close</button>
+              <button
+                onClick={() => { setShowConfirmation(false); setConfirmedBooking(null); router.push('/dashboard'); }}
+                className="flex-1 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-colors"
+              >Go to Dashboard</button>
             </div>
           </div>
         </div>

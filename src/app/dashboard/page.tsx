@@ -4,7 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { useRoles } from "@/src/hooks/useRoles";
 import { StatsCard, ActionButton, StatusBadge, PageLoading } from "@/src/components/ui";
 
@@ -50,33 +50,48 @@ export default function DashboardPage() {
   }, [session, status, router, mounted, roles, isAdmin, isAttendant, rolesLoading, shouldRedirect]);
 
   // Fetch user's bookings and notifications (must be before any early return to keep hooks order stable)
-  useEffect(() => {
+  const loadData = useCallback(async () => {
     if (!mounted || status !== 'authenticated') return;
-    const load = async () => {
-      setLoadingData(true);
-      try {
-        const [bRes, nRes] = await Promise.all([
-          fetch('/api/bookings', { cache: 'no-store' }),
-          fetch('/api/notifications?limit=10', { cache: 'no-store' }),
-        ]);
-        if (bRes.ok) {
-          const data = await bRes.json();
-          const list = Array.isArray(data) ? data : (data.bookings ?? []);
-          setBookings(list);
-        }
-        if (nRes.ok) {
-          const data = await nRes.json();
-          setNotifications(data.notifications ?? []);
-          setNotifUnread(data.unreadCount ?? 0);
-        }
-      } catch (e) {
-        console.error('Dashboard load error', e);
-      } finally {
-        setLoadingData(false);
+    setLoadingData(true);
+    try {
+      const [bRes, nRes] = await Promise.all([
+        fetch('/api/bookings', { cache: 'no-store' }),
+        fetch('/api/notifications?limit=10', { cache: 'no-store' }),
+      ]);
+      if (bRes.ok) {
+        const data = await bRes.json();
+        const list = Array.isArray(data) ? data : (data.bookings ?? []);
+        setBookings(list);
       }
-    };
-    load();
+      if (nRes.ok) {
+        const data = await nRes.json();
+        setNotifications(data.notifications ?? []);
+        setNotifUnread(data.unreadCount ?? 0);
+      }
+    } catch (e) {
+      console.error('Dashboard load error', e);
+    } finally {
+      setLoadingData(false);
+    }
   }, [mounted, status]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  // Auto-refresh on window focus or when tab becomes visible (helps show recent bookings)
+  useEffect(() => {
+    const onFocus = () => loadData();
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') loadData();
+    };
+    window.addEventListener('focus', onFocus);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      window.removeEventListener('focus', onFocus);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [loadData]);
 
   const currentBooking = useMemo(() => {
     const byStatus: Record<string, any[]> = bookings.reduce((acc, b) => {
@@ -428,7 +443,17 @@ export default function DashboardPage() {
 
             {/* Recent Bookings */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Recent Bookings</h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Recent Bookings</h2>
+                <button
+                  onClick={() => loadData()}
+                  className="px-3 py-1.5 text-sm rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100"
+                  disabled={loadingData}
+                  title="Refresh"
+                >
+                  {loadingData ? 'Refreshing…' : 'Refresh'}
+                </button>
+              </div>
               <div className="space-y-4">
                 {(bookings.slice(0, 5)).map((b) => (
                   <div key={b.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">

@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from './prisma';
 
 export interface PaymentRequest {
   bookingId: string;
@@ -29,6 +27,7 @@ export class PaymentService {
         method: request.method,
         status: 'PENDING',
       },
+      select: { id: true },
     });
 
     switch (request.method) {
@@ -51,6 +50,7 @@ export class PaymentService {
       await prisma.payment.update({
         where: { id: paymentId },
         data: { status: 'PROCESSING' },
+        select: { id: true },
       });
 
       // Telebirr API integration (mock implementation)
@@ -70,6 +70,7 @@ export class PaymentService {
             paidAt: new Date(),
             gatewayResponse: JSON.stringify(telebirrResponse),
           },
+          select: { id: true },
         });
 
         // Confirm booking
@@ -88,6 +89,7 @@ export class PaymentService {
             status: 'FAILED',
             gatewayResponse: JSON.stringify(telebirrResponse),
           },
+          select: { id: true },
         });
 
         return {
@@ -100,6 +102,7 @@ export class PaymentService {
       await prisma.payment.update({
         where: { id: paymentId },
         data: { status: 'FAILED' },
+        select: { id: true },
       });
 
       throw new Error('Telebirr payment processing failed');
@@ -111,6 +114,7 @@ export class PaymentService {
       await prisma.payment.update({
         where: { id: paymentId },
         data: { status: 'PROCESSING' },
+        select: { id: true },
       });
 
       // CBE Birr API integration (mock implementation)
@@ -130,6 +134,7 @@ export class PaymentService {
             paidAt: new Date(),
             gatewayResponse: JSON.stringify(cbeResponse),
           },
+          select: { id: true },
         });
 
         await this.confirmBookingPayment(request.bookingId);
@@ -147,6 +152,7 @@ export class PaymentService {
             status: 'FAILED',
             gatewayResponse: JSON.stringify(cbeResponse),
           },
+          select: { id: true },
         });
 
         return {
@@ -159,6 +165,7 @@ export class PaymentService {
       await prisma.payment.update({
         where: { id: paymentId },
         data: { status: 'FAILED' },
+        select: { id: true },
       });
 
       throw new Error('CBE Birr payment processing failed');
@@ -170,6 +177,7 @@ export class PaymentService {
       await prisma.payment.update({
         where: { id: paymentId },
         data: { status: 'PROCESSING' },
+        select: { id: true },
       });
 
       // Chapa API integration (mock implementation)
@@ -194,6 +202,7 @@ export class PaymentService {
             status: 'FAILED',
             gatewayResponse: JSON.stringify(chapaResponse),
           },
+          select: { id: true },
         });
 
         return {
@@ -206,6 +215,7 @@ export class PaymentService {
       await prisma.payment.update({
         where: { id: paymentId },
         data: { status: 'FAILED' },
+        select: { id: true },
       });
 
       throw new Error('Chapa payment processing failed');
@@ -220,6 +230,7 @@ export class PaymentService {
         status: 'PENDING',
         gatewayResponse: JSON.stringify({ method: 'CASH', note: 'Awaiting cash payment confirmation' }),
       },
+      select: { id: true },
     });
 
     return {
@@ -241,10 +252,12 @@ export class PaymentService {
           confirmedAt: new Date(),
         }),
       },
+      select: { id: true },
     });
 
     const payment = await prisma.payment.findUnique({
       where: { id: paymentId },
+      select: { bookingId: true },
     });
 
     if (payment) {
@@ -271,12 +284,20 @@ export class PaymentService {
   static async getPaymentStatus(paymentId: string): Promise<any> {
     const payment = await prisma.payment.findUnique({
       where: { id: paymentId },
-      include: {
+      select: {
+        id: true,
+        status: true,
+        amount: true,
+        method: true,
+        transactionId: true,
+        paidAt: true,
         booking: {
-          include: {
-            slot: {
-              include: { location: true },
-            },
+          select: {
+            id: true,
+            status: true,
+            startTime: true,
+            endTime: true,
+            slot: { select: { slotNumber: true, location: { select: { name: true, address: true } } } },
           },
         },
       },
@@ -390,10 +411,12 @@ export class PaymentService {
           paidAt: new Date(),
           gatewayResponse: JSON.stringify(payload),
         },
+        select: { id: true },
       });
 
       const payment = await prisma.payment.findUnique({
         where: { id: reference },
+        select: { bookingId: true },
       });
 
       if (payment) {
@@ -416,27 +439,22 @@ export class PaymentService {
   }
 
   private static async confirmBookingPayment(bookingId: string): Promise<void> {
-    await prisma.booking.update({
+    const updated = await prisma.booking.update({
       where: { id: bookingId },
       data: { status: 'CONFIRMED' },
+      select: { id: true, userId: true },
     });
 
-    // Create notification
-    const booking = await prisma.booking.findUnique({
-      where: { id: bookingId },
+    // Create notification using returned userId
+    await prisma.notification.create({
+      data: {
+        userId: updated.userId,
+        title: 'Payment Confirmed',
+        message: 'Your payment has been confirmed and booking is active',
+        type: 'PAYMENT',
+        priority: 'NORMAL',
+        data: JSON.stringify({ bookingId }),
+      },
     });
-
-    if (booking) {
-      await prisma.notification.create({
-        data: {
-          userId: booking.userId,
-          title: 'Payment Confirmed',
-          message: 'Your payment has been confirmed and booking is active',
-          type: 'PAYMENT',
-          priority: 'NORMAL',
-          data: JSON.stringify({ bookingId }),
-        },
-      });
-    }
   }
 }

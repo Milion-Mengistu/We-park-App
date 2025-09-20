@@ -9,6 +9,7 @@ export type BookingResponse = {
   totalAmount: number;
   startTime?: string;
   endTime?: string;
+  qrCodeImage?: string; // Pre-generated PNG data URL
   slot: {
     slotNumber: string;
     location: {
@@ -19,29 +20,45 @@ export type BookingResponse = {
 };
 
 import { generateQRCode, generateCheckInCode } from "./qr-service";
+import { generateRealQRPNGDataURL } from "./real-qr";
 
 export class BookingService {
+  private static async columnExists(tableName: string, columnName: string): Promise<boolean> {
+    try {
+      const result = await prisma.$queryRawUnsafe<any[]>(
+        `SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND lower(table_name) = lower($1) AND lower(column_name) = lower($2) LIMIT 1`,
+        tableName,
+        columnName
+      );
+      return Array.isArray(result) && result.length > 0;
+    } catch {
+      return false;
+    }
+  }
   static async checkOut(bookingId: string) {
     // Complete booking and free slot
-    const booking = await prisma.booking.update({
+    const updated = await prisma.booking.update({
       where: { id: bookingId },
       data: {
         status: 'COMPLETED',
         actualEndTime: new Date(),
       },
-      include: { slot: true },
+      select: { id: true, slotId: true },
     });
 
     await prisma.parkingSlot.update({
-      where: { id: booking.slotId },
+      where: { id: updated.slotId },
       data: { status: 'AVAILABLE' },
     });
 
-    return { id: booking.id, status: 'COMPLETED' };
+    return { id: updated.id, status: 'COMPLETED' };
   }
   static async cancelBooking(bookingId: string, userId: string) {
     // Cancel if not active/completed
-    const b = await prisma.booking.findUnique({ where: { id: bookingId } });
+    const b = await prisma.booking.findUnique({
+      where: { id: bookingId },
+      select: { id: true, userId: true, status: true, slotId: true },
+    });
     if (!b) throw new Error('Booking not found');
     if (b.userId !== userId) throw new Error('Forbidden');
     if (b.status === 'ACTIVE' || b.status === 'COMPLETED') {
@@ -50,14 +67,15 @@ export class BookingService {
     const booking = await prisma.booking.update({
       where: { id: bookingId },
       data: { status: 'CANCELLED' },
+      select: { id: true },
     });
-    await prisma.parkingSlot.update({ where: { id: booking.slotId }, data: { status: 'AVAILABLE' } });
+    await prisma.parkingSlot.update({ where: { id: b.slotId }, data: { status: 'AVAILABLE' } });
     return { id: booking.id, status: 'CANCELLED' };
   }
   static async extendBooking(bookingId: string, additionalHours: number) {
     const booking = await prisma.booking.findUnique({
       where: { id: bookingId },
-      include: { slot: true },
+      select: { id: true, status: true, endTime: true, totalAmount: true, slot: { select: { basePrice: true, locationId: true } } },
     });
     if (!booking) throw new Error('Booking not found');
     if (booking.status !== 'CONFIRMED' && booking.status !== 'ACTIVE') {
@@ -86,7 +104,14 @@ export class BookingService {
         extendedTimes: { increment: 1 },
         totalAmount: newAmount,
       },
-      include: { slot: { include: { location: true } } },
+      select: {
+        id: true,
+        status: true,
+        totalAmount: true,
+        startTime: true,
+        endTime: true,
+        slot: { select: { slotNumber: true, location: { select: { name: true, address: true } } } },
+      },
     });
 
     const totalAmount = typeof (updated.totalAmount as any)?.toNumber === 'function'
@@ -110,14 +135,19 @@ export class BookingService {
     if (status) {
       where.status = status;
     }
-
+    const hasImageColumn = await this.columnExists('Booking', 'qrCodeImage');
     const bookings = await prisma.booking.findMany({
       where,
-      include: {
-        slot: {
-          include: { location: true },
-        },
-        payment: true,
+      select: {
+        id: true,
+        qrCode: true,
+        checkInCode: true,
+        status: true,
+        totalAmount: true,
+        startTime: true,
+        endTime: true,
+        ...(hasImageColumn ? { qrCodeImage: true as const } : {}),
+        slot: { select: { slotNumber: true, location: { select: { name: true, address: true } } } },
       },
       orderBy: { createdAt: 'desc' },
     });
@@ -127,6 +157,7 @@ export class BookingService {
       qrCode: booking.qrCode!,
       checkInCode: booking.checkInCode!,
       status: booking.status,
+      qrCodeImage: booking.qrCodeImage || undefined,
       totalAmount: typeof booking.totalAmount === 'object' && typeof booking.totalAmount.toNumber === 'function'
         ? booking.totalAmount.toNumber()
         : booking.totalAmount,
@@ -159,29 +190,62 @@ export class BookingService {
       data: { status: 'RESERVED' },
     });
 
-    // Create booking
-    const booking = await prisma.booking.create({
-      data: {
-        userId,
-        slotId,
-        startTime,
-        endTime,
-        totalAmount,
-        qrCode,
-        checkInCode,
-        status: 'PENDING',
-      },
-      include: {
-        slot: {
-          include: { location: true },
-        },
-      },
+    // Pre-generate QR image (PNG data URL) for faster subsequent display (optional)
+    let qrCodeImage: string | undefined;
+    try {
+      qrCodeImage = await generateRealQRPNGDataURL({ text: qrCode, size: 240, margin: 2 });
+    } catch {
+      qrCodeImage = undefined;
+    }
+
+    // Create booking including stored image (best-effort). If it fails due to missing column, retry without the field.
+    const canStoreImage = await this.columnExists('Booking', 'qrCodeImage');
+    const baseData: any = {
+      userId,
+      slotId,
+      startTime,
+      endTime,
+      totalAmount,
+      qrCode,
+      checkInCode,
+      status: 'PENDING',
+    };
+    if (canStoreImage && qrCodeImage) {
+      baseData.qrCodeImage = qrCodeImage;
+    }
+
+    const selectBooking = (withImage: boolean) => ({
+      id: true,
+      qrCode: true,
+      checkInCode: true,
+      status: true,
+      totalAmount: true,
+      startTime: true,
+      endTime: true,
+      ...(withImage ? { qrCodeImage: true as const } : {}),
+      slot: { select: { slotNumber: true, location: { select: { name: true, address: true } } } },
     });
+
+    let booking: any;
+    try {
+      booking = await prisma.booking.create({
+        data: baseData,
+        select: selectBooking(!!baseData.qrCodeImage),
+      });
+    } catch (err) {
+      // Retry without qrCodeImage if the column is missing in the connected DB
+      const fallbackData = { ...baseData };
+      delete (fallbackData as any).qrCodeImage;
+      booking = await prisma.booking.create({
+        data: fallbackData,
+        select: selectBooking(false),
+      });
+    }
 
     // Coerce totalAmount to number if Decimal
     let amount: number;
-    if (typeof booking.totalAmount === 'object' && typeof booking.totalAmount.toNumber === 'function') {
-      amount = booking.totalAmount.toNumber();
+    if (typeof (booking as any).totalAmount === 'object' && typeof (booking as any).totalAmount.toNumber === 'function') {
+      amount = (booking as any).totalAmount.toNumber();
     } else {
       amount = Number(booking.totalAmount);
     }
@@ -194,6 +258,7 @@ export class BookingService {
       totalAmount: amount,
       startTime: booking.startTime.toISOString(),
       endTime: booking.endTime.toISOString(),
+      qrCodeImage: (booking as any).qrCodeImage || undefined,
       slot: {
         slotNumber: booking.slot.slotNumber,
         location: {
@@ -210,6 +275,7 @@ export class BookingService {
       where: {
         OR: [{ qrCode: identifier }, { checkInCode: identifier }],
       },
+      select: { id: true, status: true },
     });
     if (!booking) throw new Error('Booking not found');
     if (booking.status !== 'CONFIRMED') {
@@ -218,7 +284,7 @@ export class BookingService {
     const updated = await prisma.booking.update({
       where: { id: booking.id },
       data: { status: 'ACTIVE', actualStartTime: new Date() },
-      include: { slot: true },
+      select: { id: true, status: true, slotId: true },
     });
     await prisma.parkingSlot.update({ where: { id: updated.slotId }, data: { status: 'OCCUPIED' } });
     return { id: updated.id, status: updated.status };

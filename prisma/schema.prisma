@@ -143,6 +143,7 @@ model Booking {
   status          String      @default("PENDING") // "PENDING", "CONFIRMED", "ACTIVE", "COMPLETED", "CANCELLED", "EXPIRED"
   qrCode          String?     @unique
   checkInCode     String?     @unique
+  qrCodeImage     String?     // Pre-generated PNG/SVG data URL for faster display
   extendedTimes   Int         @default(0)
   notes           String?
   createdAt       DateTime    @default(now())

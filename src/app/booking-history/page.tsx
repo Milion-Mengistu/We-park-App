@@ -29,6 +29,9 @@ export default function BookingHistoryPage() {
         setError(null);
         const qs = status ? `?status=${encodeURIComponent(status)}` : "";
         const res = await fetch(`/api/bookings${qs}`, { signal: controller.signal });
+        if (res.status === 401) {
+          throw new Error("Please sign in to view your bookings.");
+        }
         if (!res.ok) throw new Error(await res.text());
         const json = await res.json();
         setData(json || []);
@@ -45,7 +48,12 @@ export default function BookingHistoryPage() {
   const total = useMemo(() => data.reduce((sum, b) => sum + (Number(b.totalAmount) || 0), 0), [data]);
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-8">
+    <main className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply blur-2xl opacity-10"></div>
+        <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply blur-2xl opacity-10"></div>
+      </div>
+      <div className="relative max-w-6xl mx-auto px-6 py-8">
       <header className="mb-6 flex items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold">My Booking History</h1>
@@ -76,7 +84,14 @@ export default function BookingHistoryPage() {
         <div className="p-6 rounded-xl border bg-white">Loading...</div>
       )}
       {error && !loading && (
-        <div className="p-4 rounded-xl border border-red-200 bg-red-50 text-red-700">{error}</div>
+        <div className="p-4 rounded-xl border border-red-200 bg-red-50 text-red-700">
+          {error} {error.includes('sign in') && (
+            <>
+              <span className="mx-2">•</span>
+              <Link href="/login" className="underline text-blue-700">Sign In</Link>
+            </>
+          )}
+        </div>
       )}
 
       {!loading && !error && data.length === 0 && (
@@ -138,6 +153,7 @@ export default function BookingHistoryPage() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </main>
   );

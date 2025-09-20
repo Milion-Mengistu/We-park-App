@@ -2,9 +2,14 @@ export const metadata = { title: "About - We Park" };
 
 export default function AboutPage() {
   return (
-    <main className="max-w-4xl mx-auto px-6 py-12">
+    <main className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply blur-2xl opacity-10"></div>
+        <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply blur-2xl opacity-10"></div>
+      </div>
+      <div className="relative max-w-4xl mx-auto px-6 py-12">
       <header className="mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">About We Park</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">About We Park</h1>
         <p className="text-gray-600 text-lg max-w-2xl">Our mission is to save time and reduce congestion with a smart, seamless parking experience.</p>
       </header>
 
@@ -33,6 +38,7 @@ export default function AboutPage() {
           <p className="text-gray-600 text-sm">We’re here to help you park without stress.</p>
         </div>
       </section>
+      </div>
     </main>
   );
 }

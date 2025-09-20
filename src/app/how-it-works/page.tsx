@@ -32,9 +32,14 @@ export default function HowItWorksPage() {
   ];
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12">
+    <main className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-400 rounded-full mix-blend-multiply blur-2xl opacity-10"></div>
+        <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-400 rounded-full mix-blend-multiply blur-2xl opacity-10"></div>
+      </div>
+      <div className="relative max-w-5xl mx-auto px-6 py-12">
       <header className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">How It Works</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">How It Works</h1>
         <p className="text-gray-600 text-lg">Three simple steps to stress-free parking.</p>
       </header>
       <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -50,13 +55,14 @@ export default function HowItWorksPage() {
         ))}
       </ol>
       <section className="mt-12 text-center">
-        <a href="/find-parking" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700">
+        <a href="/find-parking" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 shadow-lg">
           Get Started
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </a>
       </section>
+      </div>
     </main>
   );
 }

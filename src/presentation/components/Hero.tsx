@@ -1,7 +1,5 @@
 // src/components/Hero.tsx
 "use client";
-
-import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
@@ -15,19 +13,23 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
+    <section
+      className="relative min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden"
+      role="region"
+      aria-labelledby="hero-heading"
+    >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-pulse animation-delay-4000"></div>
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 motion-safe:animate-pulse motion-reduce:animate-none"></div>
+        <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 motion-safe:animate-pulse motion-reduce:animate-none animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 motion-safe:animate-pulse motion-reduce:animate-none animation-delay-4000"></div>
       </div>
 
       {/* Floating geometric shapes */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-blue-500 rounded-full opacity-40 animate-bounce"></div>
-        <div className="absolute top-3/4 right-1/4 w-6 h-6 bg-purple-500 rounded-full opacity-30 animate-bounce animation-delay-2000"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-indigo-500 rounded-full opacity-50 animate-bounce animation-delay-4000"></div>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-blue-500 rounded-full opacity-40 motion-safe:animate-bounce motion-reduce:animate-none"></div>
+        <div className="absolute top-3/4 right-1/4 w-6 h-6 bg-purple-500 rounded-full opacity-30 motion-safe:animate-bounce motion-reduce:animate-none animation-delay-2000"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-indigo-500 rounded-full opacity-50 motion-safe:animate-bounce motion-reduce:animate-none animation-delay-4000"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center min-h-screen">
@@ -41,7 +43,7 @@ export default function Hero() {
           </div>
 
           {/* Main Title with gradient */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+          <h1 id="hero-heading" className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Smart Parking
             </span>
@@ -137,16 +139,16 @@ export default function Hero() {
         {/* Right side - Enhanced Visual */}
         <div className="relative flex justify-center lg:justify-end">
           {/* Glow effect behind illustration */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-3xl opacity-20 transform scale-75"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-3xl opacity-20 transform scale-75" aria-hidden="true"></div>
 
           {/* Main illustration container */}
           <div className="relative">
             {/* Decorative ring */}
-            <div className="absolute inset-0 border-4 border-blue-200 rounded-full animate-spin-slow opacity-30"></div>
-            <div className="absolute inset-4 border-2 border-indigo-200 rounded-full animate-spin-reverse opacity-40"></div>
+            <div className="absolute inset-0 border-4 border-blue-200 rounded-full opacity-30 motion-safe:animate-spin-slow motion-reduce:animate-none" aria-hidden="true"></div>
+            <div className="absolute inset-4 border-2 border-indigo-200 rounded-full opacity-40 motion-safe:animate-spin-reverse motion-reduce:animate-none" aria-hidden="true"></div>
 
             {/* Placeholder for illustration - you can replace with actual parking illustration */}
-            <div className="relative w-96 h-96 bg-gradient-to-br from-white via-blue-50 to-indigo-100 rounded-full shadow-2xl flex items-center justify-center border border-white/50 backdrop-blur-sm">
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-br from-white via-blue-50 to-indigo-100 rounded-full shadow-2xl flex items-center justify-center border border-white/50 backdrop-blur-sm">
               {/* Parking icon illustration */}
               <div className="text-center">
                 <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-lg">
@@ -160,13 +162,13 @@ export default function Hero() {
             </div>
 
             {/* Floating elements around illustration */}
-            <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl shadow-lg flex items-center justify-center text-white font-bold animate-bounce">
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl shadow-lg flex items-center justify-center text-white font-bold motion-safe:animate-bounce motion-reduce:animate-none" aria-hidden>
               🚗
             </div>
-            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl shadow-lg flex items-center justify-center text-white text-sm animate-pulse">
+            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl shadow-lg flex items-center justify-center text-white text-sm motion-safe:animate-pulse motion-reduce:animate-none" aria-hidden>
               ⚡
             </div>
-            <div className="absolute top-1/2 -right-8 w-8 h-8 bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full shadow-lg animate-bounce animation-delay-2000"></div>
+            <div className="absolute top-1/2 -right-8 w-8 h-8 bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full shadow-lg motion-safe:animate-bounce motion-reduce:animate-none animation-delay-2000" aria-hidden></div>
           </div>
         </div>
       </div>

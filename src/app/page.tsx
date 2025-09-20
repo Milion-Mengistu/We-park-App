@@ -1,9 +1,8 @@
-import Image from "next/image";
 import Hero from "@/src/presentation/components/Hero";
 
 export default function Home() {
   return (
-    <main>
+    <main aria-label="Homepage">
       <Hero />
     </main>
   );

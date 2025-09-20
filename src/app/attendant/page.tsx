@@ -124,20 +124,20 @@ function AttendantPanelContent() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50">
       {/* Attendant Header */}
       <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200 sticky top-0 z-40">
-        <div className="max-w-4xl mx-auto px-6 py-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                 Attendant Panel
               </h1>
-              <p className="text-gray-600">Scan QR codes and manage parking check-ins</p>
+              <p className="text-gray-600 text-sm sm:text-base">Scan QR codes and manage parking check-ins</p>
             </div>
             
             <div className="flex items-center gap-4">
               <StatusBadge status="On Duty" variant="success" pulse={true} />
               <Link
                 href="/dashboard"
-                className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors duration-200"
+                className="flex items-center gap-2 px-3 py-2 sm:px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors duration-200"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -149,7 +149,7 @@ function AttendantPanelContent() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Tab Navigation */}
         <TabNavigation
           tabs={[
@@ -189,15 +189,15 @@ function AttendantPanelContent() {
         {/* QR Scanner Tab */}
         {activeTab === 'scan' && (
           <div className="space-y-6">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-white/50 shadow-lg">
               <div className="text-center mb-6">
                 <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                   </svg>
                 </div>
-                <h2 className="text-xl font-bold text-gray-900 mb-2">Scan QR Code</h2>
-                <p className="text-gray-600">Scan the customer's booking QR code to check them in</p>
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Scan QR Code</h2>
+                <p className="text-gray-600 text-sm sm:text-base">Scan the customer's booking QR code to check them in</p>
               </div>
 
               <div className="space-y-4">
@@ -207,7 +207,7 @@ function AttendantPanelContent() {
                     placeholder="Enter QR code or 6-digit code..."
                     value={qrInput}
                     onChange={(e) => setQrInput(e.target.value)}
-                    className="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-300 transition-all duration-300 font-mono text-sm"
+                    className="w-full px-4 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-300 transition-all duration-300 font-mono text-sm"
                   />
                   <ActionButton
                     onClick={generateDemoQR}
@@ -244,7 +244,7 @@ function AttendantPanelContent() {
             </div>
 
             {/* Camera Scanner (Placeholder) */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg">
               <h3 className="font-bold text-gray-900 mb-4">Camera Scanner</h3>
               <div className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-300">
                 <div className="text-center">
@@ -262,15 +262,15 @@ function AttendantPanelContent() {
 
         {/* Manual Entry Tab */}
         {activeTab === 'manual' && (
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-white/50 shadow-lg">
             <div className="text-center mb-6">
               <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                 </svg>
               </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Manual Check-in</h2>
-              <p className="text-gray-600">Enter the 6-digit check-in code for manual verification</p>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Manual Check-in</h2>
+              <p className="text-gray-600 text-sm sm:text-base">Enter the 6-digit check-in code for manual verification</p>
             </div>
 
             <div className="space-y-4">
@@ -280,7 +280,7 @@ function AttendantPanelContent() {
                   placeholder="Enter 6-digit check-in code..."
                   value={checkInCode}
                   onChange={(e) => setCheckInCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                  className="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300 text-center text-2xl font-mono tracking-widest"
+                  className="w-full px-4 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-300 transition-all duration-300 text-center text-xl sm:text-2xl font-mono tracking-widest"
                   maxLength={6}
                 />
               </div>
@@ -312,7 +312,7 @@ function AttendantPanelContent() {
 
         {/* Recent Activity Tab */}
         {activeTab === 'history' && (
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/50 shadow-lg">
             <h2 className="text-xl font-bold text-gray-900 mb-6">Recent Check-ins</h2>
             
             {recentCheckins.length === 0 ? (
@@ -326,15 +326,15 @@ function AttendantPanelContent() {
               <div className="space-y-4">
                 {recentCheckins.map((checkin: any, index) => (
                   <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 min-w-0">
                       <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <div>
-                        <p className="font-medium text-gray-900">{checkin.slotNumber}</p>
-                        <p className="text-sm text-gray-600">{checkin.location}</p>
+                      <div className="min-w-0 max-w-[55vw] sm:max-w-none">
+                        <p className="font-medium text-gray-900 truncate" title={checkin.slotNumber}>{checkin.slotNumber}</p>
+                        <p className="text-sm text-gray-600 truncate" title={checkin.location}>{checkin.location}</p>
                       </div>
                     </div>
                     <div className="text-right">

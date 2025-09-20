@@ -90,7 +90,6 @@ function MapUpdater({ selectedLocation }: { selectedLocation: ParkingLocation | 
     if (selectedLocation && selectedLocation.latitude && selectedLocation.longitude) {
       map.setView([selectedLocation.latitude, selectedLocation.longitude], 15, {
         animate: true,
-        pan: { duration: 0.5 }
       });
     }
   }, [selectedLocation, map]);

@@ -7,12 +7,12 @@ import { RoleGuard } from "@/src/components/RoleGuard";
 import { TabNavigation, ActionButton, StatusBadge } from "@/src/components/ui";
 
 interface CheckInResult {
-  booking: any;
-  message: string;
-  parkingDetails: {
-    location: string;
-    slotNumber: string;
-    endTime: string;
+  booking?: any;
+  message?: string;
+  parkingDetails?: {
+    location?: string;
+    slotNumber?: string;
+    endTime?: string;
   };
 }
 
@@ -64,7 +64,17 @@ function AttendantPanelContent() {
       const data = await response.json();
 
       if (response.ok) {
-        setCheckInResult(data);
+        // Normalize shape to prevent runtime errors if fields are missing
+        const normalized: CheckInResult = {
+          booking: data?.booking ?? (data?.id || data?.status ? { id: data.id, status: data.status } : undefined),
+          message: data?.message ?? 'Check-in successful',
+          parkingDetails: {
+            location: data?.parkingDetails?.location ?? data?.location?.name ?? 'Unknown',
+            slotNumber: data?.parkingDetails?.slotNumber ?? data?.slot?.slotNumber ?? '—',
+            endTime: data?.parkingDetails?.endTime ?? data?.endTime ?? new Date().toISOString(),
+          },
+        };
+        setCheckInResult(normalized);
         setQrInput('');
         fetchRecentCheckins();
       } else {
@@ -101,7 +111,16 @@ function AttendantPanelContent() {
       const data = await response.json();
 
       if (response.ok) {
-        setCheckInResult(data);
+        const normalized: CheckInResult = {
+          booking: data?.booking ?? (data?.id || data?.status ? { id: data.id, status: data.status } : undefined),
+          message: data?.message ?? 'Check-in successful',
+          parkingDetails: {
+            location: data?.parkingDetails?.location ?? data?.location?.name ?? 'Unknown',
+            slotNumber: data?.parkingDetails?.slotNumber ?? data?.slot?.slotNumber ?? '—',
+            endTime: data?.parkingDetails?.endTime ?? data?.endTime ?? new Date().toISOString(),
+          },
+        };
+        setCheckInResult(normalized);
         setCheckInCode('');
         fetchRecentCheckins();
       } else {
@@ -359,23 +378,30 @@ function AttendantPanelContent() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Check-in Successful!</h3>
-                <p className="text-gray-600">{checkInResult.message}</p>
+                <p className="text-gray-600">{checkInResult?.message ?? 'Check-in successful'}</p>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4 mb-6">
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Location:</span>
-                    <span className="font-medium">{checkInResult.parkingDetails.location}</span>
+                    <span className="font-medium">{checkInResult?.parkingDetails?.location ?? 'Unknown'}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Slot:</span>
-                    <span className="font-medium">{checkInResult.parkingDetails.slotNumber}</span>
+                    <span className="font-medium">{checkInResult?.parkingDetails?.slotNumber ?? '—'}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Valid Until:</span>
                     <span className="font-medium">
-                      {new Date(checkInResult.parkingDetails.endTime).toLocaleTimeString()}
+                      {(() => {
+                        const ts = checkInResult?.parkingDetails?.endTime;
+                        try {
+                          return ts ? new Date(ts).toLocaleTimeString() : '-';
+                        } catch {
+                          return '-';
+                        }
+                      })()}
                     </span>
                   </div>
                 </div>

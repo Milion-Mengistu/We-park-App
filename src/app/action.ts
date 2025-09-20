@@ -1,9 +1,10 @@
 // app/actions.ts
 "use server";
-import { neon } from "@neondatabase/serverless";
 
+// NOTE: This placeholder server action previously depended on
+// '@neondatabase/serverless', which is not used in this project and
+// caused type-check errors during builds. If you need server actions
+// here in the future, wire them to Prisma instead.
 export async function getData() {
-    const sql = neon(process.env.DATABASE_URL);
-    const data = await sql`...`;
-    return data;
+    return null as unknown as any;
 }

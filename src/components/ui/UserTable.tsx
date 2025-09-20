@@ -33,7 +33,8 @@ type UserTableProps = {
   getRoleColor: (role: string) => string;
   formatDate: (date: string | Date) => string;
   handleRemoveRole: (userId: string, role: string) => void;
-  setSelectedUser: (user: User) => void;
+  // Accept a React state setter to avoid strict structural coupling with parent User type
+  setSelectedUser: React.Dispatch<React.SetStateAction<any>>;
   setShowRoleModal: (show: boolean) => void;
 };
 

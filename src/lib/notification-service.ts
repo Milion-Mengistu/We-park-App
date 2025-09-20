@@ -338,7 +338,7 @@ export class NotificationService {
     action: string,
     data: any
   ): { title: string; message: string } {
-    const templates = {
+    const templates: Record<string, Record<string, { title: string; message: string }>> = {
       BOOKING: {
         CREATED: {
           title: 'Booking Confirmed',

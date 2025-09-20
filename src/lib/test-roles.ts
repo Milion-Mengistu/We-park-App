@@ -45,7 +45,7 @@ export const testUsers = {
 /**
  * Expected access permissions for different endpoints
  */
-export const accessMatrix = {
+export const accessMatrix: Record<string, UserRole[]> = {
   '/admin': ['ADMIN', 'SUPER_ADMIN'],
   '/admin/users': ['ADMIN', 'SUPER_ADMIN'],
   '/admin/locations': ['ADMIN', 'SUPER_ADMIN'],
@@ -70,7 +70,7 @@ export function testUserAccess(userRoles: UserRole[], endpoint: string): RoleTes
     };
   }
 
-  const hasAccess = requiredRoles.some(role => userRoles.includes(role));
+  const hasAccess = requiredRoles.some((role) => userRoles.includes(role as UserRole));
   
   return {
     success: hasAccess,

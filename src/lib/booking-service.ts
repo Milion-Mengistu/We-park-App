@@ -270,7 +270,7 @@ export class BookingService {
   }
 
   static async checkIn(identifier: string, attendantId: string) {
-    // Find booking by QR or code that is confirmed
+    // Find booking by QR or 6-digit code that is ready for check-in
     const booking = await prisma.booking.findFirst({
       where: {
         OR: [{ qrCode: identifier }, { checkInCode: identifier }],
@@ -281,12 +281,31 @@ export class BookingService {
     if (booking.status !== 'CONFIRMED') {
       throw new Error('Booking is not ready for check-in');
     }
+
+    // Mark booking ACTIVE and capture details for the attendant UI
     const updated = await prisma.booking.update({
       where: { id: booking.id },
       data: { status: 'ACTIVE', actualStartTime: new Date() },
-      select: { id: true, status: true, slotId: true },
+      select: {
+        id: true,
+        status: true,
+        endTime: true,
+        slotId: true,
+        slot: { select: { slotNumber: true, location: { select: { name: true } } } },
+      },
     });
+
+    // Occupy the slot
     await prisma.parkingSlot.update({ where: { id: updated.slotId }, data: { status: 'OCCUPIED' } });
-    return { id: updated.id, status: updated.status };
+
+    return {
+      booking: { id: updated.id, status: updated.status },
+      message: 'Check-in successful',
+      parkingDetails: {
+        location: updated.slot.location.name,
+        slotNumber: updated.slot.slotNumber,
+        endTime: updated.endTime?.toISOString?.() || new Date().toISOString(),
+      },
+    };
   }
 }

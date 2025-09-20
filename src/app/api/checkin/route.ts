@@ -2,6 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { BookingService } from '@/src/lib/booking-service';
 import { validateQRCode } from '@/src/lib/qr-service';
+import { z } from 'zod';
+
+const checkinSchema = z
+  .object({
+    qrCode: z.string().optional(),
+    checkInCode: z.string().optional(),
+  })
+  .refine((d) => Boolean(d.qrCode || d.checkInCode), {
+    message: 'QR code or check-in code required',
+    path: ['qrCode'],
+  });
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,14 +23,11 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { qrCode, checkInCode } = body;
-
-    if (!qrCode && !checkInCode) {
-      return NextResponse.json(
-        { error: 'QR code or check-in code required' },
-        { status: 400 }
-      );
+    const parsed = checkinSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid request body', details: parsed.error.flatten() }, { status: 400 });
     }
+    const { qrCode, checkInCode } = parsed.data;
 
     // Validate QR code format if provided
     if (qrCode && !validateQRCode(qrCode)) {
@@ -32,16 +40,15 @@ export async function POST(request: NextRequest) {
     const attendantId = session.user.email;
     
     // Use QR code for check-in (or check-in code as fallback)
-    const checkInResult = await BookingService.checkIn(
-      qrCode || checkInCode,
-      attendantId
-    );
+    const code = (qrCode ?? checkInCode)!; // safe due to schema refine
+    const checkInResult = await BookingService.checkIn(code, attendantId);
 
     return NextResponse.json(checkInResult);
   } catch (error) {
     console.error('Check-in error:', error);
+    const message = error instanceof Error ? error.message : 'Check-in failed';
     return NextResponse.json(
-      { error: error.message || 'Check-in failed' },
+      { error: message },
       { status: 500 }
     );
   }

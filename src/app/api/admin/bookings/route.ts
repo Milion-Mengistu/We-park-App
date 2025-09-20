@@ -1,16 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withAdminAuth } from '@/src/lib/api-auth';
 import { prisma } from '@/src/lib/prisma';
+import { selectBooking } from '@/src/lib/selects';
+import { adminBookingsQuerySchema, toPlainNumber } from '@/src/lib/validation';
+
+// Force dynamic evaluation and disable route caching to ensure latest code runs
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 type RouteHandler = (request: NextRequest) => Promise<NextResponse>;
 
 export const GET: RouteHandler = withAdminAuth(async (request: NextRequest, userWithRoles) => {
   try {
+  // handler start
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '20');
-    const status = searchParams.get('status');
-    const locationId = searchParams.get('locationId');
+    const parsed = adminBookingsQuerySchema.safeParse({
+      page: searchParams.get('page') ?? undefined,
+      limit: searchParams.get('limit') ?? undefined,
+      status: searchParams.get('status') ?? undefined,
+      locationId: searchParams.get('locationId') ?? undefined,
+    });
+
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid query parameters', details: parsed.error.flatten() }, { status: 400 });
+    }
+
+    const { page, limit, status, locationId } = parsed.data as any;
 
     const skip = (page - 1) * limit;
 
@@ -26,52 +41,11 @@ export const GET: RouteHandler = withAdminAuth(async (request: NextRequest, user
       };
     }
 
-  const [bookingsRaw, total] = await Promise.all([
+    const [bookingsRaw, total] = await Promise.all([
       prisma.booking.findMany({
         where,
-        select: {
-          id: true,
-          status: true,
-          totalAmount: true,
-          startTime: true,
-          endTime: true,
-          actualStartTime: true,
-          actualEndTime: true,
-          qrCode: true,
-          checkInCode: true,
-          createdAt: true,
-          user: {
-            select: {
-              id: true,
-              name: true,
-              email: true,
-            },
-          },
-          slot: {
-            select: {
-              slotNumber: true,
-              location: {
-                select: {
-                  id: true,
-                  name: true,
-                  address: true,
-                },
-              },
-            },
-          },
-          payment: {
-            select: {
-              id: true,
-              status: true,
-              method: true,
-              amount: true,
-              paidAt: true,
-            },
-          },
-        },
-        orderBy: {
-          createdAt: 'desc',
-        },
+        select: selectBooking(false),
+        orderBy: { createdAt: 'desc' },
         skip,
         take: limit,
       }),
@@ -81,13 +55,8 @@ export const GET: RouteHandler = withAdminAuth(async (request: NextRequest, user
     // Normalize Decimal fields to numbers for safe JSON consumption
     const bookings = bookingsRaw.map((b: any) => ({
       ...b,
-      totalAmount: typeof b.totalAmount?.toNumber === 'function' ? b.totalAmount.toNumber() : Number(b.totalAmount),
-      payment: b.payment
-        ? {
-            ...b.payment,
-            amount: typeof b.payment.amount?.toNumber === 'function' ? b.payment.amount.toNumber() : Number(b.payment.amount),
-          }
-        : null,
+      totalAmount: toPlainNumber(b.totalAmount),
+      payment: b.payment ? { ...b.payment, amount: toPlainNumber(b.payment.amount) } : null,
     }));
 
     return NextResponse.json({

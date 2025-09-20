@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/src/lib/prisma';
 
 export async function GET(request: NextRequest) {
   try {
@@ -23,22 +21,17 @@ export async function GET(request: NextRequest) {
           gte: today,
         },
       },
-      include: {
+      select: {
+        id: true,
+        endTime: true,
+        actualStartTime: true,
         slot: {
-          include: {
-            location: {
-              select: {
-                name: true,
-              },
-            },
-          },
-        },
-        user: {
           select: {
-            name: true,
-            email: true,
+            slotNumber: true,
+            location: { select: { name: true } },
           },
         },
+        user: { select: { name: true, email: true } },
       },
       orderBy: {
         actualStartTime: 'desc',

@@ -128,6 +128,7 @@ model ParkingSlot {
   bookings    Booking[]
 
   @@unique([locationId, slotNumber])
+  @@index([locationId])
 }
 
 // Enhanced booking model with QR support
@@ -153,6 +154,9 @@ model Booking {
   slot            ParkingSlot @relation(fields: [slotId], references: [id])
   payment         Payment?
   incidents       Incident[]
+
+  @@index([createdAt])
+  @@index([status])
 }
 
 // Enhanced payment model

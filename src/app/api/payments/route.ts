@@ -1,6 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { PaymentService } from '@/src/lib/payment-service';
+import { z } from 'zod';
+
+const paymentInitiateSchema = z.object({
+  bookingId: z.string().min(1, 'bookingId is required'),
+  amount: z
+    .union([z.number(), z.string()])
+    .transform((v) => (typeof v === 'string' ? Number(v) : v))
+    .pipe(z.number().positive('amount must be > 0')),
+  method: z.enum(['TELEBIRR', 'CBE_BIRR', 'CHAPA', 'CASH']),
+  phoneNumber: z.string().optional(),
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,18 +22,18 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { bookingId, amount, method, phoneNumber } = body;
-
-    if (!bookingId || !amount || !method) {
+    const parsed = paymentInitiateSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Invalid request body', details: parsed.error.flatten() },
         { status: 400 }
       );
     }
+    const { bookingId, amount, method, phoneNumber } = parsed.data;
 
     const paymentResponse = await PaymentService.initiatePayment({
       bookingId,
-      amount: parseFloat(amount),
+      amount,
       method,
       phoneNumber,
       returnUrl: `${request.nextUrl.origin}/dashboard`,
@@ -31,8 +42,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(paymentResponse);
   } catch (error) {
     console.error('Payment initiation error:', error);
+    const message = error instanceof Error ? error.message : 'Failed to initiate payment';
     return NextResponse.json(
-      { error: error.message || 'Failed to initiate payment' },
+      { error: message },
       { status: 500 }
     );
   }

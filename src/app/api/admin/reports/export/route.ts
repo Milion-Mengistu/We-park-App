@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/src/lib/prisma';
+import { selectBooking } from '@/src/lib/selects';
+import { adminReportExportQuerySchema, toPlainNumber } from '@/src/lib/validation';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,8 +16,14 @@ export async function POST(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url);
-    const format = searchParams.get('format') || 'csv';
-    const period = searchParams.get('period') || '7d';
+    const parsed = adminReportExportQuerySchema.safeParse({
+      format: searchParams.get('format') ?? undefined,
+      period: searchParams.get('period') ?? undefined,
+    });
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid parameters', details: parsed.error.flatten() }, { status: 400 });
+    }
+    const { format, period } = parsed.data;
 
     // Calculate date range
     const endDate = new Date();
@@ -43,43 +52,17 @@ export async function POST(request: NextRequest) {
           lte: endDate,
         },
       },
-      include: {
-        user: {
-          select: {
-            name: true,
-            email: true,
-          },
-        },
-        slot: {
-          include: {
-            location: {
-              select: {
-                name: true,
-                address: true,
-              },
-            },
-          },
-        },
-        payment: {
-          select: {
-            amount: true,
-            method: true,
-            status: true,
-            paidAt: true,
-          },
-        },
-      },
+      select: selectBooking(false),
       orderBy: {
         createdAt: 'desc',
       },
     });
 
     // Normalize Decimal-like fields
-    const toNumber = (v: any): number => (v && typeof v === 'object' && typeof v.toNumber === 'function') ? v.toNumber() : Number(v || 0);
     const bookings = bookingsRaw.map((b: any) => ({
       ...b,
-      totalAmount: toNumber(b.totalAmount),
-      payment: b.payment ? { ...b.payment, amount: toNumber(b.payment.amount) } : null,
+      totalAmount: toPlainNumber(b.totalAmount) ?? 0,
+      payment: b.payment ? { ...b.payment, amount: toPlainNumber(b.payment.amount) ?? 0 } : null,
     }));
 
     if (format === 'csv') {

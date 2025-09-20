@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { PaymentService } from '@/src/lib/payment-service';
+import { z } from 'zod';
+
+const idParamSchema = z.object({ id: z.string().min(1) });
+const paymentPatchSchema = z.object({ action: z.enum(['confirm_cash']) });
 
 export async function GET(
   request: NextRequest,
@@ -13,7 +17,12 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-  const { id: paymentId } = await params;
+    const raw = await params;
+    const parsed = idParamSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid payment id', details: parsed.error.flatten() }, { status: 400 });
+    }
+    const { id: paymentId } = parsed.data;
     const paymentStatus = await PaymentService.getPaymentStatus(paymentId);
 
     return NextResponse.json(paymentStatus);
@@ -38,9 +47,19 @@ export async function PATCH(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-  const { id: paymentId } = await params;
+    const raw = await params;
+    const parsedId = idParamSchema.safeParse(raw);
+    if (!parsedId.success) {
+      return NextResponse.json({ error: 'Invalid payment id', details: parsedId.error.flatten() }, { status: 400 });
+    }
+    const { id: paymentId } = parsedId.data;
+
     const body = await request.json();
-    const { action } = body;
+    const parsedBody = paymentPatchSchema.safeParse(body);
+    if (!parsedBody.success) {
+      return NextResponse.json({ error: 'Invalid action', details: parsedBody.error.flatten() }, { status: 400 });
+    }
+    const { action } = parsedBody.data;
 
     const attendantId = session.user.email;
 

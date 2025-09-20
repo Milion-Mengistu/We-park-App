@@ -296,39 +296,39 @@ export default function AdminBookings() {
         {/* Bookings Table */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
+            <table className="w-full text-sm sm:text-base">
+              <thead className="bg-gray-50 border-b border-gray-200 text-xs sm:text-xs">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location & Slot</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-6 py-4 text-left font-medium text-gray-500 uppercase tracking-wider">User</th>
+                  <th className="px-6 py-4 text-left font-medium text-gray-500 uppercase tracking-wider">Location & Slot</th>
+                  <th className="px-6 py-4 text-left font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                  <th className="px-6 py-4 text-left font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-4 text-left font-medium text-gray-500 uppercase tracking-wider">Payment</th>
+                  <th className="px-6 py-4 text-left font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                  <th className="px-6 py-4 text-left font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredBookings.map((booking) => (
                   <tr key={booking.id} className="hover:bg-gray-50 transition-colors duration-200">
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{booking.user.name}</div>
-                        <div className="text-sm text-gray-500">{booking.user.email}</div>
+                      <div className="max-w-[200px] sm:max-w-none">
+                        <div className="text-sm font-medium text-gray-900 truncate" title={booking.user.name}>{booking.user.name}</div>
+                        <div className="text-sm text-gray-500 truncate" title={booking.user.email}>{booking.user.email}</div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{booking.slot.location.name}</div>
-                        <div className="text-sm text-gray-500">Slot {booking.slot.slotNumber}</div>
+                      <div className="max-w-[220px] sm:max-w-none">
+                        <div className="text-sm font-medium text-gray-900 truncate" title={booking.slot.location.name}>{booking.slot.location.name}</div>
+                        <div className="text-sm text-gray-500 truncate" title={`Slot ${booking.slot.slotNumber}`}>Slot {booking.slot.slotNumber}</div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm text-gray-900">
+                      <div className="max-w-[180px] sm:max-w-none">
+                        <div className="text-sm text-gray-900 truncate" title={new Date(booking.startTime).toLocaleDateString()}>
                           {new Date(booking.startTime).toLocaleDateString()}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-gray-500 truncate" title={`${new Date(booking.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(booking.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}>
                           {new Date(booking.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - 
                           {new Date(booking.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </div>
@@ -341,11 +341,11 @@ export default function AdminBookings() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {booking.payment ? (
-                        <div>
+                        <div className="max-w-[140px] sm:max-w-none">
                           <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getPaymentStatusColor(booking.payment.status)}`}>
                             {booking.payment.status}
                           </span>
-                          <div className="text-xs text-gray-500 mt-1">{booking.payment.method}</div>
+                          <div className="text-xs text-gray-500 mt-1 truncate" title={booking.payment.method}>{booking.payment.method}</div>
                         </div>
                       ) : (
                         <span className="text-gray-400">No payment</span>
@@ -361,14 +361,14 @@ export default function AdminBookings() {
                             setSelectedBooking(booking);
                             setShowDetailsModal(true);
                           }}
-                          className="text-blue-600 hover:text-blue-700 font-medium"
+                          className="text-blue-600 hover:text-blue-700 font-medium px-2 py-1"
                         >
                           View
                         </button>
                         {booking.status === 'ACTIVE' && (
                           <button
                             onClick={() => handleCheckout(booking.id)}
-                            className="text-green-600 hover:text-green-700 font-medium"
+                            className="text-green-600 hover:text-green-700 font-medium px-2 py-1"
                           >
                             Check Out
                           </button>
@@ -376,7 +376,7 @@ export default function AdminBookings() {
                         {['PENDING', 'CONFIRMED'].includes(booking.status) && (
                           <button
                             onClick={() => handleCancelBooking(booking.id)}
-                            className="text-red-600 hover:text-red-700 font-medium"
+                            className="text-red-600 hover:text-red-700 font-medium px-2 py-1"
                           >
                             Cancel
                           </button>

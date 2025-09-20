@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withAdminAuth } from '@/src/lib/api-auth';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/src/lib/prisma';
 
 type RouteHandler = (request: NextRequest) => Promise<NextResponse>;
 
@@ -31,7 +29,17 @@ export const GET: RouteHandler = withAdminAuth(async (request: NextRequest, user
   const [bookingsRaw, total] = await Promise.all([
       prisma.booking.findMany({
         where,
-        include: {
+        select: {
+          id: true,
+          status: true,
+          totalAmount: true,
+          startTime: true,
+          endTime: true,
+          actualStartTime: true,
+          actualEndTime: true,
+          qrCode: true,
+          checkInCode: true,
+          createdAt: true,
           user: {
             select: {
               id: true,
@@ -40,7 +48,8 @@ export const GET: RouteHandler = withAdminAuth(async (request: NextRequest, user
             },
           },
           slot: {
-            include: {
+            select: {
+              slotNumber: true,
               location: {
                 select: {
                   id: true,

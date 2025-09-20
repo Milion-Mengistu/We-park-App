@@ -14,6 +14,7 @@ export default function Navbar() {
   const { data: session, status } = useSession();
   const { hasRole, isAdmin, isAttendant, isLoading } = useRoles();
   const [mounted, setMounted] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -109,7 +110,7 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Enhanced Action Buttons */}
+  {/* Enhanced Action Buttons */}
         <div className="flex items-center gap-3">
           {!mounted || status === "loading" ? (
             <>
@@ -196,11 +197,50 @@ export default function Navbar() {
           )}
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+          <button
+            onClick={() => setMobileOpen(v => !v)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            aria-label="Toggle navigation"
+            aria-controls="mobile-menu"
+          >
             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
+        </div>
+      </div>
+
+      {/* Mobile Nav Drawer */}
+      <div
+        id="mobile-menu"
+        className={`md:hidden border-t border-gray-100 bg-white/90 backdrop-blur-xl ${mobileOpen ? 'block' : 'hidden'}`}
+      >
+        <div className="px-6 py-4 space-y-2">
+          <Link href="/" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Home</Link>
+          {session && (
+            <>
+              <Link href="/find-parking" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Find Parking</Link>
+              {!isLoading && isAttendant && (
+                <Link href="/attendant" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Attendant</Link>
+              )}
+              {!isLoading && isAdmin && (
+                <Link href="/admin" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Admin</Link>
+              )}
+              <Link href="/dashboard" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Dashboard</Link>
+              <button
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="w-full text-left px-3 py-2 rounded-lg text-red-600 hover:bg-red-50"
+              >
+                Sign Out
+              </button>
+            </>
+          )}
+          {!session && (
+            <>
+              <Link href="/login" className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100">Sign In</Link>
+              <Link href="/register" className="block px-3 py-2 rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600">Get Started</Link>
+            </>
+          )}
         </div>
       </div>
     </header>

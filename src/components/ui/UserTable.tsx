@@ -74,7 +74,7 @@ export default function UserTable({
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full text-sm sm:text-base">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -106,9 +106,9 @@ export default function UserTable({
                         height={40}
                         className="rounded-full border-2 border-gray-200"
                       />
-                      <div>
-                        <p className="font-medium text-gray-900">{user.name}</p>
-                        <p className="text-sm text-gray-500">{user.email}</p>
+                      <div className="max-w-[200px] sm:max-w-none">
+                        <p className="font-medium text-gray-900 truncate" title={user.name}>{user.name}</p>
+                        <p className="text-sm text-gray-500 truncate" title={user.email}>{user.email}</p>
                       </div>
                     </div>
                   </td>
